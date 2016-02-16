@@ -19,6 +19,10 @@
 		36E57B931C7302E6000DEB1E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B901C7302E6000DEB1E /* FBSDKLoginKit.framework */; };
 		36E57B941C7302E6000DEB1E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B911C7302E6000DEB1E /* FBSDKCoreKit.framework */; };
 		36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B961C739F23000DEB1E /* CreateAccountViewController.m */; };
+		D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127E91C73C2890051E7EF /* QuikCar.m */; };
+		D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127EC1C73C3150051E7EF /* QuikUser.m */; };
+		D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */; };
+		D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,13 @@
 		36E57B961C739F23000DEB1E /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		771C706DCD88DB34931B3738 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C25AAE528576EBAC209E60CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCar.h; sourceTree = "<group>"; };
+		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCar.m; sourceTree = "<group>"; };
+		D01127EB1C73C3150051E7EF /* QuikUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUser.h; sourceTree = "<group>"; };
+		D01127EC1C73C3150051E7EF /* QuikUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUser.m; sourceTree = "<group>"; };
+		D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuikUserHomepage.storyboard; sourceTree = "<group>"; };
+		D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUserHomepageVC.h; sourceTree = "<group>"; };
+		D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUserHomepageVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +97,16 @@
 				36E57B961C739F23000DEB1E /* CreateAccountViewController.m */,
 				36E57B6C1C72D46B000DEB1E /* AppDelegate.h */,
 				36E57B6D1C72D46B000DEB1E /* AppDelegate.m */,
-				36E57B721C72D46B000DEB1E /* Main.storyboard */,
+				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
+				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
+				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
 				36E57B751C72D46B000DEB1E /* Assets.xcassets */,
+				36E57B721C72D46B000DEB1E /* Main.storyboard */,
 				36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */,
+				D01127E81C73C2890051E7EF /* QuikCar.h */,
+				D01127E91C73C2890051E7EF /* QuikCar.m */,
+				D01127EB1C73C3150051E7EF /* QuikUser.h */,
+				D01127EC1C73C3150051E7EF /* QuikUser.m */,
 				36E57B7A1C72D46B000DEB1E /* Info.plist */,
 				36E57B691C72D46B000DEB1E /* Supporting Files */,
 			);
@@ -184,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */,
+				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
 				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
 				36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */,
 				36E57B881C72E36E000DEB1E /* LoginStoryboard.storyboard in Resources */,
@@ -246,9 +265,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */,
+				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
+				D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */,
 				36E57B6B1C72D46B000DEB1E /* main.m in Sources */,
 				36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */,
+				D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
