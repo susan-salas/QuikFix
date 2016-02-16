@@ -12,6 +12,10 @@
 		36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B721C72D46B000DEB1E /* Main.storyboard */; };
 		36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B751C72D46B000DEB1E /* Assets.xcassets */; };
 		36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */; };
+		D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127E91C73C2890051E7EF /* QuikCar.m */; };
+		D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127EC1C73C3150051E7EF /* QuikUser.m */; };
+		D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */; };
+		D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,13 @@
 		36E57B751C72D46B000DEB1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36E57B781C72D46B000DEB1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36E57B7A1C72D46B000DEB1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCar.h; sourceTree = "<group>"; };
+		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCar.m; sourceTree = "<group>"; };
+		D01127EB1C73C3150051E7EF /* QuikUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUser.h; sourceTree = "<group>"; };
+		D01127EC1C73C3150051E7EF /* QuikUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUser.m; sourceTree = "<group>"; };
+		D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuikUserHomepage.storyboard; sourceTree = "<group>"; };
+		D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUserHomepageVC.h; sourceTree = "<group>"; };
+		D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUserHomepageVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +68,16 @@
 			children = (
 				36E57B6C1C72D46B000DEB1E /* AppDelegate.h */,
 				36E57B6D1C72D46B000DEB1E /* AppDelegate.m */,
-				36E57B721C72D46B000DEB1E /* Main.storyboard */,
+				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
+				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
+				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
 				36E57B751C72D46B000DEB1E /* Assets.xcassets */,
+				36E57B721C72D46B000DEB1E /* Main.storyboard */,
 				36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */,
+				D01127E81C73C2890051E7EF /* QuikCar.h */,
+				D01127E91C73C2890051E7EF /* QuikCar.m */,
+				D01127EB1C73C3150051E7EF /* QuikUser.h */,
+				D01127EC1C73C3150051E7EF /* QuikUser.m */,
 				36E57B7A1C72D46B000DEB1E /* Info.plist */,
 				36E57B691C72D46B000DEB1E /* Supporting Files */,
 			);
@@ -133,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */,
+				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
 				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
 				36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */,
 			);
@@ -145,8 +164,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
+				D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */,
 				36E57B6B1C72D46B000DEB1E /* main.m in Sources */,
+				D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +315,7 @@
 				36E57B7F1C72D46B000DEB1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
