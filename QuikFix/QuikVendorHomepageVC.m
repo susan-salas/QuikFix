@@ -8,13 +8,14 @@
 
 #import "QuikVendorHomepageVC.h"
 #import "MapKit/MapKit.h"
+#import "CoreLocation/CoreLocation.h"
 
 
-@interface QuikVendorHomepageVC ()
+@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property NSMutableArray *claims;
 
 @end
 
@@ -22,13 +23,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mapView.hidden = YES;
+    self.mapView.delegate = self;
     // Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
 }
+- (IBAction)switchButtonMoved:(UISwitch *)sender {
+    self.tableView.hidden = YES;
+
+}
+- (IBAction)historyButtonPressed:(UIBarButtonItem *)sender {
+}
+- (IBAction)sortButtonPressed:(UIBarButtonItem *)sender {
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    return cell;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.claims.count;
+}
+
 
 /*
 #pragma mark - Navigation

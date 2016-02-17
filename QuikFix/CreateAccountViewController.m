@@ -8,6 +8,7 @@
 
 #import "CreateAccountViewController.h"
 #import "Firebase/Firebase.h"
+#import "QuikUserHomepageVC.h"
 
 @interface CreateAccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
@@ -55,6 +56,7 @@ withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
           //segue to
           
           // The logged in user's unique identifier
+          [self callPresentVC];
           NSLog(@"Print out UID %@", authData.uid);
           
           // Create a new user dictionary accessing the user's info
@@ -79,6 +81,16 @@ withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
 }];
     }
     
+    
+}
+
+- (void) callPresentVC {
+    
+        QuikUserHomepageVC *quickUserVC = [QuikUserHomepageVC new];
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikUserHomepage" bundle:[NSBundle mainBundle]];
+        
+        quickUserVC = [board instantiateInitialViewController];
+        [self presentViewController:quickUserVC animated:YES completion:nil];
     
 }
 
