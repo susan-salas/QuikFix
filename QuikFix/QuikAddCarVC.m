@@ -18,7 +18,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *makeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *modelTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bodyTextField;
+@property (weak, nonatomic) IBOutlet UITextField *colorTextField;
+@property (weak, nonatomic) IBOutlet UITextField *licenseTextField;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+
 
 @end
 
@@ -74,7 +77,45 @@
 }
 
 - (IBAction)onAddCarTapped:(UIButton *)sender {
+    if ([self areTextFieldsFilled]) {
+        QuikCar *car = [QuikCar new];
+        car.vin = self.vinTextField.text;
+        car.year = self.yearTextField.text;
+        car.make = self.makeTextField.text;
+        car.model = self.modelTextField.text;
+        car.body = self.bodyTextField.text;
+//        NSString *str = self.colorTextField.text;
+//        SEL labelColor = NSSelectorFromString(str);
+   //     UIColor *color = [UIColor performSelector:labelColor];
+        //car.color = color;
+        car.license = self.licenseTextField.text;
+        [car addCarToDatabase];
+    }
+}
 
+-(BOOL)areTextFieldsFilled{
+    if (self.vinTextField.text.length != 17) {
+        return false;
+    }
+    else if (self.yearTextField.text.length != 4) {
+        return false;
+    }
+    else if (self.makeTextField.text.length == 0) {
+        return false;
+    }
+    else if (self.modelTextField.text.length == 0) {
+        return false;
+    }
+    else if (self.bodyTextField.text.length == 0) {
+        return false;
+    }
+    else if (self.colorTextField.text.length == 0) {
+        return false;
+    }
+    else if (self.licenseTextField.text.length != 7) {
+        return false;
+    }
+    return true;
 }
 
 

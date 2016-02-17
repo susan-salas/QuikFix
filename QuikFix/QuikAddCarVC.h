@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class QuikUser;
 
 @interface QuikAddCarVC : UIViewController
-
+@property (nonatomic, strong) QuikUser *carOwner;
 @end
