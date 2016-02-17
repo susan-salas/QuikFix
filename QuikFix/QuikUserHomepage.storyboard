@@ -310,6 +310,8 @@
                     <navigationItem key="navigationItem" title="Add Car" id="wM8-4H-a5n"/>
                     <connections>
                         <outlet property="bodyTextField" destination="Pjm-Fl-nc8" id="xO6-yN-81X"/>
+                        <outlet property="colorTextField" destination="IUV-Ee-b9c" id="Uay-7q-MvN"/>
+                        <outlet property="licenseTextField" destination="mMl-te-COv" id="PVa-Nw-pPg"/>
                         <outlet property="makeTextField" destination="0Xg-PK-n6w" id="ao4-Be-mqs"/>
                         <outlet property="modelTextField" destination="Dpk-1Y-9tE" id="yW6-S8-Ins"/>
                         <outlet property="textField" destination="1UX-vz-IUs" id="wX6-kb-hzD"/>
