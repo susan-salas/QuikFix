@@ -29,6 +29,11 @@
 		D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127E91C73C2890051E7EF /* QuikCar.m */; };
 		D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */; };
 		D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */; };
+		D0151CC41C74F1BC00DF4CC4 /* QuikAddCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CC31C74F1BC00DF4CC4 /* QuikAddCarVC.m */; };
+		D0151CCC1C74F24900DF4CC4 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CC71C74F24900DF4CC4 /* TFHpple.m */; };
+		D0151CCD1C74F24900DF4CC4 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CC91C74F24900DF4CC4 /* TFHppleElement.m */; };
+		D0151CCE1C74F24900DF4CC4 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CCA1C74F24900DF4CC4 /* XPathQuery.m */; };
+		D0151CD01C74F45E00DF4CC4 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,22 +60,31 @@
 		BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorHomepageVC.h; sourceTree = "<group>"; };
 		BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorHomepageVC.m; sourceTree = "<group>"; };
 		BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QuikVendorHomepage.storyboard; path = ../QuikVendorHomepage.storyboard; sourceTree = "<group>"; };
-		BD6E78491C73E9AD00C68256 /* QuikVendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendor.h; sourceTree = "<group>"; };
-		BD6E784A1C73E9AD00C68256 /* QuikVendor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendor.m; sourceTree = "<group>"; };
-		BD6E784C1C73E9DC00C68256 /* QuikClaim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikClaim.h; sourceTree = "<group>"; };
-		BD6E784D1C73E9DC00C68256 /* QuikClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikClaim.m; sourceTree = "<group>"; };
+		BD6E78491C73E9AD00C68256 /* QuikVendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuikVendor.h; path = QuikFix/QuikVendor.h; sourceTree = "<group>"; };
+		BD6E784A1C73E9AD00C68256 /* QuikVendor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuikVendor.m; path = QuikFix/QuikVendor.m; sourceTree = "<group>"; };
+		BD6E784C1C73E9DC00C68256 /* QuikClaim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuikClaim.h; path = QuikFix/QuikClaim.h; sourceTree = "<group>"; };
+		BD6E784D1C73E9DC00C68256 /* QuikClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuikClaim.m; path = QuikFix/QuikClaim.m; sourceTree = "<group>"; };
 		BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorCliamDescriptionVC.h; sourceTree = "<group>"; };
 		BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorCliamDescriptionVC.m; sourceTree = "<group>"; };
 		BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorSendEstimateVC.h; sourceTree = "<group>"; };
 		BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorSendEstimateVC.m; sourceTree = "<group>"; };
 		C25AAE528576EBAC209E60CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCar.h; sourceTree = "<group>"; };
-		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCar.m; sourceTree = "<group>"; };
-		D01127EB1C73C3150051E7EF /* QuikUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUser.h; sourceTree = "<group>"; };
-		D01127EC1C73C3150051E7EF /* QuikUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUser.m; sourceTree = "<group>"; };
+		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuikCar.h; path = QuikFix/QuikCar.h; sourceTree = "<group>"; };
+		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuikCar.m; path = QuikFix/QuikCar.m; sourceTree = "<group>"; };
+		D01127EB1C73C3150051E7EF /* QuikUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuikUser.h; path = QuikFix/QuikUser.h; sourceTree = "<group>"; };
+		D01127EC1C73C3150051E7EF /* QuikUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuikUser.m; path = QuikFix/QuikUser.m; sourceTree = "<group>"; };
 		D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuikUserHomepage.storyboard; sourceTree = "<group>"; };
 		D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUserHomepageVC.h; sourceTree = "<group>"; };
 		D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUserHomepageVC.m; sourceTree = "<group>"; };
+		D0151CC21C74F1BC00DF4CC4 /* QuikAddCarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikAddCarVC.h; sourceTree = "<group>"; };
+		D0151CC31C74F1BC00DF4CC4 /* QuikAddCarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikAddCarVC.m; sourceTree = "<group>"; };
+		D0151CC61C74F24900DF4CC4 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		D0151CC71C74F24900DF4CC4 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		D0151CC81C74F24900DF4CC4 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		D0151CC91C74F24900DF4CC4 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		D0151CCA1C74F24900DF4CC4 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		D0151CCB1C74F24900DF4CC4 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0151CD01C74F45E00DF4CC4 /* libxml2.2.dylib in Frameworks */,
 				36E57B921C7302E6000DEB1E /* FBSDKShareKit.framework in Frameworks */,
 				36E57B941C7302E6000DEB1E /* FBSDKCoreKit.framework in Frameworks */,
 				07AB6352E467CF0405949481 /* libPods.a in Frameworks */,
@@ -109,37 +124,11 @@
 		36E57B681C72D46B000DEB1E /* QuikFix */ = {
 			isa = PBXGroup;
 			children = (
-				36E57B981C740795000DEB1E /* InitialViewController.h */,
-				36E57B991C740795000DEB1E /* InitialViewController.m */,
-				36E57B871C72E36E000DEB1E /* LoginStoryboard.storyboard */,
-				36E57B801C72E2BE000DEB1E /* LoginViewController.h */,
-				36E57B811C72E2BE000DEB1E /* LoginViewController.m */,
-				36E57B951C739F23000DEB1E /* CreateAccountViewController.h */,
-				36E57B961C739F23000DEB1E /* CreateAccountViewController.m */,
-				36E57B6C1C72D46B000DEB1E /* AppDelegate.h */,
-				36E57B6D1C72D46B000DEB1E /* AppDelegate.m */,
-				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
-				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
-				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
-				BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */,
-				BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */,
-				BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */,
-				BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */,
-				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
-				BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */,
-				BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */,
+				D0151CD31C74F86800DF4CC4 /* Model */,
+				D0151CD21C74F84400DF4CC4 /* View */,
+				D0151CD11C74F83F00DF4CC4 /* Controller */,
 				36E57B751C72D46B000DEB1E /* Assets.xcassets */,
-				36E57B721C72D46B000DEB1E /* Main.storyboard */,
-				36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */,
-				D01127E81C73C2890051E7EF /* QuikCar.h */,
-				D01127E91C73C2890051E7EF /* QuikCar.m */,
-				D01127EB1C73C3150051E7EF /* QuikUser.h */,
-				D01127EC1C73C3150051E7EF /* QuikUser.m */,
-				BD6E78491C73E9AD00C68256 /* QuikVendor.h */,
-				BD6E784A1C73E9AD00C68256 /* QuikVendor.m */,
-				BD6E784C1C73E9DC00C68256 /* QuikClaim.h */,
-				BD6E784D1C73E9DC00C68256 /* QuikClaim.m */,
-				36E57B7A1C72D46B000DEB1E /* Info.plist */,
+				D0151CC51C74F22F00DF4CC4 /* HTPPLE */,
 				36E57B691C72D46B000DEB1E /* Supporting Files */,
 			);
 			path = QuikFix;
@@ -148,7 +137,12 @@
 		36E57B691C72D46B000DEB1E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				36E57B6C1C72D46B000DEB1E /* AppDelegate.h */,
+				36E57B6D1C72D46B000DEB1E /* AppDelegate.m */,
 				36E57B6A1C72D46B000DEB1E /* main.m */,
+				36E57B7A1C72D46B000DEB1E /* Info.plist */,
+				36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */,
+				36E57B721C72D46B000DEB1E /* Main.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -156,12 +150,75 @@
 		8E41E5E215C8C38294163A02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */,
 				36E57B8F1C7302E6000DEB1E /* FBSDKShareKit.framework */,
 				36E57B901C7302E6000DEB1E /* FBSDKLoginKit.framework */,
 				36E57B911C7302E6000DEB1E /* FBSDKCoreKit.framework */,
 				C25AAE528576EBAC209E60CE /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0151CC51C74F22F00DF4CC4 /* HTPPLE */ = {
+			isa = PBXGroup;
+			children = (
+				D0151CC61C74F24900DF4CC4 /* TFHpple.h */,
+				D0151CC71C74F24900DF4CC4 /* TFHpple.m */,
+				D0151CC81C74F24900DF4CC4 /* TFHppleElement.h */,
+				D0151CC91C74F24900DF4CC4 /* TFHppleElement.m */,
+				D0151CCA1C74F24900DF4CC4 /* XPathQuery.m */,
+				D0151CCB1C74F24900DF4CC4 /* XPathQuery.h */,
+			);
+			name = HTPPLE;
+			sourceTree = "<group>";
+		};
+		D0151CD11C74F83F00DF4CC4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				36E57B981C740795000DEB1E /* InitialViewController.h */,
+				36E57B991C740795000DEB1E /* InitialViewController.m */,
+				36E57B801C72E2BE000DEB1E /* LoginViewController.h */,
+				36E57B811C72E2BE000DEB1E /* LoginViewController.m */,
+				36E57B951C739F23000DEB1E /* CreateAccountViewController.h */,
+				36E57B961C739F23000DEB1E /* CreateAccountViewController.m */,
+				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
+				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
+				D0151CC21C74F1BC00DF4CC4 /* QuikAddCarVC.h */,
+				D0151CC31C74F1BC00DF4CC4 /* QuikAddCarVC.m */,
+				BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */,
+				BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */,
+				BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */,
+				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
+				BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */,
+				BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D0151CD21C74F84400DF4CC4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
+				36E57B871C72E36E000DEB1E /* LoginStoryboard.storyboard */,
+				BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D0151CD31C74F86800DF4CC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D01127E81C73C2890051E7EF /* QuikCar.h */,
+				D01127E91C73C2890051E7EF /* QuikCar.m */,
+				D01127EB1C73C3150051E7EF /* QuikUser.h */,
+				D01127EC1C73C3150051E7EF /* QuikUser.m */,
+				BD6E78491C73E9AD00C68256 /* QuikVendor.h */,
+				BD6E784A1C73E9AD00C68256 /* QuikVendor.m */,
+				BD6E784C1C73E9DC00C68256 /* QuikClaim.h */,
+				BD6E784D1C73E9DC00C68256 /* QuikClaim.m */,
+			);
+			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D615B691160607FC1B8EF534 /* Pods */ = {
@@ -299,16 +356,20 @@
 			files = (
 				BD5E71541C7452F700716E21 /* main.m in Sources */,
 				36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */,
+				D0151CCE1C74F24900DF4CC4 /* XPathQuery.m in Sources */,
 				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
+				D0151CCC1C74F24900DF4CC4 /* TFHpple.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
 				BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */,
 				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
 				BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */,
 				36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */,
+				D0151CCD1C74F24900DF4CC4 /* TFHppleElement.m in Sources */,
 				36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */,
 				D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */,
 				BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */,
 				BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */,
+				D0151CC41C74F1BC00DF4CC4 /* QuikAddCarVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +483,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = QuikFix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.susansalas.QuikFix;
@@ -438,6 +505,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = QuikFix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.susansalas.QuikFix;

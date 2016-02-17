@@ -199,7 +199,7 @@
         <!--Add Car-->
         <scene sceneID="o7R-4e-pq1">
             <objects>
-                <viewController id="bnX-SQ-1FI" sceneMemberID="viewController">
+                <viewController id="bnX-SQ-1FI" customClass="QuikAddCarVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rbe-57-DHC"/>
                         <viewControllerLayoutGuide type="bottom" id="pl8-BL-rSQ"/>
@@ -241,6 +241,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTz-Ct-5qD">
                                 <rect key="frame" x="137" y="407" width="56" height="30"/>
                                 <state key="normal" title="Add Car"/>
+                                <connections>
+                                    <action selector="onAddCarTapped:" destination="bnX-SQ-1FI" eventType="touchUpInside" id="Snu-h0-FQK"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jhr-fT-j6R">
                                 <rect key="frame" x="97" y="134" width="207" height="30"/>
@@ -292,6 +295,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoW-kD-cna">
                                 <rect key="frame" x="203" y="77" width="97" height="30"/>
                                 <state key="normal" title="Search by VIN"/>
+                                <connections>
+                                    <action selector="onSearchByVinTapped:" destination="bnX-SQ-1FI" eventType="touchUpInside" id="982-z9-hGS"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-vz-IUs">
                                 <rect key="frame" x="20" y="77" width="179" height="30"/>
@@ -302,6 +308,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Car" id="wM8-4H-a5n"/>
+                    <connections>
+                        <outlet property="bodyTextField" destination="Pjm-Fl-nc8" id="xO6-yN-81X"/>
+                        <outlet property="makeTextField" destination="0Xg-PK-n6w" id="ao4-Be-mqs"/>
+                        <outlet property="modelTextField" destination="Dpk-1Y-9tE" id="yW6-S8-Ins"/>
+                        <outlet property="textField" destination="1UX-vz-IUs" id="wX6-kb-hzD"/>
+                        <outlet property="vinTextField" destination="Jhr-fT-j6R" id="HxX-0a-ffJ"/>
+                        <outlet property="yearTextField" destination="PCJ-g6-rlT" id="NTk-LK-4RG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVU-tn-QfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
