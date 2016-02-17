@@ -45,6 +45,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ljl-vL-AGO" id="xPT-8F-RFd"/>
+                                    <outlet property="delegate" destination="Ljl-vL-AGO" id="eax-YN-veF"/>
+                                </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-Mg-xNq">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -53,10 +57,21 @@
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="O6X-gG-8Yz">
                                             <rect key="frame" x="16" y="6.5" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="switchButtonMoved:" destination="Ljl-vL-AGO" eventType="valueChanged" id="V0u-8O-59e"/>
+                                            </connections>
                                         </switch>
                                     </barButtonItem>
-                                    <barButtonItem title="History" width="124" id="Hd0-I1-vDW"/>
-                                    <barButtonItem title="Sort" width="62.5" id="065-Cs-bBR"/>
+                                    <barButtonItem title="History" width="149" id="Hd0-I1-vDW">
+                                        <connections>
+                                            <action selector="historyButtonPressed:" destination="Ljl-vL-AGO" id="aGO-xO-RYR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Sort" width="62.5" id="065-Cs-bBR">
+                                        <connections>
+                                            <action selector="sortButtonPressed:" destination="Ljl-vL-AGO" id="1z9-Gh-MGr"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

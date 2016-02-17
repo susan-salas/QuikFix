@@ -10,7 +10,7 @@
 #import "MapKit/MapKit.h"
 
 
-@interface QuikVendorHomepageVC ()
+@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -21,15 +21,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mapView.hidden = YES;
     // Do any additional setup after loading the view.
 }
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)switchButtonMoved:(UISwitch *)sender {
 }
+- (IBAction)historyButtonPressed:(UIBarButtonItem *)sender {
+}
+- (IBAction)sortButtonPressed:(UIBarButtonItem *)sender {
+}
+
+
 
 /*
 #pragma mark - Navigation
