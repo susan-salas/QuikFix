@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07AB6352E467CF0405949481 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C25AAE528576EBAC209E60CE /* libPods.a */; };
 		36E57B6B1C72D46B000DEB1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6A1C72D46B000DEB1E /* main.m */; };
 		36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6D1C72D46B000DEB1E /* AppDelegate.m */; };
 		36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B721C72D46B000DEB1E /* Main.storyboard */; };
@@ -18,6 +19,13 @@
 		BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E784D1C73E9DC00C68256 /* QuikClaim.m */; };
 		BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */; };
 		BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */; };
+		36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B811C72E2BE000DEB1E /* LoginViewController.m */; };
+		36E57B881C72E36E000DEB1E /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B871C72E36E000DEB1E /* LoginStoryboard.storyboard */; };
+		36E57B921C7302E6000DEB1E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B8F1C7302E6000DEB1E /* FBSDKShareKit.framework */; };
+		36E57B931C7302E6000DEB1E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B901C7302E6000DEB1E /* FBSDKLoginKit.framework */; };
+		36E57B941C7302E6000DEB1E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B911C7302E6000DEB1E /* FBSDKCoreKit.framework */; };
+		36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B961C739F23000DEB1E /* CreateAccountViewController.m */; };
+		36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B991C740795000DEB1E /* InitialViewController.m */; };
 		D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127E91C73C2890051E7EF /* QuikCar.m */; };
 		D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127EC1C73C3150051E7EF /* QuikUser.m */; };
 		D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */; };
@@ -25,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1209437E249E004225786735 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		36E57B661C72D46B000DEB1E /* QuikFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuikFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E57B6A1C72D46B000DEB1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		36E57B6C1C72D46B000DEB1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,6 +53,18 @@
 		BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorCliamDescriptionVC.m; sourceTree = "<group>"; };
 		BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorSendEstimateVC.h; sourceTree = "<group>"; };
 		BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorSendEstimateVC.m; sourceTree = "<group>"; };
+		36E57B801C72E2BE000DEB1E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		36E57B811C72E2BE000DEB1E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		36E57B871C72E36E000DEB1E /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		36E57B8F1C7302E6000DEB1E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		36E57B901C7302E6000DEB1E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		36E57B911C7302E6000DEB1E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		36E57B951C739F23000DEB1E /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
+		36E57B961C739F23000DEB1E /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
+		36E57B981C740795000DEB1E /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		36E57B991C740795000DEB1E /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		771C706DCD88DB34931B3738 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C25AAE528576EBAC209E60CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCar.h; sourceTree = "<group>"; };
 		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCar.m; sourceTree = "<group>"; };
 		D01127EB1C73C3150051E7EF /* QuikUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUser.h; sourceTree = "<group>"; };
@@ -58,6 +79,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E57B921C7302E6000DEB1E /* FBSDKShareKit.framework in Frameworks */,
+				36E57B941C7302E6000DEB1E /* FBSDKCoreKit.framework in Frameworks */,
+				07AB6352E467CF0405949481 /* libPods.a in Frameworks */,
+				36E57B931C7302E6000DEB1E /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +94,8 @@
 			children = (
 				36E57B681C72D46B000DEB1E /* QuikFix */,
 				36E57B671C72D46B000DEB1E /* Products */,
+				D615B691160607FC1B8EF534 /* Pods */,
+				8E41E5E215C8C38294163A02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +110,13 @@
 		36E57B681C72D46B000DEB1E /* QuikFix */ = {
 			isa = PBXGroup;
 			children = (
+				36E57B981C740795000DEB1E /* InitialViewController.h */,
+				36E57B991C740795000DEB1E /* InitialViewController.m */,
+				36E57B871C72E36E000DEB1E /* LoginStoryboard.storyboard */,
+				36E57B801C72E2BE000DEB1E /* LoginViewController.h */,
+				36E57B811C72E2BE000DEB1E /* LoginViewController.m */,
+				36E57B951C739F23000DEB1E /* CreateAccountViewController.h */,
+				36E57B961C739F23000DEB1E /* CreateAccountViewController.m */,
 				36E57B6C1C72D46B000DEB1E /* AppDelegate.h */,
 				36E57B6D1C72D46B000DEB1E /* AppDelegate.m */,
 				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
@@ -120,6 +154,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8E41E5E215C8C38294163A02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36E57B8F1C7302E6000DEB1E /* FBSDKShareKit.framework */,
+				36E57B901C7302E6000DEB1E /* FBSDKLoginKit.framework */,
+				36E57B911C7302E6000DEB1E /* FBSDKCoreKit.framework */,
+				C25AAE528576EBAC209E60CE /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D615B691160607FC1B8EF534 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1209437E249E004225786735 /* Pods.debug.xcconfig */,
+				771C706DCD88DB34931B3738 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,9 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36E57B7D1C72D46B000DEB1E /* Build configuration list for PBXNativeTarget "QuikFix" */;
 			buildPhases = (
+				EE3E9C9258BFE699C6242B21 /* Check Pods Manifest.lock */,
 				36E57B621C72D46B000DEB1E /* Sources */,
 				36E57B631C72D46B000DEB1E /* Frameworks */,
 				36E57B641C72D46B000DEB1E /* Resources */,
+				14D68349D562AB8F06091C85 /* Embed Pods Frameworks */,
+				C1585BB9656EECB4C9BCC38A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -151,7 +208,6 @@
 				TargetAttributes = {
 					36E57B651C72D46B000DEB1E = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = VJM86CJSEK;
 					};
 				};
 			};
@@ -183,16 +239,66 @@
 				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
 				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
 				36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */,
+				36E57B881C72E36E000DEB1E /* LoginStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14D68349D562AB8F06091C85 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1585BB9656EECB4C9BCC38A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE3E9C9258BFE699C6242B21 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36E57B621C72D46B000DEB1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */,
 				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
 				BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */,
@@ -200,6 +306,10 @@
 				36E57B6B1C72D46B000DEB1E /* main.m in Sources */,
 				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
 				BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */,
+				36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */,
+				D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */,
+				36E57B6B1C72D46B000DEB1E /* main.m in Sources */,
+				36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */,
 				D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */,
 				BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */,
 				BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */,
@@ -310,23 +420,33 @@
 		};
 		36E57B7E1C72D46B000DEB1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1209437E249E004225786735 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = QuikFix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.susansalas.QuikFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		36E57B7F1C72D46B000DEB1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 771C706DCD88DB34931B3738 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = QuikFix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.susansalas.QuikFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
