@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
-#import "QuikCar.h"
-#import "QuikVendor.h"
+@class QuikCar;
+@class QuikVendor;
 
 @interface QuikClaim : NSObject
 

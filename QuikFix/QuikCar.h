@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
-#import "QuikUser.h"
+@class  QuikUser;
 
 @interface QuikCar : NSObject
 
