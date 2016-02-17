@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07AB6352E467CF0405949481 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C25AAE528576EBAC209E60CE /* libPods.a */; };
-		36E57B6B1C72D46B000DEB1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6A1C72D46B000DEB1E /* main.m */; };
 		36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6D1C72D46B000DEB1E /* AppDelegate.m */; };
 		36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B721C72D46B000DEB1E /* Main.storyboard */; };
 		36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B751C72D46B000DEB1E /* Assets.xcassets */; };
@@ -20,8 +19,14 @@
 		36E57B941C7302E6000DEB1E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B911C7302E6000DEB1E /* FBSDKCoreKit.framework */; };
 		36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B961C739F23000DEB1E /* CreateAccountViewController.m */; };
 		36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B991C740795000DEB1E /* InitialViewController.m */; };
+		BD5E71541C7452F700716E21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6A1C72D46B000DEB1E /* main.m */; };
+		BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */; };
+		BD6E78481C73E6B500C68256 /* QuikVendorHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */; };
+		BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E784A1C73E9AD00C68256 /* QuikVendor.m */; };
+		BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E784D1C73E9DC00C68256 /* QuikClaim.m */; };
+		BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */; };
+		BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */; };
 		D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127E91C73C2890051E7EF /* QuikCar.m */; };
-		D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127EC1C73C3150051E7EF /* QuikUser.m */; };
 		D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */; };
 		D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */; };
 /* End PBXBuildFile section */
@@ -47,6 +52,17 @@
 		36E57B981C740795000DEB1E /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		36E57B991C740795000DEB1E /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		771C706DCD88DB34931B3738 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorHomepageVC.h; sourceTree = "<group>"; };
+		BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorHomepageVC.m; sourceTree = "<group>"; };
+		BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QuikVendorHomepage.storyboard; path = ../QuikVendorHomepage.storyboard; sourceTree = "<group>"; };
+		BD6E78491C73E9AD00C68256 /* QuikVendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendor.h; sourceTree = "<group>"; };
+		BD6E784A1C73E9AD00C68256 /* QuikVendor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendor.m; sourceTree = "<group>"; };
+		BD6E784C1C73E9DC00C68256 /* QuikClaim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikClaim.h; sourceTree = "<group>"; };
+		BD6E784D1C73E9DC00C68256 /* QuikClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikClaim.m; sourceTree = "<group>"; };
+		BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorCliamDescriptionVC.h; sourceTree = "<group>"; };
+		BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorCliamDescriptionVC.m; sourceTree = "<group>"; };
+		BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorSendEstimateVC.h; sourceTree = "<group>"; };
+		BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorSendEstimateVC.m; sourceTree = "<group>"; };
 		C25AAE528576EBAC209E60CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCar.h; sourceTree = "<group>"; };
 		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCar.m; sourceTree = "<group>"; };
@@ -105,6 +121,13 @@
 				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
 				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
 				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
+				BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */,
+				BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */,
+				BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */,
+				BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */,
+				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
+				BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */,
+				BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */,
 				36E57B751C72D46B000DEB1E /* Assets.xcassets */,
 				36E57B721C72D46B000DEB1E /* Main.storyboard */,
 				36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */,
@@ -112,6 +135,10 @@
 				D01127E91C73C2890051E7EF /* QuikCar.m */,
 				D01127EB1C73C3150051E7EF /* QuikUser.h */,
 				D01127EC1C73C3150051E7EF /* QuikUser.m */,
+				BD6E78491C73E9AD00C68256 /* QuikVendor.h */,
+				BD6E784A1C73E9AD00C68256 /* QuikVendor.m */,
+				BD6E784C1C73E9DC00C68256 /* QuikClaim.h */,
+				BD6E784D1C73E9DC00C68256 /* QuikClaim.m */,
 				36E57B7A1C72D46B000DEB1E /* Info.plist */,
 				36E57B691C72D46B000DEB1E /* Supporting Files */,
 			);
@@ -206,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD6E78481C73E6B500C68256 /* QuikVendorHomepage.storyboard in Resources */,
 				36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */,
 				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
 				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
@@ -269,14 +297,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD5E71541C7452F700716E21 /* main.m in Sources */,
 				36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */,
 				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
+				BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */,
+				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
+				BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */,
 				36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */,
-				D01127ED1C73C3150051E7EF /* QuikUser.m in Sources */,
-				36E57B6B1C72D46B000DEB1E /* main.m in Sources */,
 				36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */,
 				D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */,
+				BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */,
+				BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
