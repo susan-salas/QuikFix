@@ -10,6 +10,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "Firebase/Firebase.h"
+#import "QuikUserHomepageVC.h"
 
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
@@ -30,14 +31,17 @@
     
     if (self.isVendorLogIn == YES) {
         self.createAccountButton.hidden = true;
-        NSLog(@"vendor log in");
     }else{
         FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+        //check for current button title
+        if([loginButton.currentTitle isEqualToString:@"Log out"]){
+            [self callPresentVC];
+            
+        }
         loginButton.delegate = self;
         loginButton.center = self.view.center;
         [self.view addSubview:loginButton];
         self.createAccountButton.hidden = NO;
-        NSLog(@"user log in");
     }
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
@@ -48,7 +52,8 @@
         
         if (currentUserRef.authData) {
             // user authenticated
-            //segue to user page VC
+    
+            [self callPresentVC];
             NSLog(@"This is the auth data %@", currentUserRef.authData);
             NSLog(@"user already logged in");
         } else {
@@ -70,6 +75,7 @@
             NSLog(@"We are not logged in");
         } else {
             //perfrom segue
+            [self callPresentVC];
             NSLog(@"user is now logged in");
         }
         
@@ -101,9 +107,10 @@
                                                        if (error) {
                                                            NSLog(@"Login failed. %@", error.description);
                                                        } else {
+                                                
                                                            Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
                                                            [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                                                               
+                                                               [self callPresentVC];
                                                                if (snapshot.value == [NSNull null]) {
                                                                    
                                                                    NSLog(@"Logged in! %@", authData);
@@ -143,6 +150,22 @@
 }
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
     
+}
+
+- (void) callPresentVC {
+    
+    if (self.isVendorLogIn == true){
+        
+    }else{
+        QuikUserHomepageVC *quickUserVC = [QuikUserHomepageVC new];
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikUserHomepage" bundle:[NSBundle mainBundle]];
+        
+        quickUserVC = [board instantiateInitialViewController];
+        [self presentViewController:quickUserVC animated:YES completion:nil];
+    }
+    
+    
+                                       
 }
 
 
