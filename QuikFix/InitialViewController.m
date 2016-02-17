@@ -8,10 +8,11 @@
 
 #import "InitialViewController.h"
 #import "LoginViewController.h"
+#import "QuikUserHomepageVC.h"
+#import "Firebase/Firebase.h"
 
 @interface InitialViewController ()
-@property BOOL isVendorLogin;
-
+@property bool isVenderProfile;
 
 @end
 
@@ -19,20 +20,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    
+    if (uid != nil){
+        
+        Firebase *currentUserRef = [[[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/media"] childByAppendingPath:@"users"] childByAppendingPath:uid];
+        
+        if (currentUserRef.authData) {
+            // user authenticated
+            
+            [self callPresentVC];
+            NSLog(@"This is the auth data %@", currentUserRef.authData);
+            NSLog(@"user already logged in");
+        } else {
+            NSLog(@"user not logged in");
+            // No user is signed in
+        }
+    }
   
 }
 
 - (IBAction)onVendorTapped:(UIButton *)sender {
-    self.isVendorLogin = YES;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isVenderProfile"];
+    self.isVenderProfile = YES;
 }
 
 - (IBAction)onUserTapped:(UIButton *)sender {
-    self.isVendorLogin = NO;
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isVenderProfile"];
+    self.isVenderProfile = YES;
 }
+- (void) callPresentVC {
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    LoginViewController *logInVC = [segue destinationViewController];
-    logInVC.isVendorLogIn = self.isVendorLogin;
+    
+    if (self.isVenderProfile == YES){
+        //present vendor user vc
+        
+    }else{
+        QuikUserHomepageVC *quickUserVC = [QuikUserHomepageVC new];
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikUserHomepage" bundle:[NSBundle mainBundle]];
+        
+        quickUserVC = [board instantiateInitialViewController];
+        [self presentViewController:quickUserVC animated:YES completion:nil];
+    }
+    
+    
+    
 }
 
 @end
