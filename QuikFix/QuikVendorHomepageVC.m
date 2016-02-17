@@ -13,7 +13,6 @@
 @interface QuikVendorHomepageVC ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
@@ -23,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
 }
 
 - (void)didReceiveMemoryWarning {
