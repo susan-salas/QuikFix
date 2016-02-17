@@ -15,76 +15,30 @@
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
+@property NSString *email; 
 
 @end
 
 @implementation LoginViewController
 
-- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-    
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    FBSDKLoginManager *facebookLogin = [[FBSDKLoginManager alloc] init];
-    
-    [facebookLogin logInWithReadPermissions:@[@"email"]
-                                    handler:^(FBSDKLoginManagerLoginResult *facebookResult, NSError *facebookError) {
-                                        
-                                        if (facebookError) {
-                                            NSLog(@"Facebook login failed. Error: %@", facebookError);
-                                        } //else if (facebookResult.isCancelled) {
-                                        // NSLog(@"Facebook login got cancelled.");
-                                        //}
-                                        
-                                        else {
-                                            NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
-                                            NSLog(@"This is our access token %@",accessToken);
-                                            
-                                            [ref authWithOAuthProvider:@"facebook" token:accessToken
-                                                   withCompletionBlock:^(NSError *error, FAuthData *authData) {
-                                                       
-                                                       if (error) {
-                                                           NSLog(@"Login failed. %@", error.description);
-                                                       } else {
-                                                              Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
-                                                            [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                                                               
-                                                               if (snapshot.value == [NSNull null]) {
-                                                                   
-                                                                               NSLog(@"Logged in! %@", authData);
-                                                           NSLog(@"displayname = %@", authData.providerData[@"displayName"]);
-                                                           NSLog(@"provider = %@", authData.provider);
-                                                           NSLog(@"uid = %@", authData.uid);
-                                                           NSDictionary *newUser = @{
-                                                                                     @"provider": authData.provider,
-                                                                                     @"full name": authData.providerData[@"displayName"],
-                                                                                     @"email":authData.providerData[@"email"],
-                                                                                     @"uid": authData.uid
-                                                                                     };
-                                                           [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser]; 
-                                                               }
-                                                               
-                                                           }];
-                                                           
-                                              
-                                                       }
-                                                   }];
-                                        }
-                                    }];
-    
-    
-}
-- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
-    
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
-    
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.delegate = self;
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
+    if (self.isVendorLogIn == YES) {
+        self.createAccountButton.hidden = true;
+        NSLog(@"vendor log in");
+    }else{
+        FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+        loginButton.delegate = self;
+        loginButton.center = self.view.center;
+        [self.view addSubview:loginButton];
+        self.createAccountButton.hidden = NO;
+        NSLog(@"user log in");
+    }
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
     
@@ -110,18 +64,85 @@
     NSString *password = self.passwordTextField.text;
     
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    [ref authUser:email password:password
-withCompletionBlock:^(NSError *error, FAuthData *authData) {
+    [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
+        
+        if (error) {
+            NSLog(@"We are not logged in");
+        } else {
+            //perfrom segue
+            NSLog(@"user is now logged in");
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+    }];
+}
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
     
-    if (error) {
-        NSLog(@"We are not logged in");
-    } else {
-        //perfrom segue
-        NSLog(@"user is now logged in");
-    }
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
+    FBSDKLoginManager *facebookLogin = [[FBSDKLoginManager alloc] init];
     
-    [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
-}];
+    [facebookLogin logInWithReadPermissions:@[@"email"]
+                                    handler:^(FBSDKLoginManagerLoginResult *facebookResult, NSError *facebookError) {
+                                        
+                                        if (facebookError) {
+                                            NSLog(@"Facebook login failed. Error: %@", facebookError);
+                                        } //else if (facebookResult.isCancelled) {
+                                        // NSLog(@"Facebook login got cancelled.");
+                                        //}
+                                        
+                                        else {
+                                            NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
+                                            NSLog(@"This is our access token %@",accessToken);
+                                            
+                                            [ref authWithOAuthProvider:@"facebook" token:accessToken
+                                                   withCompletionBlock:^(NSError *error, FAuthData *authData) {
+                                                       
+                                                       if (error) {
+                                                           NSLog(@"Login failed. %@", error.description);
+                                                       } else {
+                                                           Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
+                                                           [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                                                               
+                                                               if (snapshot.value == [NSNull null]) {
+                                                                   
+                                                                   NSLog(@"Logged in! %@", authData);
+                                                                   NSLog(@"displayname = %@", authData.providerData[@"displayName"]);
+                                                                   NSLog(@"provider = %@", authData.provider);
+                                                                   NSLog(@"uid = %@", authData.uid);
+                                                                   
+                                                                   if (authData.providerData[@"email"] == NULL){
+                                                                        NSDictionary *newUser = @{
+                                                                                             @"provider": authData.provider,
+                                                                                             @"full name": authData.providerData[@"displayName"],
+                                                                                             
+                                                                                             @"uid": authData.uid
+                                                                                             };
+                                                                          [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
+                                                                    
+                                                                   }else {
+                                                                       NSDictionary *newUser = @{
+                                                                                                 @"provider": authData.provider,
+                                                                                                 @"full name": authData.providerData[@"displayName"],
+                                                                                                 @"email":authData.providerData[@"email"],
+                                                                                                 @"uid": authData.uid
+                                                                                                 };
+                                                                   [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
+                                                                   }
+                                                               }
+                                                               
+                                                           }];
+                                                           
+                                                           
+                                                       }
+                                                   }];
+                                        }
+                                    }];
+    
+    
+}
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    
 }
 
 
