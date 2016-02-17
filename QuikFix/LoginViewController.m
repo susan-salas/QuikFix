@@ -11,13 +11,15 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
+#import "QuikVendorHomepageVC.h"
 
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
-@property NSString *email; 
+@property NSString *email;
+@property bool isVendorLogIn;
 
 @end
 
@@ -28,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.isVendorLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
     
     if (self.isVendorLogIn == YES) {
         self.createAccountButton.hidden = true;
@@ -42,24 +45,6 @@
         loginButton.center = self.view.center;
         [self.view addSubview:loginButton];
         self.createAccountButton.hidden = NO;
-    }
-    
-    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-    
-    if (uid != nil){
-        
-        Firebase *currentUserRef = [[[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/media"] childByAppendingPath:@"users"] childByAppendingPath:uid];
-        
-        if (currentUserRef.authData) {
-            // user authenticated
-    
-            [self callPresentVC];
-            NSLog(@"This is the auth data %@", currentUserRef.authData);
-            NSLog(@"user already logged in");
-        } else {
-            NSLog(@"user not logged in");
-            // No user is signed in
-        }
     }
     
 }
@@ -110,6 +95,7 @@
                                                 
                                                            Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
                                                            [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                                                               [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
                                                                [self callPresentVC];
                                                                if (snapshot.value == [NSNull null]) {
                                                                    
@@ -155,6 +141,10 @@
 - (void) callPresentVC {
     
     if (self.isVendorLogIn == true){
+        QuikVendorHomepageVC *vendorHomepageVC = [QuikVendorHomepageVC new];
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikVendorHomepage" bundle:[NSBundle mainBundle]];
+        vendorHomepageVC = [board instantiateInitialViewController];
+        [self presentViewController:vendorHomepageVC animated:YES completion:nil];
         
     }else{
         QuikUserHomepageVC *quickUserVC = [QuikUserHomepageVC new];

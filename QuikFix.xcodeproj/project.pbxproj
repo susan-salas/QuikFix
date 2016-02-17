@@ -20,6 +20,8 @@
 		36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B961C739F23000DEB1E /* CreateAccountViewController.m */; };
 		36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B991C740795000DEB1E /* InitialViewController.m */; };
 		BD5E71541C7452F700716E21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6A1C72D46B000DEB1E /* main.m */; };
+		BD5E71561C75295700716E21 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5E71551C75295700716E21 /* MapKit.framework */; };
+		BD5E71581C75296100716E21 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5E71571C75296100716E21 /* CoreLocation.framework */; };
 		BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */; };
 		BD6E78481C73E6B500C68256 /* QuikVendorHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */; };
 		BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E784A1C73E9AD00C68256 /* QuikVendor.m */; };
@@ -57,6 +59,8 @@
 		36E57B981C740795000DEB1E /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		36E57B991C740795000DEB1E /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		771C706DCD88DB34931B3738 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BD5E71551C75295700716E21 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BD5E71571C75296100716E21 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorHomepageVC.h; sourceTree = "<group>"; };
 		BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorHomepageVC.m; sourceTree = "<group>"; };
 		BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QuikVendorHomepage.storyboard; path = ../QuikVendorHomepage.storyboard; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD5E71581C75296100716E21 /* CoreLocation.framework in Frameworks */,
+				BD5E71561C75295700716E21 /* MapKit.framework in Frameworks */,
 				D0151CD01C74F45E00DF4CC4 /* libxml2.2.dylib in Frameworks */,
 				36E57B921C7302E6000DEB1E /* FBSDKShareKit.framework in Frameworks */,
 				36E57B941C7302E6000DEB1E /* FBSDKCoreKit.framework in Frameworks */,
@@ -150,6 +156,8 @@
 		8E41E5E215C8C38294163A02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD5E71571C75296100716E21 /* CoreLocation.framework */,
+				BD5E71551C75295700716E21 /* MapKit.framework */,
 				D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */,
 				36E57B8F1C7302E6000DEB1E /* FBSDKShareKit.framework */,
 				36E57B901C7302E6000DEB1E /* FBSDKLoginKit.framework */,
