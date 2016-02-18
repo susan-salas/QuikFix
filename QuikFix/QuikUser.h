@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIKit/UIKit.h"
 
 @interface QuikUser : NSObject
 
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *firstName;
-@property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *email;
+
+-(instancetype)initWithDictionary: (NSDictionary *)userDictionary;
 
 @end

@@ -9,9 +9,12 @@
 #import "QuikUserHomepageVC.h"
 #import "QuikUser.h"
 #import "QuikCar.h"
+#import "Firebase/Firebase.h"
 
 @interface QuikUserHomepageVC () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *myCars;
+@property Firebase *ref;
+@property QuikUser *currentUser;
 
 @end
 
@@ -19,7 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self populateCarsArray];
+    self.currentUser = [QuikUser new];
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    
+    self.ref = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/users"] childByAppendingPath:uid];
+    [self populateUser];
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -35,5 +45,18 @@
     
 }
 
+- (void) populateUser{
+    [self.ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+      NSLog(@" value of snap%@", snapshot.value);
+        NSDictionary *userDictionary = snapshot.value;
+        self.currentUser = [self.currentUser initWithDictionary:userDictionary];
+        NSLog(@"id: %@ username: %@ email: %@", self.currentUser.idNumber, self.currentUser.userName, self.currentUser.email);
+    }];
+    
+}
+
+-(void) populateCarsArray {
+    
+}
 
 @end

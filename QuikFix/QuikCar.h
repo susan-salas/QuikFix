@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
-@class  QuikUser;
 
 @interface QuikCar : NSObject
 
-@property (nonatomic, strong) QuikUser *owner;
+@property (nonatomic, strong) NSString *owner;
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) NSString *year;
 @property (nonatomic, strong) NSString *make;
@@ -21,8 +20,7 @@
 @property (nonatomic, strong) NSString *license;
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *body;
-@property (nonatomic, strong) UIColor *color;
-
+@property (nonatomic, strong) NSString *color;
 
 -(void)addCarToDatabase;
 
