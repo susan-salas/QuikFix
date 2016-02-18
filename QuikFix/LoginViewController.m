@@ -115,11 +115,12 @@
                                                                    if (authData.providerData[@"email"] == NULL){
                                                                         NSDictionary *newUser = @{
                                                                                              @"provider": authData.provider,
-                                                                                             @"full name": authData.providerData[@"displayName"],
+                                                                                             @"username": authData.providerData[@"displayName"],
                                                                                              
                                                                                              @"uid": authData.uid
                                                                                              };
                                                                           [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
+                                                                       NSLog(@"facebook email == NULL");
                                                                     
                                                                    }else {
                                                                        NSDictionary *newUser = @{
@@ -129,6 +130,7 @@
                                                                                                  @"uid": authData.uid
                                                                                                  };
                                                                    [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
+                                                                       NSLog(@"facebook email !x= NULL");
                                                                    }
                                                                }
                                                                

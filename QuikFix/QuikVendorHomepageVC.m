@@ -10,6 +10,8 @@
 #import "MapKit/MapKit.h"
 #import "CoreLocation/CoreLocation.h"
 #import "LoginViewController.h"
+#import "InitialViewController.h"
+#import "Firebase/Firebase.h"
 
 
 @interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
@@ -29,12 +31,21 @@
     
 }
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
+    [ref unauth];
+    
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
     [self dismissViewControllerAnimated:YES completion:nil];
-    LoginViewController *controller = [LoginViewController new];
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-    controller = [board instantiateInitialViewController];
-    [[self presentingViewController] presentViewController:controller animated:YES completion:nil];
+    
+//    UINavigationController *navVC = [self presentingViewController];
+//    NSArray *vcArray = navVC.viewControllers;
+//    if([vcArray[vcArray.count - 1] isKindOfClass: [InitialViewController class]]){
+//        LoginViewController *controller = [LoginViewController new];
+//        UIStoryboard *board = [UIStoryboard storyboardWithName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+//        controller = [board instantiateInitialViewController];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+//        [[self presentingViewController] presentViewController:nav animated:YES completion:nil];
+//    }
 }
 
 - (IBAction)switchButtonMoved:(UISwitch *)sender {
