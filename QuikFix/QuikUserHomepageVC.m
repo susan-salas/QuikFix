@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentUser = [QuikUser new];
+    self.myCars = [NSMutableArray new];
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
     self.ref = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/users"] childByAppendingPath:uid];
     [self populateUser];
@@ -64,6 +65,7 @@
                 [self.myCars addObject:carDict];
             }
         }
+
         [self.tableView reloadData];
     }];
 }
