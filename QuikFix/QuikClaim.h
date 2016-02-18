@@ -14,7 +14,8 @@
 @interface QuikClaim : NSObject
 
 @property (nonatomic, strong) QuikCar *carWithDamage;
-@property (nonatomic, strong) QuikVendor *vendorForClaim;
+@property (nonatomic, strong) QuikVendor *assignedToVendor;
+@property (nonatomic, strong) NSMutableArray *offers;
 @property (nonatomic, strong) NSString *claimID;
 @property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) NSString *damageDescription;
