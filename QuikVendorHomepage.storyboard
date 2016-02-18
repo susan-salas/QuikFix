@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="243"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3uD-Oe-KMd" id="7pV-oM-I80">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="242.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="242"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR0-om-yOS">
@@ -55,7 +55,7 @@
                                 <items>
                                     <barButtonItem style="plain" id="1cI-eV-FeS">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="O6X-gG-8Yz">
-                                            <rect key="frame" x="16" y="6.5" width="51" height="31"/>
+                                            <rect key="frame" x="16" y="7" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <action selector="switchButtonMoved:" destination="Ljl-vL-AGO" eventType="valueChanged" id="V0u-8O-59e"/>
