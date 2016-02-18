@@ -44,7 +44,6 @@
     NSString *year = carForCellDict[@"year"];
     NSString *make = carForCellDict[@"make"];
     NSString *model = carForCellDict[@"model"];
-
     NSString *cellLabel = [NSString stringWithFormat:@"%@ - %@ %@  %@", color, year, make, model];
     cell.textLabel.text = cellLabel;
     return cell;
@@ -83,13 +82,13 @@
 }
 
 -(void) loadMyCars {
-    self.ref = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/cars"];
-    [self.ref observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    Firebase *carsRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/cars"];
+    [carsRef  observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSMutableArray *carsFromFirebase = [NSMutableArray new];
         for (NSString* vinNumber in snapshot.value) {
             NSDictionary *carDict = [snapshot.value objectForKey:vinNumber];
             NSString *owner = [carDict objectForKey:@"owner"];
-            if([owner isEqualToString:self.currentUser.idNumber]){
+            if([owner isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]]){
                 [carsFromFirebase addObject:carDict];
             }
         }
