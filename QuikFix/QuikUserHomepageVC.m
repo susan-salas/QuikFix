@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self populateCarsArray];
+    self.currentUser = [QuikUser new];
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
     
@@ -46,10 +47,12 @@
 
 - (void) populateUser{
     [self.ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@" value of snap%@", snapshot.value);
+      NSLog(@" value of snap%@", snapshot.value);
         NSDictionary *userDictionary = snapshot.value;
-        
+        self.currentUser = [self.currentUser initWithDictionary:userDictionary];
+        NSLog(@"id: %@ username: %@ email: %@", self.currentUser.idNumber, self.currentUser.userName, self.currentUser.email);
     }];
+    
 }
 
 -(void) populateCarsArray {

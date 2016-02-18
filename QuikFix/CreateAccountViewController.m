@@ -11,8 +11,6 @@
 #import "QuikUserHomepageVC.h"
 
 @interface CreateAccountViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameLabel;
@@ -30,8 +28,7 @@
 - (IBAction)onCreateAccountTapped:(UIButton *)sender {
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
     
-    NSString *firstName = self.firstNameTextField.text;
-    NSString *lastName = self.lastNameTextField.text;
+
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     NSString *username = self.usernameLabel.text;
@@ -65,8 +62,6 @@ withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
           // provided by the authData parameter
           NSDictionary *newUser = @{
                                     @"provider": authData.provider,
-                                    @"first name": firstName,
-                                    @"last name": lastName,
                                     @"email": email,
                                     @"uid": authData.uid,
                                     @"username": username
