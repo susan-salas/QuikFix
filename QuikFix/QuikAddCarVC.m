@@ -55,8 +55,6 @@
         self.makeTextField.text = listItems[[listItems indexOfObject:@"Make"] + 1];
         self.modelTextField.text = listItems[[listItems indexOfObject:@"Model"] + 1];
         self.bodyTextField.text = listItems[[listItems indexOfObject:@"Body"] + 1];
-
-        NSLog(@"List Items: %@", listItems);
     }
     else{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Could not find VIN"
@@ -84,11 +82,10 @@
         car.make = self.makeTextField.text;
         car.model = self.modelTextField.text;
         car.body = self.bodyTextField.text;
-//        NSString *str = self.colorTextField.text;
-//        SEL labelColor = NSSelectorFromString(str);
-   //     UIColor *color = [UIColor performSelector:labelColor];
-        //car.color = color;
+        car.color = self.colorTextField.text;
         car.license = self.licenseTextField.text;
+        NSLog(@"the UID %@",[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]);
+        car.owner = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
         [car addCarToDatabase];
     }
 }
