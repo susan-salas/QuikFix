@@ -22,6 +22,7 @@
 		BD5E71541C7452F700716E21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6A1C72D46B000DEB1E /* main.m */; };
 		BD5E71561C75295700716E21 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5E71551C75295700716E21 /* MapKit.framework */; };
 		BD5E71581C75296100716E21 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5E71571C75296100716E21 /* CoreLocation.framework */; };
+		BD5E715C1C758E1000716E21 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD5E715B1C758E1000716E21 /* LoginViewController.storyboard */; };
 		BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */; };
 		BD6E78481C73E6B500C68256 /* QuikVendorHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */; };
 		BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E784A1C73E9AD00C68256 /* QuikVendor.m */; };
@@ -60,6 +61,7 @@
 		771C706DCD88DB34931B3738 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BD5E71551C75295700716E21 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BD5E71571C75296100716E21 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BD5E715B1C758E1000716E21 /* LoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
 		BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorHomepageVC.h; sourceTree = "<group>"; };
 		BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorHomepageVC.m; sourceTree = "<group>"; };
 		BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QuikVendorHomepage.storyboard; path = ../QuikVendorHomepage.storyboard; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				36E57B721C72D46B000DEB1E /* Main.storyboard */,
+				BD5E715B1C758E1000716E21 /* LoginViewController.storyboard */,
 				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
 				BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */,
 			);
@@ -299,6 +302,7 @@
 				BD6E78481C73E6B500C68256 /* QuikVendorHomepage.storyboard in Resources */,
 				36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */,
 				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
+				BD5E715C1C758E1000716E21 /* LoginViewController.storyboard in Resources */,
 				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
 				36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */,
 			);

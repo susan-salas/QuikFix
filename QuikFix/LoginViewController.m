@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"I AM INSIDE THE LOG IN VC");
     
     self.isVendorLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
     
@@ -64,7 +65,7 @@
     [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
         
         if (error) {
-            NSLog(@"We are not logged in");
+            NSLog(@"We are not logged in %@", error);
         } else {
             //perfrom segue
             [self callPresentVC];

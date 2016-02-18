@@ -30,14 +30,11 @@
 }
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
-    
-    if (![[self presentingViewController] presentingViewController]) {
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-        LoginViewController *controller = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else {
-        [[[self presentingViewController] presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+    LoginViewController *controller = [LoginViewController new];
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    controller = [board instantiateInitialViewController];
+    [[self presentingViewController] presentViewController:controller animated:YES completion:nil];
 }
 
 - (IBAction)switchButtonMoved:(UISwitch *)sender {
