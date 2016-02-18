@@ -49,6 +49,13 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.emailTextField.text = @"";
+    self.passwordTextField.text = @"";
+}
+
+
 - (IBAction)onLogInTapped:(UIButton *)sender {
     NSString *email =  self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
