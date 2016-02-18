@@ -9,14 +9,15 @@
 #import "QuikDamageListVC.h"
 
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
-
+@property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
 @end
 
 @implementation QuikDamageListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.carDetailLabel.text = self.textFromCell;
+    NSLog(@"Car dictionary: %@", self.carDictionary);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

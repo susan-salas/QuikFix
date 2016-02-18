@@ -9,6 +9,7 @@
 #import "QuikUserHomepageVC.h"
 #import "QuikUser.h"
 #import "QuikCar.h"
+#import "QuikDamageListVC.h"
 #import "Firebase/Firebase.h"
 
 @interface QuikUserHomepageVC () <UITableViewDataSource, UITableViewDelegate>
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property Firebase *ref;
 @property QuikUser *currentUser;
+@property NSString *selectedCellText;
 
 @end
 
@@ -23,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedCellText = @"";
     self.currentUser = [QuikUser new];
     self.myCars = [NSMutableArray new];
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
@@ -33,7 +36,14 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = @"COOL CARS";
+    NSDictionary *carForCellDict = self.myCars[indexPath.row];
+    NSString *color = carForCellDict[@"color"];
+    NSString *year = carForCellDict[@"year"];
+    NSString *make = carForCellDict[@"make"];
+    NSString *model = carForCellDict[@"model"];
+
+    NSString *cellLabel = [NSString stringWithFormat:@"%@ - %@ %@  %@", color, year, make, model];
+    cell.textLabel.text = cellLabel;
     return cell;
 }
 
@@ -44,6 +54,21 @@
 - (IBAction)onAddButtonTapped:(UIBarButtonItem *)sender {
 
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    self.selectedCellText = cell.textLabel.text;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        UITableViewCell *cell = sender;
+        QuikDamageListVC *dest = segue.destinationViewController;
+        dest.textFromCell = cell.textLabel.text;
+        dest.carDictionary = [self.myCars objectAtIndex:[self.tableView indexPathForCell:cell].row];
+    }
+}
+
 
 - (void) populateUser{
     [self.ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -57,15 +82,15 @@
 -(void) loadMyCars {
     self.ref = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/cars"];
     [self.ref observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        for (NSString* key in snapshot.value) {
-            NSDictionary *carDict = [snapshot.value objectForKey:key];
+        NSMutableArray *carsFromFirebase = [NSMutableArray new];
+        for (NSString* vinNumber in snapshot.value) {
+            NSDictionary *carDict = [snapshot.value objectForKey:vinNumber];
             NSString *owner = [carDict objectForKey:@"owner"];
             if([owner isEqualToString:self.currentUser.idNumber]){
-                NSLog(@"hello");
-                [self.myCars addObject:carDict];
+                [carsFromFirebase addObject:carDict];
             }
         }
-
+        self.myCars = carsFromFirebase;
         [self.tableView reloadData];
     }];
 }

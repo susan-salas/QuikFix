@@ -75,8 +75,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osf-zE-WZk">
+                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Hde-7B-N5g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-go-UOr">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="474"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="vp6-3V-PmF">
@@ -96,10 +105,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XBy-go-UOr" secondAttribute="trailing" id="22U-Jj-InV"/>
-                            <constraint firstItem="XBy-go-UOr" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" id="FWm-JB-hlH"/>
-                            <constraint firstItem="h0f-PK-fxX" firstAttribute="top" secondItem="XBy-go-UOr" secondAttribute="bottom" id="RfD-yd-Mom"/>
-                            <constraint firstItem="XBy-go-UOr" firstAttribute="top" secondItem="QH6-U9-QXq" secondAttribute="bottom" id="dFl-be-kIJ"/>
+                            <constraint firstItem="osf-zE-WZk" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" id="AUJ-EE-hQ8"/>
+                            <constraint firstItem="XBy-go-UOr" firstAttribute="top" secondItem="osf-zE-WZk" secondAttribute="bottom" id="GiN-aX-Ksw"/>
+                            <constraint firstAttribute="trailing" secondItem="XBy-go-UOr" secondAttribute="trailing" id="KWD-tw-kfh"/>
+                            <constraint firstItem="XBy-go-UOr" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" id="Kfb-Ye-oVA"/>
+                            <constraint firstAttribute="trailing" secondItem="osf-zE-WZk" secondAttribute="trailing" id="gKl-w1-2TX"/>
+                            <constraint firstItem="h0f-PK-fxX" firstAttribute="top" secondItem="XBy-go-UOr" secondAttribute="bottom" id="iT8-8w-zUG"/>
+                            <constraint firstItem="osf-zE-WZk" firstAttribute="top" secondItem="QH6-U9-QXq" secondAttribute="bottom" id="pNC-05-6N3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reported Damage" id="rYe-lU-nLu">
@@ -109,6 +121,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="carDetailLabel" destination="osf-zE-WZk" id="SFd-VV-KbV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENy-78-YmU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface QuikDamageListVC : UIViewController
-
+@property NSString *textFromCell;
+@property NSDictionary *carDictionary;
 @end
