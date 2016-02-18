@@ -13,17 +13,16 @@
 
 -(void)addCarToDatabase{
     NSDictionary *carDict = @{@"vin":self.vin,
-                                     @"year":self.year,
-                                     @"make":self.make,
-                                     @"model":self.model,
-                                     @"body":self.body,
-                                     @"color":@"red",
-                                     @"license":self.license};
-
-    NSDictionary *topLevel = @{self.vin:carDict};
+                              @"year":self.year,
+                              @"make":self.make,
+                              @"model":self.model,
+                              @"body":self.body,
+                              @"color":self.color,
+                              @"license":self.license,
+                              @"owner":self.owner};
 
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/cars"];
-    [ref setValue:topLevel];
+    [[ref childByAppendingPath:self.vin] setValue:carDict];
 }
 
 @end
