@@ -33,10 +33,10 @@
     
     if (![[self presentingViewController] presentingViewController]) {
         [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        LoginViewController *controller = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
     } else {
         [[[self presentingViewController] presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-//        LoginViewController *controller = [[LoginViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
-//        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
