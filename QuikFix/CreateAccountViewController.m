@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameLabel;
 
 @end
 
@@ -33,6 +34,7 @@
     NSString *lastName = self.lastNameTextField.text;
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
+    NSString *username = self.usernameLabel.text;
     
     //   create user
     if (!([email isEqualToString:@""] && [password isEqualToString:@""])){
@@ -66,7 +68,8 @@ withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
                                     @"first name": firstName,
                                     @"last name": lastName,
                                     @"email": email,
-                                    @"uid": authData.uid
+                                    @"uid": authData.uid,
+                                    @"username": username
                                     };
           
           // Create a child path with a key set to the uid underneath the "users" node

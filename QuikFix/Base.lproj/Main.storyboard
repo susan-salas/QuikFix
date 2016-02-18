@@ -230,16 +230,37 @@
                                     <rect key="frame" x="97" y="238" width="95" height="21"/>
                                 </variation>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48l-9f-YQE">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="214" y="191" width="166" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mo-BE-JFy">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="97" y="200" width="95" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="sWK-QQ-uP7"/>
+                                <exclude reference="48l-9f-YQE"/>
+                                <exclude reference="5mo-BE-JFy"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="sWK-QQ-uP7"/>
+                                <include reference="48l-9f-YQE"/>
+                                <include reference="5mo-BE-JFy"/>
                             </mask>
                         </variation>
                     </view>
@@ -249,6 +270,7 @@
                         <outlet property="firstNameTextField" destination="bJY-Gf-cap" id="uwv-Xm-kmw"/>
                         <outlet property="lastNameTextField" destination="c3E-pW-XPZ" id="F6Q-XT-bYG"/>
                         <outlet property="passwordTextField" destination="Rjv-Af-1WD" id="OCR-rZ-cr4"/>
+                        <outlet property="usernameLabel" destination="48l-9f-YQE" id="wSy-Ad-saw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aV9-kf-VQo" userLabel="First Responder" sceneMemberID="firstResponder"/>
