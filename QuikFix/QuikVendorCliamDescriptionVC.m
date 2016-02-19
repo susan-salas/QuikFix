@@ -7,6 +7,7 @@
 //
 
 #import "QuikVendorCliamDescriptionVC.h"
+#import "QuikVendorSendEstimateVC.h"
 
 @interface QuikVendorCliamDescriptionVC ()
 @property (weak, nonatomic) IBOutlet UITextView *claimDescriptionTextView;
@@ -18,26 +19,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.claimDescriptionTextView.text = self.currentClaim.damageDescription;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)onSendEstimateTapped:(UIButton *)sender {
 }
 - (IBAction)onImageButtonsTapped:(UIButton *)sender {
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier  isEqual: @"estimateSegue"]){
+        QuikVendorSendEstimateVC *estimateVC = segue.destinationViewController;
+        estimateVC.currentClaim = self.currentClaim;
+    }
+    
 }
-*/
 
 @end

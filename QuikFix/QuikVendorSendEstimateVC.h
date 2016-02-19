@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuikClaim.h"
 
 @interface QuikVendorSendEstimateVC : UIViewController
+
+@property QuikClaim *currentClaim; 
 
 @end

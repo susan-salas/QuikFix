@@ -13,6 +13,7 @@
 #import "InitialViewController.h"
 #import "Firebase/Firebase.h"
 #import "QuikClaim.h"
+#import "QuikVendorCliamDescriptionVC.h"
 
 
 @interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
@@ -92,21 +93,26 @@
 
 
 - (void) populateClaimsArray{
-    NSLog(@"populate claims array called");
     Firebase *claimsRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"]childByAppendingPath:@"claims"];
     [claimsRef  observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSMutableArray *claimsFromFirebase = [NSMutableArray new];
         for (NSDictionary* claim in snapshot.value) {
            
             NSDictionary *currentClaimDict = snapshot.value [claim];
-            NSLog(@"claim in snap %@",currentClaimDict);
             QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
-            NSLog(@" current claims array == %@", currentClaim);
             [claimsFromFirebase addObject:currentClaim];
         }
         self.claims = claimsFromFirebase;
         [self.tableView reloadData];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    QuikVendorCliamDescriptionVC *claimDescription = segue.destinationViewController;
+    NSLog(@"indexPath.row == %lu", (long)indexPath.row);
+    claimDescription.currentClaim = self.claims[indexPath.row];
+    
 }
 
 @end

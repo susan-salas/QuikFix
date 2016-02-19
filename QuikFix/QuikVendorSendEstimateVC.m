@@ -7,6 +7,7 @@
 //
 
 #import "QuikVendorSendEstimateVC.h"
+#import "Firebase/Firebase.h"
 
 @interface QuikVendorSendEstimateVC ()
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
@@ -19,16 +20,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)onSendTapped:(UIButton *)sender {
+    NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
+    Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    
+    NSDictionary *notification = @{@"vendor": uid,
+                                   @"meesage": self.messageTextView.text,
+                                   @"bid": self.priceEstimateTextField.text};
+    [notificationRef setValue:notification];
+    
 }
 
 
 @end
+
+
+
+    
+

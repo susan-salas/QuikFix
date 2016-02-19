@@ -112,7 +112,7 @@
                                 <state key="normal" title="Send Estimate"/>
                                 <connections>
                                     <action selector="onSendEstimateTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="1RE-Yz-5H6"/>
-                                    <segue destination="ljs-Ei-lkp" kind="push" id="yVc-Dj-uO9"/>
+                                    <segue destination="ljs-Ei-lkp" kind="push" identifier="estimateSegue" id="yVc-Dj-uO9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IZ-xY-CTC">
