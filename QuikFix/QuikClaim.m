@@ -18,6 +18,7 @@
     [claimDict setObject:[ref key] forKey:@"claimID"];
     [claimDict setObject:self.carWithDamage forKey:@"carWithDamage"];
     [claimDict setObject:self.damageDescription forKey:@"damageDescription"];
+    [claimDict setObject:self.ownerID forKey:@"owner"];
 
     NSArray *images = self.images;
     NSString *encodedCloseUp1 = [UIImagePNGRepresentation(images[0]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];

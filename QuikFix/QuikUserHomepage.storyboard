@@ -129,6 +129,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="carDetailLabel" destination="osf-zE-WZk" id="SFd-VV-KbV"/>
+                        <outlet property="tableView" destination="XBy-go-UOr" id="lGL-Jl-F8n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENy-78-YmU" userLabel="First Responder" sceneMemberID="firstResponder"/>

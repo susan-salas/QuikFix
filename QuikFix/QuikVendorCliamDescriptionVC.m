@@ -28,7 +28,7 @@
 }
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if ([segue.identifier  isEqual: @"estimateSegue"]){
+    if ([segue.identifier  isEqual: @"SendEstimateSegue"]){
         QuikVendorSendEstimateVC *estimateVC = segue.destinationViewController;
         estimateVC.currentClaim = self.currentClaim;
     }
