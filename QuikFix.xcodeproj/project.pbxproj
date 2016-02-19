@@ -39,6 +39,7 @@
 		D0151CD01C74F45E00DF4CC4 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */; };
 		D0151CD61C764AB100DF4CC4 /* QuikDamageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CD51C764AB100DF4CC4 /* QuikDamageListVC.m */; };
 		D0151CD91C768B2E00DF4CC4 /* AddDamageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */; };
+		D0151CE31C77B0AA00DF4CC4 /* AFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CE11C77B0AA00DF4CC4 /* AFTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,8 @@
 		D0151CD51C764AB100DF4CC4 /* QuikDamageListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikDamageListVC.m; sourceTree = "<group>"; };
 		D0151CD71C768B2E00DF4CC4 /* AddDamageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDamageVC.h; sourceTree = "<group>"; };
 		D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDamageVC.m; sourceTree = "<group>"; };
+		D0151CE01C77B0AA00DF4CC4 /* AFTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFTableViewCell.h; path = "../../../../Downloads/AFTabledCollectionView-master/AFTabledCollectionView/AFTableViewCell.h"; sourceTree = "<group>"; };
+		D0151CE11C77B0AA00DF4CC4 /* AFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFTableViewCell.m; path = "../../../../Downloads/AFTabledCollectionView-master/AFTabledCollectionView/AFTableViewCell.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,7 @@
 				D0151CD21C74F84400DF4CC4 /* View */,
 				D0151CD11C74F83F00DF4CC4 /* Controller */,
 				36E57B751C72D46B000DEB1E /* Assets.xcassets */,
+				D0151CDD1C77B07500DF4CC4 /* AFTabledCollectionView */,
 				D0151CC51C74F22F00DF4CC4 /* HTPPLE */,
 				36E57B691C72D46B000DEB1E /* Supporting Files */,
 			);
@@ -262,6 +266,15 @@
 				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		D0151CDD1C77B07500DF4CC4 /* AFTabledCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				D0151CE01C77B0AA00DF4CC4 /* AFTableViewCell.h */,
+				D0151CE11C77B0AA00DF4CC4 /* AFTableViewCell.m */,
+			);
+			name = AFTabledCollectionView;
 			sourceTree = "<group>";
 		};
 		D615B691160607FC1B8EF534 /* Pods */ = {
@@ -404,6 +417,7 @@
 				D0151CCE1C74F24900DF4CC4 /* XPathQuery.m in Sources */,
 				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
 				D0151CCC1C74F24900DF4CC4 /* TFHpple.m in Sources */,
+				D0151CE31C77B0AA00DF4CC4 /* AFTableViewCell.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
 				BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */,
 				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
