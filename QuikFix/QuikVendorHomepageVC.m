@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "InitialViewController.h"
 #import "Firebase/Firebase.h"
+#import "QuikClaim.h"
 
 
 @interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
@@ -28,6 +29,7 @@
     [super viewDidLoad];
     self.mapView.hidden = YES;
     self.mapView.delegate = self;
+    [self populateClaimsArray];
     
 }
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
@@ -79,6 +81,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    QuikClaim *currentClaim = self.claims[indexPath.row];
+    cell.textLabel.text = currentClaim.damageDescription;
     return cell;
 }
 
@@ -87,14 +91,22 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) populateClaimsArray{
+    NSLog(@"populate claims array called");
+    Firebase *claimsRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"]childByAppendingPath:@"claims"];
+    [claimsRef  observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSMutableArray *claimsFromFirebase = [NSMutableArray new];
+        for (NSDictionary* claim in snapshot.value) {
+           
+            NSDictionary *currentClaimDict = snapshot.value [claim];
+            NSLog(@"claim in snap %@",currentClaimDict);
+            QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
+            NSLog(@" current claims array == %@", currentClaim);
+            [claimsFromFirebase addObject:currentClaim];
+        }
+        self.claims = claimsFromFirebase;
+        [self.tableView reloadData];
+    }];
 }
-*/
 
 @end

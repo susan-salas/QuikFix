@@ -33,4 +33,21 @@
     [ref setValue: claimDict];
     
 }
+
+-(instancetype)initWithDictionary: (NSDictionary *)claimDictionary{
+    self = [super init];
+    if (self) {
+        self.carWithDamage = claimDictionary[@"carWithDamage"];
+        self.claimID = claimDictionary[@"claimID"];
+        self.damageDescription = claimDictionary[@"damageDescription"];
+//        self.claimLocation = claimDictionary[@""];
+//        
+//        for (NSString *picture in claimDictionary[@"images"]){
+//            [self.images addObject:picture];
+//        }
+        
+    }
+    
+    return self;
+}
 @end

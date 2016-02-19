@@ -17,9 +17,12 @@
 @property (nonatomic, strong) QuikVendor *assignedToVendor;
 @property (nonatomic, strong) NSMutableArray *offers;
 @property (nonatomic, strong) NSString *claimID;
-@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSString *damageDescription;
 @property (nonatomic, strong) NSDictionary *claimLocation;
 
 -(void) addClaimToDatabase;
+
+-(instancetype)initWithDictionary: (NSDictionary *)claimDictionary;
+
 @end
