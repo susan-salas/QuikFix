@@ -27,24 +27,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="243" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ulr-p7-AcQ">
                                 <rect key="frame" x="0.0" y="108" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="243" id="3uD-Oe-KMd">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="243"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3uD-Oe-KMd" id="7pV-oM-I80">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="242"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR0-om-yOS">
-                                                    <rect key="frame" x="8" y="58" width="240" height="128"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Gji-b5-4E7" kind="push" id="ISf-dn-MSK"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Ljl-vL-AGO" id="xPT-8F-RFd"/>
                                     <outlet property="delegate" destination="Ljl-vL-AGO" id="eax-YN-veF"/>
@@ -88,6 +70,7 @@
                         <outlet property="mapView" destination="6Mp-bb-fcV" id="yiK-Tu-n2N"/>
                         <outlet property="searchBar" destination="bgH-VD-bD0" id="b3n-oX-3Y6"/>
                         <outlet property="tableView" destination="Ulr-p7-AcQ" id="MMY-iG-Non"/>
+                        <segue destination="Gji-b5-4E7" kind="push" identifier="FromCellSegue" id="AsK-sB-WJq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ny6-0L-G2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,6 +259,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aDX-MS-dzb"/>
+        <segue reference="tB2-22-f3G"/>
     </inferredMetricsTieBreakers>
 </document>
