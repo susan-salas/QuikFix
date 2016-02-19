@@ -71,7 +71,6 @@
     }
 }
 
-
 - (void) populateUser{
     [self.ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSLog(@" value of snap%@", snapshot.value);

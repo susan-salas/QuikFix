@@ -7,9 +7,11 @@
 //
 
 #import "QuikDamageListVC.h"
+#import "AddDamageVC.h"
 
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
+@property NSArray *damageListForCar;
 @end
 
 @implementation QuikDamageListVC
@@ -27,6 +29,14 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [UITableViewCell new];
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([sender isKindOfClass:[UIBarButtonItem class]]){
+        AddDamageVC *dest = segue.destinationViewController;
+        dest.carDetailText = self.carDetailLabel.text;
+        dest.carDictionary = self.carDictionary;
+    }
 }
 
 @end

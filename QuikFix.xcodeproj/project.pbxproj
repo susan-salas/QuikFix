@@ -38,6 +38,7 @@
 		D0151CCE1C74F24900DF4CC4 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CCA1C74F24900DF4CC4 /* XPathQuery.m */; };
 		D0151CD01C74F45E00DF4CC4 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */; };
 		D0151CD61C764AB100DF4CC4 /* QuikDamageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CD51C764AB100DF4CC4 /* QuikDamageListVC.m */; };
+		D0151CD91C768B2E00DF4CC4 /* AddDamageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 		D0151CD41C764AB100DF4CC4 /* QuikDamageListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikDamageListVC.h; sourceTree = "<group>"; };
 		D0151CD51C764AB100DF4CC4 /* QuikDamageListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikDamageListVC.m; sourceTree = "<group>"; };
+		D0151CD71C768B2E00DF4CC4 /* AddDamageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDamageVC.h; sourceTree = "<group>"; };
+		D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDamageVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,24 +189,9 @@
 		D0151CD11C74F83F00DF4CC4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				36E57B981C740795000DEB1E /* InitialViewController.h */,
-				36E57B991C740795000DEB1E /* InitialViewController.m */,
-				36E57B801C72E2BE000DEB1E /* LoginViewController.h */,
-				36E57B811C72E2BE000DEB1E /* LoginViewController.m */,
-				36E57B951C739F23000DEB1E /* CreateAccountViewController.h */,
-				36E57B961C739F23000DEB1E /* CreateAccountViewController.m */,
-				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
-				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
-				D0151CC21C74F1BC00DF4CC4 /* QuikAddCarVC.h */,
-				D0151CC31C74F1BC00DF4CC4 /* QuikAddCarVC.m */,
-				BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */,
-				BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */,
-				BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */,
-				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
-				BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */,
-				BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */,
-				D0151CD41C764AB100DF4CC4 /* QuikDamageListVC.h */,
-				D0151CD51C764AB100DF4CC4 /* QuikDamageListVC.m */,
+				D0151CDA1C768B3900DF4CC4 /* Login */,
+				D0151CDB1C768B6C00DF4CC4 /* User */,
+				D0151CDC1C768B9300DF4CC4 /* Vendor */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -233,6 +221,47 @@
 			);
 			name = Model;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		D0151CDA1C768B3900DF4CC4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				36E57B981C740795000DEB1E /* InitialViewController.h */,
+				36E57B991C740795000DEB1E /* InitialViewController.m */,
+				36E57B801C72E2BE000DEB1E /* LoginViewController.h */,
+				36E57B811C72E2BE000DEB1E /* LoginViewController.m */,
+				36E57B951C739F23000DEB1E /* CreateAccountViewController.h */,
+				36E57B961C739F23000DEB1E /* CreateAccountViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		D0151CDB1C768B6C00DF4CC4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
+				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
+				D0151CC21C74F1BC00DF4CC4 /* QuikAddCarVC.h */,
+				D0151CC31C74F1BC00DF4CC4 /* QuikAddCarVC.m */,
+				D0151CD41C764AB100DF4CC4 /* QuikDamageListVC.h */,
+				D0151CD51C764AB100DF4CC4 /* QuikDamageListVC.m */,
+				D0151CD71C768B2E00DF4CC4 /* AddDamageVC.h */,
+				D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		D0151CDC1C768B9300DF4CC4 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */,
+				BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */,
+				BD6E78441C73E67000C68256 /* QuikVendorHomepageVC.h */,
+				BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */,
+				BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */,
+				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
+			);
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 		D615B691160607FC1B8EF534 /* Pods */ = {
@@ -386,6 +415,7 @@
 				BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */,
 				BD6E784B1C73E9AD00C68256 /* QuikVendor.m in Sources */,
 				D0151CC41C74F1BC00DF4CC4 /* QuikAddCarVC.m in Sources */,
+				D0151CD91C768B2E00DF4CC4 /* AddDamageVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

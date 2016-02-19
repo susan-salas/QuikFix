@@ -13,7 +13,7 @@
 
 @interface QuikClaim : NSObject
 
-@property (nonatomic, strong) QuikCar *carWithDamage;
+@property (nonatomic, strong) NSString *carWithDamage;
 @property (nonatomic, strong) QuikVendor *assignedToVendor;
 @property (nonatomic, strong) NSMutableArray *offers;
 @property (nonatomic, strong) NSString *claimID;
@@ -21,4 +21,5 @@
 @property (nonatomic, strong) NSString *damageDescription;
 @property (nonatomic, strong) NSDictionary *claimLocation;
 
+-(void) addClaimToDatabase;
 @end
