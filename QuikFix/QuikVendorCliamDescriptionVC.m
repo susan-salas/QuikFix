@@ -9,6 +9,8 @@
 #import "QuikVendorCliamDescriptionVC.h"
 
 @interface QuikVendorCliamDescriptionVC ()
+@property (weak, nonatomic) IBOutlet UITextView *claimDescriptionTextView;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *imageButtons;
 
 @end
 
@@ -22,6 +24,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)onSendEstimateTapped:(UIButton *)sender {
+}
+- (IBAction)onImageButtonsTapped:(UIButton *)sender {
 }
 
 /*

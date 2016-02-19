@@ -111,6 +111,7 @@
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Send Estimate"/>
                                 <connections>
+                                    <action selector="onSendEstimateTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="1RE-Yz-5H6"/>
                                     <segue destination="ljs-Ei-lkp" kind="push" id="yVc-Dj-uO9"/>
                                 </connections>
                             </button>
@@ -119,6 +120,7 @@
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Image 1"/>
                                 <connections>
+                                    <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="qgj-hM-NjX"/>
                                     <segue destination="Min-0a-9RG" kind="push" identifier="Image1" id="kaB-yJ-jtQ"/>
                                 </connections>
                             </button>
@@ -127,6 +129,7 @@
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Image 2"/>
                                 <connections>
+                                    <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="8eW-Ch-zcw"/>
                                     <segue destination="Min-0a-9RG" kind="push" identifier="Image2" id="Csi-tn-C1z"/>
                                 </connections>
                             </button>
@@ -135,6 +138,7 @@
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Image 3"/>
                                 <connections>
+                                    <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="nIG-Q1-IgI"/>
                                     <segue destination="Min-0a-9RG" kind="push" identifier="Image3" id="aDX-MS-dzb"/>
                                 </connections>
                             </button>
@@ -143,6 +147,7 @@
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Image 4"/>
                                 <connections>
+                                    <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="q1v-Cb-Yke"/>
                                     <segue destination="Min-0a-9RG" kind="push" identifier="Image4" id="tB2-22-f3G"/>
                                 </connections>
                             </button>
@@ -156,6 +161,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Claim Description" id="Ls6-Ou-y5A"/>
+                    <connections>
+                        <outlet property="claimDescriptionTextView" destination="y43-jX-of8" id="oDv-Hb-rRn"/>
+                        <outletCollection property="imageButtons" destination="1IZ-xY-CTC" id="m9C-MQ-0c6"/>
+                        <outletCollection property="imageButtons" destination="SEZ-sJ-8Lh" id="DYi-8Q-RI6"/>
+                        <outletCollection property="imageButtons" destination="QNm-Lc-gMV" id="p9Z-k2-j5q"/>
+                        <outletCollection property="imageButtons" destination="AFC-ZF-tbL" id="T4D-ul-L5A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVU-wp-BMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,9 +216,12 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbw-Ca-Ibm">
                                 <rect key="frame" x="142" y="437" width="36" height="30"/>
                                 <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="onSendTapped:" destination="ljs-Ei-lkp" eventType="touchUpInside" id="avo-aJ-xhi"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write you message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOV-je-7V6">
-                                <rect key="frame" x="20" y="72" width="151" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write your message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOV-je-7V6">
+                                <rect key="frame" x="14" y="72" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -232,6 +247,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Send Estimate" id="L4W-vR-qMm"/>
+                    <connections>
+                        <outlet property="messageTextView" destination="HXR-Vo-tbd" id="3yB-Ta-MFK"/>
+                        <outlet property="priceEstimateTextField" destination="nq4-dm-b6O" id="1If-tD-7jz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q36-fI-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
