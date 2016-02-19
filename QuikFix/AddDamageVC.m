@@ -17,7 +17,6 @@
 @property UIImage *closeUpTwo;
 @property UIImage *twoFootOne;
 @property UIImage *twoFootTwo;
-
 @end
 
 @implementation AddDamageVC
@@ -47,31 +46,27 @@
     if ([self isClaimReadyToPush]) {
         QuikClaim *claim = [QuikClaim new];
         claim.carWithDamage = [self.carDictionary valueForKey:@"vin"];
-        claim.images = @[self.closeUpOne, self.closeUpTwo, self.twoFootOne, self.twoFootTwo];
+        claim.images = [NSMutableArray arrayWithObjects:self.closeUpOne, self.closeUpTwo, self.twoFootOne, self.twoFootTwo, nil];
         claim.damageDescription = self.damageDescription.text;
+        claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
         [claim addClaimToDatabase];
     }
 }
 
 -(BOOL)isClaimReadyToPush{
     if (self.closeUpOne == nil) {
-        NSLog(@"COOL1");
         return false;
     }
     else if (self.closeUpTwo == nil) {
-        NSLog(@"COOL2");
         return false;
     }
     else if (self.twoFootOne == nil) {
-        NSLog(@"COOL3");
         return false;
     }
     else if (self.twoFootTwo == nil) {
-        NSLog(@"COOL4");
         return false;
     }
     else if (self.damageDescription.text.length == 0) {
-        NSLog(@"COOL5");
         return false;
     }
     return true;
