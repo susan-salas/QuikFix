@@ -203,7 +203,13 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
 
     NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
-    cell.backgroundColor = collectionViewArray[indexPath.item];
+    //cell.backgroundColor = collectionViewArray[indexPath.item];
+
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    imageView.image = [UIImage imageNamed:@"dent"];
+    [cell addSubview:imageView];
 
     return cell;
 }
