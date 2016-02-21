@@ -32,7 +32,6 @@
         if (currentUserRef.authData) {
             // user authenticated
             [self callPresentVC];
-            NSLog(@"user already logged in");
         } else {
             NSLog(@"user not logged in");
         }

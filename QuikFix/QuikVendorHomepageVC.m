@@ -140,9 +140,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     QuikVendorCliamDescriptionVC *claimDescription = segue.destinationViewController;
-    NSLog(@"indexPath.row == %lu", (long)indexPath.row);
     claimDescription.currentClaim = self.claims[indexPath.row];
-    
 }
 
 #pragma mark - UITableViewDataSource Methods

@@ -7,22 +7,26 @@
 //
 
 #import "QuikCar.h"
-#import "Firebase/Firebase.h"
 
 @implementation QuikCar
-
--(void)addCarToDatabase{
-    NSDictionary *carDict = @{@"vin":self.vin,
-                              @"year":self.year,
-                              @"make":self.make,
-                              @"model":self.model,
-                              @"body":self.body,
-                              @"color":self.color,
-                              @"license":self.license,
-                              @"owner":self.owner};
-
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/cars"];
-    [[ref childByAppendingPath:self.vin] setValue:carDict];
+-(instancetype)initWithDictionary: (NSDictionary *)carDictionary{
+    self = [super init];
+    if(self){
+        self.owner = [carDictionary valueForKey:@"owner"];
+        self.year = [carDictionary valueForKey:@"year"];
+        self.make = [carDictionary valueForKey:@"make"];
+        self.model = [carDictionary valueForKey:@"model"];
+        self.vin = [carDictionary valueForKey:@"vin"];
+        self.license = [carDictionary valueForKey:@"license"];
+        self.body = [carDictionary valueForKey:@"body"];
+        self.color = [carDictionary valueForKey:@"color"];
+        self.detail = [NSString stringWithFormat:@"%@ - %@ %@  %@",
+                       self.color,
+                       self.year,
+                       self.make,
+                       self.model];
+        
+    }
+    return self;
 }
-
 @end

@@ -29,7 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"I AM INSIDE THE LOG IN VC");
     
     self.isVendorLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
     
@@ -67,7 +66,6 @@
         if (error) {
             NSLog(@"We are not logged in %@", error);
         } else {
-            //perfrom segue
             [self callPresentVC];
             NSLog(@"user is now logged in");
         }
@@ -85,10 +83,7 @@
         
         if (facebookError) {
             NSLog(@"Facebook login failed. Error: %@", facebookError);
-        } //else if (facebookResult.isCancelled) {
-        // NSLog(@"Facebook login got cancelled.");
-        //}
-        
+        }
         else {
             NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
             NSLog(@"This is our access token %@",accessToken);
