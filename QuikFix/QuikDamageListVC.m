@@ -51,14 +51,16 @@
 
     Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
     [[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:self.car.vin] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSMutableArray *damageFromFirebase = [NSMutableArray new];
-        for (NSString* claimID in snapshot.value) {
-            NSDictionary *claimDict = [snapshot.value objectForKey:claimID];
-            QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
-            [damageFromFirebase addObject:claim];
-       }
-        self.damageListForCar = damageFromFirebase;
-        [self.tableView reloadData];
+        if ([snapshot exists]) {
+            NSMutableArray *damageFromFirebase = [NSMutableArray new];
+            for (NSString* claimID in snapshot.value) {
+                NSDictionary *claimDict = [snapshot.value objectForKey:claimID];
+                QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
+                [damageFromFirebase addObject:claim];
+            }
+            self.damageListForCar = damageFromFirebase;
+            [self.tableView reloadData];
+        }
     }];
 }
 
