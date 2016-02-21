@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         NSDictionary *offersDict= claimDictionary[@"offers"];
-        NSDictionary *imagesDict= claimDictionary[@"offers"];
+        NSDictionary *imagesDict= claimDictionary[@"images"];
         NSMutableArray *offersArray = [NSMutableArray new];
         NSMutableArray *imagesArray = [NSMutableArray new];
 
@@ -26,8 +26,10 @@
             }
         }
 
-        for (NSString *image in imagesDict) {
-                [imagesArray addObject:image];
+        for (NSString *imageKey in imagesDict) {
+            NSString *imageData = [imagesDict valueForKey:imageKey];
+            NSData *data = [[NSData alloc]initWithBase64EncodedString:imageData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                [imagesArray addObject:[UIImage imageWithData:data]];
         }
 
         self.carWithDamage = claimDictionary[@"carWithDamage"];
