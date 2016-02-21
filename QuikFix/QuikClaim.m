@@ -38,15 +38,27 @@
 -(instancetype)initWithDictionary: (NSDictionary *)claimDictionary{
     self = [super init];
     if (self) {
+        NSDictionary *offersDict= claimDictionary[@"offers"];
+        NSDictionary *imagesDict= claimDictionary[@"offers"];
+        NSMutableArray *offersArray = [NSMutableArray new];
+        NSMutableArray *imagesArray = [NSMutableArray new];
+
+        for (NSString *key in offersDict) {
+            for (NSDictionary *offer in [offersDict valueForKey:key]) {
+                [offersArray addObject:offer];
+            }
+        }
+
+        for (NSString *image in imagesDict) {
+                [imagesArray addObject:image];
+        }
+
         self.carWithDamage = claimDictionary[@"carWithDamage"];
         self.claimID = claimDictionary[@"claimID"];
         self.damageDescription = claimDictionary[@"damageDescription"];
-//        self.claimLocation = claimDictionary[@""];
-//        
-//        for (NSString *picture in claimDictionary[@"images"]){
-//            [self.images addObject:picture];
-//        }
-        
+        self.ownerID = claimDictionary[@"owner"];
+        self.images = imagesArray;
+        self.offers = offersArray;
     }
     
     return self;

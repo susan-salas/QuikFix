@@ -11,6 +11,7 @@
 #import "QuikUser.h"
 #import "TFHpple.h"
 #import "TFHppleElement.h"
+#import "Firebase/Firebase.h"
 
 @interface QuikAddCarVC ()
 @property (weak, nonatomic) IBOutlet UITextField *vinTextField;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *colorTextField;
 @property (weak, nonatomic) IBOutlet UITextField *licenseTextField;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property QuikCar *carToAdd;
 
 
 @end
@@ -76,17 +78,17 @@
 
 - (IBAction)onAddCarTapped:(UIButton *)sender {
     if ([self areTextFieldsFilled]) {
-        QuikCar *car = [QuikCar new];
-        car.vin = self.vinTextField.text;
-        car.year = self.yearTextField.text;
-        car.make = self.makeTextField.text;
-        car.model = self.modelTextField.text;
-        car.body = self.bodyTextField.text;
-        car.color = self.colorTextField.text;
-        car.license = self.licenseTextField.text;
-        NSLog(@"the UID %@",[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]);
-        car.owner = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-        [car addCarToDatabase];
+        self.carToAdd = [QuikCar new];
+        self.carToAdd.vin = self.vinTextField.text;
+        self.carToAdd.year = self.yearTextField.text;
+        self.carToAdd.make = self.makeTextField.text;
+        self.carToAdd.model = self.modelTextField.text;
+        self.carToAdd.body = self.bodyTextField.text;
+        self.carToAdd.color = self.colorTextField.text;
+        self.carToAdd.license = self.licenseTextField.text;
+        self.carToAdd.owner = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+        [self sendCarToDataBase:self.carToAdd];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -113,6 +115,20 @@
         return false;
     }
     return true;
+}
+
+-(void)sendCarToDataBase:(QuikCar *) car{
+    NSDictionary *carDict = @{@"vin":car.vin,
+                              @"year":car.year,
+                              @"make":car.make,
+                              @"model":car.model,
+                              @"body":car.body,
+                              @"color":car.color,
+                              @"license":car.license,
+                              @"owner":car.owner};
+
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/cars"];
+    [[ref childByAppendingPath:car.vin] setValue:carDict];
 }
 
 

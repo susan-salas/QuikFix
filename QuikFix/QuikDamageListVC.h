@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class QuikCar;
 
 @interface QuikDamageListVC : UIViewController
 @property NSString *textFromCell;
-@property NSDictionary *carDictionary;
+@property QuikCar *car;
 @end

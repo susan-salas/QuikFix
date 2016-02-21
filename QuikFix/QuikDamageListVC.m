@@ -9,6 +9,8 @@
 #import "QuikDamageListVC.h"
 #import "AddDamageVC.h"
 #import "Firebase/Firebase.h"
+#import "QuikCar.h"
+#import "QuikClaim.h"
 
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
@@ -20,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.carDetailLabel.text = self.textFromCell;
+    self.carDetailLabel.text = self.car.detail;
     self.damageListForCar = [NSMutableArray new];
     [self loadMyDamage];
 }
@@ -31,7 +33,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = @"Got my claims";
+    QuikClaim *claim = self.damageListForCar[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Description: %@",claim.damageDescription];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Claim ID: %@",claim.claimID];
     return cell;
 }
 
@@ -39,24 +43,22 @@
     if([sender isKindOfClass:[UIBarButtonItem class]]){
         AddDamageVC *dest = segue.destinationViewController;
         dest.carDetailText = self.carDetailLabel.text;
-        dest.carDictionary = self.carDictionary;
+        dest.car = self.car;
     }
 }
 
 -(void)loadMyDamage{
+
     Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
-    [damageRef  observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    [[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:self.car.vin] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSMutableArray *damageFromFirebase = [NSMutableArray new];
         for (NSString* claimID in snapshot.value) {
             NSDictionary *claimDict = [snapshot.value objectForKey:claimID];
-            NSString *ownerID = [claimDict objectForKey:@"owner"];
-            if([ownerID isEqualToString:[[NSUserDefaults standardUserDefaults]valueForKey:@"uid"]])
-            {
-                [damageFromFirebase addObject:claimDict];
-            }
-        }
+            QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
+            [damageFromFirebase addObject:claim];
+       }
         self.damageListForCar = damageFromFirebase;
-       [self.tableView reloadData];
+        [self.tableView reloadData];
     }];
 }
 

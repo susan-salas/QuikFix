@@ -10,7 +10,6 @@
 
 @implementation QuikUser
 -(instancetype)initWithDictionary: (NSDictionary *)userDictionary{
-    NSLog(@"THe user dict %@", userDictionary);
     self = [super init];
     if(self){
         self.idNumber = userDictionary[@"uid"];

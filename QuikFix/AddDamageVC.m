@@ -8,6 +8,7 @@
 
 #import "AddDamageVC.h"
 #import "QuikClaim.h"
+#import "QuikCar.h"
 
 
 @interface AddDamageVC ()
@@ -23,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"car dict %@", [self.carDictionary valueForKey:@"vin"]);
     self.closeUpOne = [UIImage imageNamed:@"dent"];
     self.closeUpTwo = [UIImage imageNamed:@"dent"];
     self.twoFootOne = [UIImage imageNamed:@"dent"];
@@ -45,7 +45,7 @@
 
     if ([self isClaimReadyToPush]) {
         QuikClaim *claim = [QuikClaim new];
-        claim.carWithDamage = [self.carDictionary valueForKey:@"vin"];
+        claim.carWithDamage = self.car.vin;
         claim.images = [NSMutableArray arrayWithObjects:self.closeUpOne, self.closeUpTwo, self.twoFootOne, self.twoFootTwo, nil];
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];

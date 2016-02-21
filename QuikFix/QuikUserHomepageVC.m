@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property Firebase *ref;
 @property QuikUser *currentUser;
+@property QuikCar *carSelected;
 @property NSString *selectedCellText;
 
 @end
@@ -39,13 +40,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSDictionary *carForCellDict = self.myCars[indexPath.row];
-    NSString *color = carForCellDict[@"color"];
-    NSString *year = carForCellDict[@"year"];
-    NSString *make = carForCellDict[@"make"];
-    NSString *model = carForCellDict[@"model"];
-    NSString *cellLabel = [NSString stringWithFormat:@"%@ - %@ %@  %@", color, year, make, model];
-    cell.textLabel.text = cellLabel;
+    QuikCar *car = self.myCars[indexPath.row];
+    cell.textLabel.text = car.detail;
     return cell;
 }
 
@@ -53,30 +49,18 @@
     return self.myCars.count;
 }
 
-- (IBAction)onAddButtonTapped:(UIBarButtonItem *)sender {
-
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    self.selectedCellText = cell.textLabel.text;
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = sender;
         QuikDamageListVC *dest = segue.destinationViewController;
-        dest.textFromCell = cell.textLabel.text;
-        dest.carDictionary = [self.myCars objectAtIndex:[self.tableView indexPathForCell:cell].row];
+        dest.car = [self.myCars objectAtIndex:[self.tableView indexPathForCell:cell].row];
     }
 }
 
 - (void) populateUser{
     [self.ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@" value of snap%@", snapshot.value);
         NSDictionary *userDictionary = snapshot.value;
         self.currentUser = [self.currentUser initWithDictionary:userDictionary];
-        NSLog(@"id: %@ username: %@ email: %@", self.currentUser.idNumber, self.currentUser.userName, self.currentUser.email);
     }];
 }
 
@@ -88,7 +72,8 @@
             NSDictionary *carDict = [snapshot.value objectForKey:vinNumber];
             NSString *owner = [carDict objectForKey:@"owner"];
             if([owner isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]]){
-                [carsFromFirebase addObject:carDict];
+                QuikCar *car = [[QuikCar alloc] initWithDictionary:carDict];
+                [carsFromFirebase addObject:car];
             }
         }
         self.myCars = carsFromFirebase;
@@ -101,11 +86,9 @@
     NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
     
     if (accessToken == nil){
-        NSLog(@"FB acces token == nil");
         Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
         [ref unauth];
     }else {
-        NSLog(@"FB acces token != nil");
         FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
         [loginManager logOut];
     }
