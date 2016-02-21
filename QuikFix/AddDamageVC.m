@@ -9,6 +9,8 @@
 #import "AddDamageVC.h"
 #import "QuikClaim.h"
 #import "QuikCar.h"
+#import "QuikClaim.h"
+#import "Firebase/Firebase.h"
 
 
 @interface AddDamageVC ()
@@ -49,7 +51,7 @@
         claim.images = [NSMutableArray arrayWithObjects:self.closeUpOne, self.closeUpTwo, self.twoFootOne, self.twoFootTwo, nil];
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
-        [claim addClaimToDatabase];
+        [self addClaimToDatabase:claim];
     }
 }
 
@@ -70,6 +72,29 @@
         return false;
     }
     return true;
+}
+
+-(void) addClaimToDatabase:(QuikClaim *)claim{
+    Firebase *ref = [[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/claims"] childByAutoId];
+
+    NSMutableDictionary *claimDict = [NSMutableDictionary new];
+    [claimDict setObject:[ref key] forKey:@"claimID"];
+    [claimDict setObject:claim.carWithDamage forKey:@"carWithDamage"];
+    [claimDict setObject:claim.damageDescription forKey:@"damageDescription"];
+    [claimDict setObject:claim.ownerID forKey:@"owner"];
+
+    NSArray *images = claim.images;
+    NSString *encodedCloseUp1 = [UIImagePNGRepresentation(images[0]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSString *encodedCloseUp2 = [UIImagePNGRepresentation(images[1]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSString *encodedTwoFt1 = [UIImagePNGRepresentation(images[2]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSString *encodedTwoFt2 = [UIImagePNGRepresentation(images[3]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+
+    NSDictionary *imageDict = @{@"closeUp1":encodedCloseUp1,
+                                @"closeUp2":encodedCloseUp2,
+                                @"TwoFt1":encodedTwoFt1,
+                                @"TwoFt2":encodedTwoFt2};
+    [claimDict setObject:imageDict forKey:@"images"];
+    [ref setValue: claimDict];
 }
 
 @end

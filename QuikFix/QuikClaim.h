@@ -22,8 +22,6 @@
 @property (nonatomic, strong) NSString *damageDescription;
 @property (nonatomic, strong) NSDictionary *claimLocation;
 
--(void) addClaimToDatabase;
-
 -(instancetype)initWithDictionary: (NSDictionary *)claimDictionary;
 
 @end

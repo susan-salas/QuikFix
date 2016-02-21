@@ -48,7 +48,6 @@
 }
 
 -(void)loadMyDamage{
-
     Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
     [[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:self.car.vin] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if ([snapshot exists]) {
