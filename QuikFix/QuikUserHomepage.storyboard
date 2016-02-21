@@ -193,6 +193,7 @@
                                 <state key="normal" title="Close Up" backgroundImage="dent"/>
                                 <connections>
                                     <action selector="onCloseUpOneTapped:" destination="NAk-0k-UW4" eventType="touchUpInside" id="7Fj-tZ-gFV"/>
+                                    <segue destination="4LQ-dq-uoY" kind="push" id="hfx-OB-bow"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gf0-Zx-xhm">
@@ -260,11 +261,67 @@
                     <connections>
                         <outlet property="carDetailLabel" destination="lF0-pc-4wX" id="RcE-tZ-8bO"/>
                         <outlet property="damageDescription" destination="srS-Dy-Fy3" id="LLV-Kn-43e"/>
+                        <segue destination="4LQ-dq-uoY" kind="push" identifier="TakePhotoSegue" id="Ai8-ab-Gvw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Thc-Pi-Gim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1169" y="1076"/>
+        </scene>
+        <!--Add Image-->
+        <scene sceneID="FUq-jM-q8K">
+            <objects>
+                <viewController id="4LQ-dq-uoY" customClass="QuikUserImagePickerVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HnO-sy-AP7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Een-fl-xpo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vpa-5x-KaI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LdM-s0-MmO">
+                                <rect key="frame" x="67" y="530" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4FY-ZU-LT0"/>
+                                    <constraint firstAttribute="width" constant="48" id="Y7f-tr-ubr"/>
+                                </constraints>
+                                <state key="normal" title="Library"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGk-hk-zPa">
+                                <rect key="frame" x="168" y="530" width="54" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="hqc-vH-vBw"/>
+                                    <constraint firstAttribute="height" constant="30" id="rHp-Hi-Q70"/>
+                                </constraints>
+                                <state key="normal" title="Camera"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wur-YS-fTR">
+                                <rect key="frame" x="16" y="64" width="288" height="466"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LdM-s0-MmO" firstAttribute="leading" secondItem="Vpa-5x-KaI" secondAttribute="leadingMargin" constant="51" id="1mw-zY-SCS"/>
+                            <constraint firstItem="wur-YS-fTR" firstAttribute="top" secondItem="HnO-sy-AP7" secondAttribute="bottom" id="LzX-Hi-pAx"/>
+                            <constraint firstItem="Een-fl-xpo" firstAttribute="top" secondItem="fGk-hk-zPa" secondAttribute="bottom" constant="8" id="QyP-aZ-iCp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wur-YS-fTR" secondAttribute="trailing" id="RBQ-sH-shq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fGk-hk-zPa" secondAttribute="trailing" constant="82" id="RND-pE-yTl"/>
+                            <constraint firstItem="Een-fl-xpo" firstAttribute="top" secondItem="LdM-s0-MmO" secondAttribute="bottom" constant="8" id="a6M-7d-CMb"/>
+                            <constraint firstItem="fGk-hk-zPa" firstAttribute="top" secondItem="wur-YS-fTR" secondAttribute="bottom" id="gdW-c0-7Ya"/>
+                            <constraint firstItem="wur-YS-fTR" firstAttribute="leading" secondItem="Vpa-5x-KaI" secondAttribute="leadingMargin" id="skP-Fp-up7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Image" id="Wy9-IH-937"/>
+                    <connections>
+                        <outlet property="imageView" destination="wur-YS-fTR" id="0id-bi-EUM"/>
+                        <outlet property="onCameraTapped" destination="fGk-hk-zPa" id="4T9-2U-O5M"/>
+                        <outlet property="onLibraryTapped" destination="LdM-s0-MmO" id="VrH-bv-Bzi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJP-YQ-jmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1602" y="1077"/>
         </scene>
         <!--Add Car-->
         <scene sceneID="o7R-4e-pq1">
@@ -424,4 +481,7 @@
     <resources>
         <image name="dent" width="800" height="478"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hfx-OB-bow"/>
+    </inferredMetricsTieBreakers>
 </document>
