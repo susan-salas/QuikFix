@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *onLibraryTapped;
 @property (weak, nonatomic) IBOutlet UIButton *onCameraTapped;
+@property (weak, nonatomic) UIImageView *imageViewFromPreviousVC;
 
 @end

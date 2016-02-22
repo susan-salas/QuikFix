@@ -11,36 +11,54 @@
 #import "QuikCar.h"
 #import "QuikClaim.h"
 #import "Firebase/Firebase.h"
+#import "QuikUserImagePickerVC.h"
 
+@interface AddDamageVC () <UITextViewDelegate,UIGestureRecognizerDelegate>
 
-@interface AddDamageVC ()
 @property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
 @property (weak, nonatomic) IBOutlet UITextView *damageDescription;
-@property UIImage *closeUpOne;
-@property UIImage *closeUpTwo;
-@property UIImage *twoFootOne;
-@property UIImage *twoFootTwo;
+@property (weak, nonatomic) IBOutlet UIImageView *image1;
+@property (weak, nonatomic) IBOutlet UIImageView *image2;
+@property (weak, nonatomic) IBOutlet UIImageView *image3;
+@property (weak, nonatomic) IBOutlet UIImageView *image4;
+
 @end
 
 @implementation AddDamageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.closeUpOne = [UIImage imageNamed:@"dent"];
-    self.closeUpTwo = [UIImage imageNamed:@"dent"];
-    self.twoFootOne = [UIImage imageNamed:@"dent"];
-    self.twoFootTwo = [UIImage imageNamed:@"dent"];
+
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]
+                                     initWithTarget:self action:@selector(handleTap:)];
+    tap1.delegate = self;
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleTap:)];
+    tap2.delegate = self;
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleTap:)];
+    tap3.delegate = self;
+    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleTap:)];
+    tap3.delegate = self;
 
     self.carDetailLabel.text = self.carDetailText;
 
+    self.image1.userInteractionEnabled = YES;
+    self.image2.userInteractionEnabled = YES;
+    self.image3.userInteractionEnabled = YES;
+    self.image4.userInteractionEnabled = YES;
+
+    [self.image1 addGestureRecognizer:tap1];
+    [self.image2 addGestureRecognizer:tap2];
+    [self.image3 addGestureRecognizer:tap3];
+    [self.image4 addGestureRecognizer:tap4];
+
 }
-- (IBAction)onCloseUpOneTapped:(UIButton *)sender {
-}
-- (IBAction)onTwoFootOneTapped:(UIButton *)sender {
-}
-- (IBAction)onCloseUpTwoTapped:(UIButton *)sender {
-}
-- (IBAction)onTwoFootTwoTapped:(UIButton *)sender {
+
+- (void)handleTap:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self performSegueWithIdentifier:@"TakePhotoSegue" sender:tapGestureRecognizer];
 }
 
 - (IBAction)onSubmitTapped:(UIButton *)sender {
@@ -48,31 +66,26 @@
     if ([self isClaimReadyToPush]) {
         QuikClaim *claim = [QuikClaim new];
         claim.carWithDamage = self.car.vin;
-        claim.images = [NSMutableArray arrayWithObjects:self.closeUpOne, self.closeUpTwo, self.twoFootOne, self.twoFootTwo, nil];
+        claim.images = [NSMutableArray arrayWithObjects:self.image1.image, self.image2.image, self.image3.image, self.image4.image, nil];
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
         [self addClaimToDatabase:claim];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 -(BOOL)isClaimReadyToPush{
-    if (self.closeUpOne == nil) {
+    if (self.damageDescription.text.length == 0) {
+        self.damageDescription.textColor = [UIColor redColor];
+        self.damageDescription.text = @"Cannot be empty";
         return false;
     }
-    else if (self.closeUpTwo == nil) {
-        return false;
-    }
-    else if (self.twoFootOne == nil) {
-        return false;
-    }
-    else if (self.twoFootTwo == nil) {
-        return false;
-    }
-    else if (self.damageDescription.text.length == 0) {
+    else if ([self.damageDescription.text isEqualToString:@"Cannot be empty"]) {
         return false;
     }
     return true;
 }
+
 
 -(void) addClaimToDatabase:(QuikClaim *)claim{
     Firebase *ref = [[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/claims"] childByAutoId];
@@ -84,6 +97,7 @@
     [claimDict setObject:claim.ownerID forKey:@"owner"];
 
     NSArray *images = claim.images;
+
     NSString *encodedCloseUp1 = [UIImagePNGRepresentation(images[0]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     NSString *encodedCloseUp2 = [UIImagePNGRepresentation(images[1]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     NSString *encodedTwoFt1 = [UIImagePNGRepresentation(images[2]) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
@@ -95,6 +109,30 @@
                                 @"TwoFt2":encodedTwoFt2};
     [claimDict setObject:imageDict forKey:@"images"];
     [ref setValue: claimDict];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Cannot be empty"]) {
+        textView.text = @"";
+        self.damageDescription.textColor = [UIColor blackColor];
+    }
+    [textView becomeFirstResponder];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITapGestureRecognizer *)sender{
+    QuikUserImagePickerVC *dest = segue.destinationViewController;
+    dest.imageViewFromPreviousVC = (UIImageView *)[sender view];
 }
 
 @end
