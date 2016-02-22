@@ -87,48 +87,55 @@
         else {
             NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
             NSLog(@"This is our access token %@",accessToken);
-            
-            [ref authWithOAuthProvider:@"facebook" token:accessToken withCompletionBlock:^(NSError *error, FAuthData *authData) {
+            if ([result.grantedPermissions containsObject:@"email"]) {
                 
-                if (error) {
-                    NSLog(@"Login failed. %@", error.description);
-                } else {
+                NSLog(@"[result.grantedPermissions containsObject:email] == true");
+                // Do work
+                
+                [ref authWithOAuthProvider:@"facebook" token:accessToken withCompletionBlock:^(NSError *error, FAuthData *authData) {
                     
-                    Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
-                    [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                        [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
-                        [self callPresentVC];
-                        if (snapshot.value == [NSNull null]) {
+                    if (error) {
+                        NSLog(@"Login failed. %@", error.description);
+                    } else {
+                        
+                        Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
+                        [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                            [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
                             
-                            NSLog(@"Logged in! %@", authData);
-                            NSLog(@"displayname = %@", authData.providerData[@"displayName"]);
-                            NSLog(@"provider = %@", authData.provider);
-                            NSLog(@"uid = %@", authData.uid);
-                            
-                            if (authData.providerData[@"email"] == NULL){
-                                NSDictionary *newUser = @{
-                                                          @"provider": authData.provider,
-                                                          @"username": authData.providerData[@"displayName"],
-                                                          
-                                                          @"uid": authData.uid
-                                                          };
-                                [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
-                                NSLog(@"facebook email == NULL");
+                            if (snapshot.value == [NSNull null]) {
                                 
-                            }else {
-                                NSDictionary *newUser = @{
-                                                          @"provider": authData.provider,
-                                                          @"full name": authData.providerData[@"displayName"],
-                                                          @"email":authData.providerData[@"email"],
-                                                          @"uid": authData.uid
-                                                          };
-                                [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
-                                NSLog(@"facebook email !x= NULL");
+                                NSLog(@"Logged in! %@", authData);
+                                NSLog(@"displayname = %@", authData.providerData[@"displayName"]);
+                                NSLog(@"provider = %@", authData.provider);
+                                NSLog(@"uid = %@", authData.uid);
+                                NSLog(@"email = %@", authData.providerData[@"email"]);
+                                
+                                if (authData.providerData[@"email"] == NULL){
+                                    NSDictionary *newUser = @{
+                                                              @"provider": authData.provider,
+                                                              @"username": authData.providerData[@"displayName"],
+                                                              
+                                                              @"uid": authData.uid
+                                                              };
+                                    [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
+                                    NSLog(@"facebook email == NULL");
+                                    
+                                }else {
+                                    NSDictionary *newUser = @{
+                                                              @"provider": authData.provider,
+                                                              @"full name": authData.providerData[@"displayName"],
+                                                              @"email":authData.providerData[@"email"],
+                                                              @"uid": authData.uid
+                                                              };
+                                    [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
+                                    NSLog(@"facebook email !x= NULL");
+                                }
+                                [self callPresentVC];
                             }
-                        }
-                    }];
-                }
-            }];
+                        }];
+                    }
+                }];
+            }
         }
     }];
 }
