@@ -35,31 +35,6 @@
     self.mapView.delegate = self;
     [self populateClaimsArray];
 
-    const NSInteger numberOfTableViewRows = 5;
-    const NSInteger numberOfCollectionViewCells = 4;
-
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:numberOfTableViewRows];
-
-    for (NSInteger tableViewRow = 0; tableViewRow < numberOfTableViewRows; tableViewRow++)
-    {
-        NSMutableArray *colorArray = [NSMutableArray arrayWithCapacity:numberOfCollectionViewCells];
-
-        for (NSInteger collectionViewItem = 0; collectionViewItem < numberOfCollectionViewCells; collectionViewItem++)
-        {
-
-            CGFloat red = arc4random() % 255;
-            CGFloat green = arc4random() % 255;
-            CGFloat blue = arc4random() % 255;
-            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0f];
-
-            [colorArray addObject:color];
-        }
-
-        [mutableArray addObject:colorArray];
-    }
-
-    self.colorArray = [NSArray arrayWithArray:mutableArray];
-
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];    
 }
 
@@ -92,6 +67,14 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"CLICKING IN THE CELL?!?!??!");
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"CLICKING THE CV Cell!?!?");
+}
+
 - (IBAction)historyButtonPressed:(UIBarButtonItem *)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Hello!" message:@"This feature is going to be here very soon!" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -109,17 +92,6 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
-
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    AFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-//    QuikClaim *currentClaim = self.claims[indexPath.row];
-//    //cell.textLabel.text = currentClaim.damageDescription;
-//    return cell;
-//}
-
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.claims.count;
-//}
 
 
 - (void) populateClaimsArray{
@@ -145,17 +117,9 @@
 
 #pragma mark - UITableViewDataSource Methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"Section #%ld", section+1];
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.colorArray.count;
+    return self.claims.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,21 +156,18 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
-    return collectionViewArray.count;
+    return 4;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
 
-    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
-    //cell.backgroundColor = collectionViewArray[indexPath.item];
-
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
-    imageView.image = [UIImage imageNamed:@"dent"];
+    QuikClaim *claim = self.claims[0];
+    imageView.image = claim.images[0];
     [cell addSubview:imageView];
 
     return cell;
