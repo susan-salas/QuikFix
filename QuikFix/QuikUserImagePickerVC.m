@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+    self.imageView.image = self.imageViewFromPreviousVC.image;
+
     // Do any additional setup after loading the view, typically from a nib.
 
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -30,13 +32,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-
     [super viewDidAppear:animated];
-
 }
 
 - (IBAction)onCameraTapped:(UIButton *)sender {
-
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -45,7 +44,6 @@
 }
 
 - (IBAction)onLibraryTapped:(UIButton *)sender {
-
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -56,19 +54,16 @@
 #pragma mark - Image Picker Controller delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = chosenImage;
     self.imageViewFromPreviousVC.contentMode = UIViewContentModeScaleAspectFill;
     self.imageViewFromPreviousVC.clipsToBounds = YES;
     self.imageViewFromPreviousVC.image = chosenImage;
 
-
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }

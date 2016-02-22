@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class QuikCar;
+@class QuikClaim;
 
 @interface AddDamageVC : UIViewController
 @property NSString *carDetailText;
 @property QuikCar *car;
+@property QuikClaim *claim;
 @end

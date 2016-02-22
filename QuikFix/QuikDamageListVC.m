@@ -39,11 +39,39 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableArray *removeFromArray = [[NSMutableArray alloc] initWithArray:self.damageListForCar];
+        QuikClaim *removeClaim = self.damageListForCar[indexPath.row];
+        [removeFromArray removeObjectAtIndex:indexPath.row];
+        NSString *removeURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/claims/%@", removeClaim.claimID];
+        Firebase *removeRef = [[Firebase alloc] initWithUrl: removeURL];
+        [removeRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
+            self.damageListForCar = removeFromArray;
+            [self.tableView reloadData];
+        }];
+    }
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([sender isKindOfClass:[UIBarButtonItem class]]){
         AddDamageVC *dest = segue.destinationViewController;
         dest.carDetailText = self.carDetailLabel.text;
         dest.car = self.car;
+    }
+    else if([sender isKindOfClass:[UITableViewCell class]]) {
+        AddDamageVC *dest = segue.destinationViewController;
+        NSIndexPath *path =  [self.tableView indexPathForCell:(UITableViewCell *)sender];
+        QuikClaim *claim = self.damageListForCar[path.row];
+        dest.title = @"Edit Damage";
+        dest.carDetailText = self.carDetailLabel.text;
+        dest.car = self.car;
+        dest.claim = claim;
     }
 }
 
