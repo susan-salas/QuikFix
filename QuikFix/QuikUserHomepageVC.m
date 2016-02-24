@@ -49,6 +49,28 @@
     return self.myCars.count;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableArray *removeFromArray = [[NSMutableArray alloc] initWithArray:self.myCars];
+        QuikCar *removeCar = self.myCars[indexPath.row];
+        [removeFromArray removeObjectAtIndex:indexPath.row];
+
+        self.myCars = removeFromArray;
+        [self.tableView reloadData];
+
+        NSString *removeCarURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/cars/%@", removeCar.vin];
+        Firebase *removeRef = [[Firebase alloc] initWithUrl: removeCarURL];
+        [removeRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
+            Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
+            [[[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:removeCar.vin] ref] removeValue];
+        }];
+    }
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         UITableViewCell *cell = sender;
