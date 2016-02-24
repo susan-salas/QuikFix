@@ -89,17 +89,19 @@
 -(void) loadMyCars {
     Firebase *carsRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/cars"];
     [carsRef  observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSMutableArray *carsFromFirebase = [NSMutableArray new];
-        for (NSString* vinNumber in snapshot.value) {
-            NSDictionary *carDict = [snapshot.value objectForKey:vinNumber];
-            NSString *owner = [carDict objectForKey:@"owner"];
-            if([owner isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]]){
-                QuikCar *car = [[QuikCar alloc] initWithDictionary:carDict];
-                [carsFromFirebase addObject:car];
+        if(snapshot.exists){
+            NSMutableArray *carsFromFirebase = [NSMutableArray new];
+            for (NSString* vinNumber in snapshot.value) {
+                NSDictionary *carDict = [snapshot.value objectForKey:vinNumber];
+                NSString *owner = [carDict objectForKey:@"owner"];
+                if([owner isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]]){
+                    QuikCar *car = [[QuikCar alloc] initWithDictionary:carDict];
+                    [carsFromFirebase addObject:car];
+                }
             }
+            self.myCars = carsFromFirebase;
+            [self.tableView reloadData];
         }
-        self.myCars = carsFromFirebase;
-        [self.tableView reloadData];
     }];
 }
 
