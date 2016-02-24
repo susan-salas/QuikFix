@@ -67,12 +67,11 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"CLICKING IN THE CELL?!?!??!");
-}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"CLICKING THE CV Cell!?!?");
+    [self performSegueWithIdentifier:@"FromCellSegue" sender:self];
+    
 }
 
 - (IBAction)historyButtonPressed:(UIBarButtonItem *)sender {
@@ -119,7 +118,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.claims.count;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,6 +149,24 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 340;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
+//    [[[damageRef queryOrderedByChild:@"owner"] queryEqualToValue:self.car.owner] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+//        if ([snapshot exists]) {
+//            NSMutableArray *damageFromFirebase = [NSMutableArray new];
+//            for (NSString* claimID in snapshot.value) {
+//                NSDictionary *claimDict = [snapshot.value objectForKey:claimID];
+//                QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
+//                [damageFromFirebase addObject:claim];
+//
+//    QuikClaim *username = 
+    return [NSString stringWithFormat:@"usernmane"];
+}
+        
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.claims.count;
 }
 
 #pragma mark - UICollectionViewDataSource Methods

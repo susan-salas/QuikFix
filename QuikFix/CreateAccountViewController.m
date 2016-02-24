@@ -42,6 +42,7 @@
                             NSLog(@"Error %@", error.description);
                         } else {
                             [[NSUserDefaults standardUserDefaults] setValue: authData.uid forKey:@"uid"];
+                            [[NSUserDefaults standardUserDefaults] setValue: self.usernameLabel.text forKey:@"username"];
                             NSDictionary *newUser = @{
                                                       @"email": self.emailTextField.text,
                                                       @"uid": authData.uid,

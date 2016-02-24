@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuikCar.h"
 
 @interface QuikVendorHomepageVC : UIViewController
+
+@property QuikCar *car;
 
 @end

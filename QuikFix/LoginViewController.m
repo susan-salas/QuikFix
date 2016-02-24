@@ -71,7 +71,17 @@
         }
         
         [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+        
+        NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
+        
+        Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
+        [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            NSDictionary *userDict = snapshot.value;
+            [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+        }];
+
     }];
+    
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
