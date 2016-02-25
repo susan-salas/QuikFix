@@ -42,6 +42,7 @@
 		D0151CD91C768B2E00DF4CC4 /* AddDamageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */; };
 		D0151D171C77FDB400DF4CC4 /* AFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D161C77FDB400DF4CC4 /* AFTableViewCell.m */; };
 		D0151D1A1C7963DC00DF4CC4 /* QuikUserImagePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */; };
+		D0151D1F1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,8 @@
 		D0151D161C77FDB400DF4CC4 /* AFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFTableViewCell.m; sourceTree = "<group>"; };
 		D0151D181C7963DC00DF4CC4 /* QuikUserImagePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikUserImagePickerVC.h; sourceTree = "<group>"; };
 		D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUserImagePickerVC.m; sourceTree = "<group>"; };
+		D0151D1D1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCarTableViewCell.h; sourceTree = "<group>"; };
+		D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCarTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +262,8 @@
 				D0151CD81C768B2E00DF4CC4 /* AddDamageVC.m */,
 				D0151D181C7963DC00DF4CC4 /* QuikUserImagePickerVC.h */,
 				D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */,
+				D0151D1D1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.h */,
+				D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 			files = (
 				363D0EC61C7562010032DDE1 /* QuikUser.m in Sources */,
 				D0151D1A1C7963DC00DF4CC4 /* QuikUserImagePickerVC.m in Sources */,
+				D0151D1F1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m in Sources */,
 				D0151CD61C764AB100DF4CC4 /* QuikDamageListVC.m in Sources */,
 				BD5E71541C7452F700716E21 /* main.m in Sources */,
 				36E57B971C739F23000DEB1E /* CreateAccountViewController.m in Sources */,

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *body;
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *detail;
+@property (nonatomic, strong) UIImage *image;
 
 -(instancetype)initWithDictionary: (NSDictionary *)carDictionary;
 
