@@ -86,13 +86,12 @@
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
     
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    FBSDKLoginManager *facebookLogin = [[FBSDKLoginManager alloc] init];
+    NSLog(@"RESULT == %@",result);
     
-    [facebookLogin logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *facebookResult, NSError *facebookError) {
-        
-        if (facebookError) {
-            NSLog(@"Facebook login failed. Error: %@", facebookError);
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
+    
+        if (error) {
+            NSLog(@"Facebook login failed. Error: %@", error);
         }
         else {
             NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
@@ -107,14 +106,13 @@
                     Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
                     [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                         [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
-                        [self callPresentVC];
                         if (snapshot.value == [NSNull null]) {
                             
                             NSLog(@"Logged in! %@", authData);
-                            NSLog(@"displayname = %@", authData.providerData[@"displayName"]);
-                            NSLog(@"provider = %@", authData.provider);
-                            NSLog(@"uid = %@", authData.uid);
-                            
+                            NSLog(@"displayname == %@", authData.providerData[@"displayName"]);
+                            NSLog(@"provider == %@", authData.provider);
+                            NSLog(@"uid == %@", authData.uid);
+                            NSLog(@"facebook email == %@",authData.providerData[@"email"]);
                             if (authData.providerData[@"email"] == NULL){
                                 NSDictionary *newUser = @{
                                                           @"provider": authData.provider,
@@ -123,7 +121,7 @@
                                                           @"uid": authData.uid
                                                           };
                                 [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
-                                NSLog(@"facebook email == NULL");
+                                
                                 
                             }else {
                                 NSDictionary *newUser = @{
@@ -134,13 +132,15 @@
                                                           };
                                 [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
                                 NSLog(@"facebook email !x= NULL");
+                               [self callPresentVC];
                             }
+                            
                         }
                     }];
+                    
                 }
             }];
         }
-    }];
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
@@ -148,6 +148,8 @@
 }
 
 - (void) callPresentVC {
+    
+    NSLog(@"PRESENT VIEW CONTROLLER GETS CALLED");
     
     if (self.isVendorLogIn == true){
         QuikVendorHomepageVC *vendorHomepageVC = [QuikVendorHomepageVC new];
