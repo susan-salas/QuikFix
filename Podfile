@@ -4,6 +4,7 @@
 # use_frameworks!
 
 pod 'Firebase', '>= 2.5.0'
+pod 'Batch', '~> 1.5'
 
 target 'QuikFix' do
 

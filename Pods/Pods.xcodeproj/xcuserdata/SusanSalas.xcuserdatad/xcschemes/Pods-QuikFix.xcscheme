@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8C0E0CA4E35C65302AA4661E'
+               BlueprintIdentifier = '301B71EBB53B1ACC1DBEE9E8'
                BlueprintName = 'Pods-QuikFix'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-QuikFix.a'>

@@ -7,6 +7,7 @@
 //
 
 #import "NotificationsVC.h"
+#import "Firebase/Firebase.h"
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
 @property NSArray *orrfersArray;
@@ -25,5 +26,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
     return cell; 
+}
+
+- (void) pullNotificationsfromFirebase{
+    Firebase *ref = [[Firebase alloc] initWithUrl:@""];
+    
 }
 @end

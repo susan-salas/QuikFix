@@ -12,6 +12,7 @@
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
 #import "QuikVendorHomepageVC.h"
+#import "Batch/Batch.h"
 
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
@@ -70,7 +71,13 @@
             NSLog(@"user is now logged in");
         }
         
+        //set firebase uid into Firebase
         [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+        
+        //set idetifier for Batch
+        BatchUserDataEditor *editor = [BatchUser editor];
+        [editor setIdentifier: authData.uid];
+        [editor save];
     }];
 }
 
@@ -101,6 +108,11 @@
                         Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
                         [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                             [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+                            
+                            //set idetifier for Batch
+                            BatchUserDataEditor *editor = [BatchUser editor];
+                            [editor setIdentifier: authData.uid];
+                            [editor save];
                             
                             if (snapshot.value == [NSNull null]) {
                                 

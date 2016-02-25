@@ -9,6 +9,7 @@
 #import "CreateAccountViewController.h"
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
+#import "Batch/Batch.h"
 
 @interface CreateAccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -42,6 +43,12 @@
                             NSLog(@"Error %@", error.description);
                         } else {
                             [[NSUserDefaults standardUserDefaults] setValue: authData.uid forKey:@"uid"];
+                            
+                            //set idetifier for Batch
+                            BatchUserDataEditor *editor = [BatchUser editor];
+                            [editor setIdentifier: authData.uid];
+                            [editor save];
+                            
                             NSDictionary *newUser = @{
                                                       @"email": self.emailTextField.text,
                                                       @"uid": authData.uid,
