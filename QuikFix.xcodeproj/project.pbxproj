@@ -29,6 +29,7 @@
 		BD6E784E1C73E9DC00C68256 /* QuikClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E784D1C73E9DC00C68256 /* QuikClaim.m */; };
 		BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */; };
 		BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */; };
+		BDFF395F1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFF395E1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.m */; };
 		D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127E91C73C2890051E7EF /* QuikCar.m */; };
 		D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */; };
 		D01127F21C73C6A50051E7EF /* QuikUserHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */; };
@@ -78,6 +79,8 @@
 		BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorCliamDescriptionVC.m; sourceTree = "<group>"; };
 		BD6E78521C73F4D400C68256 /* QuikVendorSendEstimateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikVendorSendEstimateVC.h; sourceTree = "<group>"; };
 		BD6E78531C73F4D400C68256 /* QuikVendorSendEstimateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikVendorSendEstimateVC.m; sourceTree = "<group>"; };
+		BDFF395D1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikClaimDescriptionBigPicVC.h; sourceTree = "<group>"; };
+		BDFF395E1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikClaimDescriptionBigPicVC.m; sourceTree = "<group>"; };
 		C25AAE528576EBAC209E60CE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01127E81C73C2890051E7EF /* QuikCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuikCar.h; path = QuikFix/QuikCar.h; sourceTree = "<group>"; };
 		D01127E91C73C2890051E7EF /* QuikCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuikCar.m; path = QuikFix/QuikCar.m; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				BD6E78451C73E67000C68256 /* QuikVendorHomepageVC.m */,
 				BD6E784F1C73F49700C68256 /* QuikVendorCliamDescriptionVC.h */,
 				BD6E78501C73F49700C68256 /* QuikVendorCliamDescriptionVC.m */,
+				BDFF395D1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.h */,
+				BDFF395E1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.m */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				D0151CCE1C74F24900DF4CC4 /* XPathQuery.m in Sources */,
 				D01127EA1C73C2890051E7EF /* QuikCar.m in Sources */,
 				D0151CCC1C74F24900DF4CC4 /* TFHpple.m in Sources */,
+				BDFF395F1C7ECDE90092D053 /* QuikClaimDescriptionBigPicVC.m in Sources */,
 				36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */,
 				BD6E78511C73F49700C68256 /* QuikVendorCliamDescriptionVC.m in Sources */,
 				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
