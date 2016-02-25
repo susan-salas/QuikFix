@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
+@property (weak, nonatomic) IBOutlet UIButton *enterButton;
 @property NSString *email;
 @property bool isVendorLogIn;
 
@@ -33,18 +34,23 @@
     self.isVendorLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
     
     if (self.isVendorLogIn == YES) {
+        self.title = @"Login";
         self.createAccountButton.hidden = true;
     }else{
         FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
         //check for current button title
         if([loginButton.currentTitle isEqualToString:@"Log out"]){
             [self callPresentVC];
-            
         }
+         
         loginButton.delegate = self;
         loginButton.center = self.view.center;
+        CGRect fbFrame = loginButton.frame;
+        fbFrame.origin.y = self.enterButton.frame.origin.y + 50;
+        loginButton.frame = fbFrame;
         [self.view addSubview:loginButton];
         self.createAccountButton.hidden = NO;
+        self.title = @"Login";
     }
     
 }
