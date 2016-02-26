@@ -34,6 +34,7 @@
 
 
 - (IBAction)onSendEstimateTapped:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"SendEstimateSegue" sender:nil];
 }
 
 

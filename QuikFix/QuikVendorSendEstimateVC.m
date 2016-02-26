@@ -10,8 +10,8 @@
 #import "Firebase/Firebase.h"
 
 @interface QuikVendorSendEstimateVC () <UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 
+@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITextField *priceEstimateTextField;
 
 @end
@@ -47,9 +47,12 @@
     if ([self.messageTextView.text  isEqualToString:@""] || [self.priceEstimateTextField.text  isEqualToString:@""] || [self.messageTextView.text isEqualToString:@"Please write your message here..."]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Please write a message and set the price..." preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alertController removeFromParentViewController];
+        }];
         [alertController addAction:ok];
         [self presentViewController:alertController animated:YES completion:nil];
+
     } else {
         NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
         Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];

@@ -70,7 +70,7 @@
                         <outlet property="mapView" destination="6Mp-bb-fcV" id="yiK-Tu-n2N"/>
                         <outlet property="searchBar" destination="bgH-VD-bD0" id="b3n-oX-3Y6"/>
                         <outlet property="tableView" destination="Ulr-p7-AcQ" id="MMY-iG-Non"/>
-                        <segue destination="Gji-b5-4E7" kind="push" identifier="FromCellSegue" id="AsK-sB-WJq"/>
+                        <segue destination="Gji-b5-4E7" kind="push" identifier="FromCellSegue" id="XH3-jp-IAD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ny6-0L-G2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,7 +95,6 @@
                                 <state key="normal" title="Send Estimate"/>
                                 <connections>
                                     <action selector="onSendEstimateTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="1RE-Yz-5H6"/>
-                                    <segue destination="ljs-Ei-lkp" kind="push" identifier="SendEstimateSegue" id="yVc-Dj-uO9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IZ-xY-CTC">
@@ -147,6 +146,7 @@
                         <outletCollection property="imageButtons" destination="SEZ-sJ-8Lh" id="DYi-8Q-RI6"/>
                         <outletCollection property="imageButtons" destination="QNm-Lc-gMV" id="p9Z-k2-j5q"/>
                         <outletCollection property="imageButtons" destination="AFC-ZF-tbL" id="T4D-ul-L5A"/>
+                        <segue destination="ljs-Ei-lkp" kind="push" identifier="SendEstimateSegue" id="zD9-Ki-emG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVU-wp-BMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -264,6 +264,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tB2-22-f3G"/>
+        <segue reference="aDX-MS-dzb"/>
     </inferredMetricsTieBreakers>
 </document>
