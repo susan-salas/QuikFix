@@ -6,11 +6,15 @@
 //  Copyright © 2016 Susan Salas. All rights reserved.
 //
 
+
+#import <Batch/Batch.h>
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+
 @interface AppDelegate ()
+
 
 @end
 
@@ -41,6 +45,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+    [Batch startWithAPIKey:@"DEV56CBD5912A361B6DAFB65047451"];
+    
+    [BatchPush registerForRemoteNotifications];
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    
+    BatchUserDataEditor *editor = [BatchUser editor];
+    [editor setIdentifier: uid];
+    [editor save];
+    
     return YES;
 }
 
@@ -52,6 +66,11 @@
                                                           openURL:url
                                                 sourceApplication:sourceApplication
                                                        annotation:annotation];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [BatchPush dismissNotifications];
 }
 
 

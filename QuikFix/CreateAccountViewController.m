@@ -9,6 +9,7 @@
 #import "CreateAccountViewController.h"
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
+#import "Batch/Batch.h"
 
 @interface CreateAccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -42,6 +43,12 @@
                             NSLog(@"Error %@", error.description);
                         } else {
                             [[NSUserDefaults standardUserDefaults] setValue: authData.uid forKey:@"uid"];
+                            
+                            //set idetifier for Batch
+                            BatchUserDataEditor *editor = [BatchUser editor];
+                            [editor setIdentifier: authData.uid];
+                            [editor save];
+                            
                             [[NSUserDefaults standardUserDefaults] setValue: self.usernameLabel.text forKey:@"username"];
                             NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
                             NSLog(@"nsuserdefaults set in facebook log in == %@",uid);

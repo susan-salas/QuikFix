@@ -12,6 +12,7 @@
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
 #import "QuikVendorHomepageVC.h"
+#import "Batch/Batch.h"
 
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
@@ -65,8 +66,6 @@
 - (IBAction)onLogInTapped:(UIButton *)sender {
     NSString *email =  self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-    
-    
     if ([self.emailTextField.text isEqualToString:@""] && [self.passwordTextField.text isEqualToString:@""]){
         //ui alert cannot leave textfields blank
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Please enter email and password" preferredStyle:UIAlertControllerStyleAlert];
@@ -104,7 +103,6 @@
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
     
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    
     if (error) {
         NSLog(@"Facebook login failed. Error: %@", error);
     }
