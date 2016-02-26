@@ -10,10 +10,11 @@
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
 
-@interface CreateAccountViewController ()
+@interface CreateAccountViewController() <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *createLabelView;
 
 @end
 
@@ -21,6 +22,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    self.usernameLabel.delegate = self;
+
+    self.passwordTextField.layer.cornerRadius = 3;
+    self.passwordTextField.clipsToBounds = YES;
+
+    self.emailTextField.layer.cornerRadius = 3;
+    self.emailTextField.clipsToBounds = YES;
+
+    self.usernameLabel.layer.cornerRadius = 3;
+    self.usernameLabel.clipsToBounds = YES;
+
+    self.createLabelView.layer.cornerRadius = 3;
+    self.createLabelView.clipsToBounds = YES;
+
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    [textView becomeFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 
