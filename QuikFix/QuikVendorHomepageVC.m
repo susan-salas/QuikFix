@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *colorArray;
 @property (nonatomic, strong) NSMutableDictionary *contentOffsetDictionary;
+@property QuikClaim *selectedClaim;
 @property NSMutableArray *claims;
 
 @end
@@ -67,13 +68,22 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"CLICKING IN THE CELL?!?!??!");
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"CLICKING THE CV Cell!?!?");
+    self.selectedClaim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
+    
+    [self performSegueWithIdentifier:@"FromCellSegue" sender:self];
+    
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    QuikVendorCliamDescriptionVC *claimDescription = segue.destinationViewController;
+    claimDescription.currentClaim = self.selectedClaim;
+}
+
 
 - (IBAction)historyButtonPressed:(UIBarButtonItem *)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Hello!" message:@"This feature is going to be here very soon!" preferredStyle:UIAlertControllerStyleAlert];
@@ -97,29 +107,25 @@
 - (void) populateClaimsArray{
     Firebase *claimsRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"]childByAppendingPath:@"claims"];
     [claimsRef  observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSMutableArray *claimsFromFirebase = [NSMutableArray new];
-        for (NSDictionary* claim in snapshot.value) {
-           
-            NSDictionary *currentClaimDict = snapshot.value [claim];
-            QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
-            [claimsFromFirebase addObject:currentClaim];
+        if(snapshot.exists){
+            NSMutableArray *claimsFromFirebase = [NSMutableArray new];
+            for (NSDictionary* claim in snapshot.value) {
+                
+                NSDictionary *currentClaimDict = snapshot.value [claim];
+                QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
+                [claimsFromFirebase addObject:currentClaim];
+            }
+            self.claims = claimsFromFirebase;
+            [self.tableView reloadData];
         }
-        self.claims = claimsFromFirebase;
-        [self.tableView reloadData];
     }];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    QuikVendorCliamDescriptionVC *claimDescription = segue.destinationViewController;
-    claimDescription.currentClaim = self.claims[indexPath.row];
 }
 
 #pragma mark - UITableViewDataSource Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.claims.count;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,6 +158,15 @@
     return 340;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    QuikClaim *claim = self.claims[section];
+    return claim.username;
+}
+        
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.claims.count;
+}
+
 #pragma mark - UICollectionViewDataSource Methods
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -162,14 +177,15 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+  
+    NSLog(@"indexpath.item %lu", indexPath.item);
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
-    QuikClaim *claim = self.claims[0];
-    imageView.image = claim.images[0];
+    QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
+    imageView.image = claim.images[indexPath.item];
     [cell addSubview:imageView];
-
     return cell;
 }
 

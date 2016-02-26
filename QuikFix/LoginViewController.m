@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
+@property (weak, nonatomic) IBOutlet UIButton *enterButton;
 @property NSString *email;
 @property bool isVendorLogIn;
 
@@ -34,18 +35,23 @@
     self.isVendorLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
     
     if (self.isVendorLogIn == YES) {
+        self.title = @"Login";
         self.createAccountButton.hidden = true;
     }else{
         FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
         //check for current button title
         if([loginButton.currentTitle isEqualToString:@"Log out"]){
             [self callPresentVC];
-            
         }
+         
         loginButton.delegate = self;
         loginButton.center = self.view.center;
+        CGRect fbFrame = loginButton.frame;
+        fbFrame.origin.y = self.enterButton.frame.origin.y + 50;
+        loginButton.frame = fbFrame;
         [self.view addSubview:loginButton];
         self.createAccountButton.hidden = NO;
+        self.title = @"Login";
     }
     
 }
@@ -78,18 +84,26 @@
         BatchUserDataEditor *editor = [BatchUser editor];
         [editor setIdentifier: authData.uid];
         [editor save];
+
+        NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
+        
+        Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
+        [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            NSDictionary *userDict = snapshot.value;
+            [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+        }];
     }];
+    
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
     
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    FBSDKLoginManager *facebookLogin = [[FBSDKLoginManager alloc] init];
+    NSLog(@"RESULT == %@",result);
     
-    [facebookLogin logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *facebookResult, NSError *facebookError) {
-        
-        if (facebookError) {
-            NSLog(@"Facebook login failed. Error: %@", facebookError);
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
+    
+        if (error) {
+            NSLog(@"Facebook login failed. Error: %@", error);
         }
         else {
             NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
@@ -100,7 +114,7 @@
                 // Do work
                 
                 [ref authWithOAuthProvider:@"facebook" token:accessToken withCompletionBlock:^(NSError *error, FAuthData *authData) {
-                    
+
                     if (error) {
                         NSLog(@"Login failed. %@", error.description);
                     } else {
@@ -148,8 +162,8 @@
                     }
                 }];
             }
+
         }
-    }];
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
@@ -157,6 +171,8 @@
 }
 
 - (void) callPresentVC {
+    
+    NSLog(@"PRESENT VIEW CONTROLLER GETS CALLED");
     
     if (self.isVendorLogIn == true){
         QuikVendorHomepageVC *vendorHomepageVC = [QuikVendorHomepageVC new];

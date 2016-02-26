@@ -25,6 +25,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mV4-dT-8bX" id="GDa-rS-kk5">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -47,10 +48,10 @@
                                 <exclude reference="Ysw-LU-cTk"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="j11-1R-Y4R"/>
                                 <exclude reference="Mwk-G4-8QH"/>
                                 <exclude reference="VTa-0a-pwm"/>
                                 <exclude reference="be7-0w-Iex"/>
-                                <exclude reference="j11-1R-Y4R"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -58,10 +59,10 @@
                                 <include reference="Ysw-LU-cTk"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="j11-1R-Y4R"/>
                                 <include reference="Mwk-G4-8QH"/>
                                 <include reference="VTa-0a-pwm"/>
                                 <include reference="be7-0w-Iex"/>
-                                <include reference="j11-1R-Y4R"/>
                             </mask>
                         </variation>
                     </view>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i0b-hU-1Z1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i0b-hU-1Z1">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--New Claims-->
@@ -37,7 +37,7 @@
                                 <items>
                                     <barButtonItem style="plain" id="1cI-eV-FeS">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="O6X-gG-8Yz">
-                                            <rect key="frame" x="16" y="7" width="51" height="31"/>
+                                            <rect key="frame" x="16" y="6.5" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <action selector="switchButtonMoved:" destination="Ljl-vL-AGO" eventType="valueChanged" id="V0u-8O-59e"/>
@@ -101,28 +101,25 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IZ-xY-CTC">
                                 <rect key="frame" x="20" y="222" width="140" height="140"/>
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Image 1"/>
                                 <connections>
                                     <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="qgj-hM-NjX"/>
-                                    <segue destination="Min-0a-9RG" kind="push" identifier="Image1" id="kaB-yJ-jtQ"/>
+                                    <segue destination="Min-0a-9RG" kind="modal" identifier="Image1" id="kaB-yJ-jtQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEZ-sJ-8Lh">
                                 <rect key="frame" x="168" y="222" width="140" height="140"/>
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Image 2"/>
                                 <connections>
                                     <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="8eW-Ch-zcw"/>
-                                    <segue destination="Min-0a-9RG" kind="push" identifier="Image2" id="Csi-tn-C1z"/>
+                                    <segue destination="Min-0a-9RG" kind="modal" identifier="Image2" id="Csi-tn-C1z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFC-ZF-tbL">
                                 <rect key="frame" x="168" y="370" width="140" height="140"/>
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Image 4"/>
                                 <connections>
                                     <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="q1v-Cb-Yke"/>
-                                    <segue destination="Min-0a-9RG" kind="push" identifier="Image4" id="tB2-22-f3G"/>
+                                    <segue destination="Min-0a-9RG" kind="modal" identifier="Image4" id="tB2-22-f3G"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="The claim description is going to be right here...hahaha" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y43-jX-of8">
@@ -134,10 +131,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNm-Lc-gMV">
                                 <rect key="frame" x="20" y="370" width="140" height="140"/>
                                 <color key="backgroundColor" red="0.89509115544500484" green="1" blue="0.81756524645806694" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Image 3"/>
                                 <connections>
                                     <action selector="onImageButtonsTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="nIG-Q1-IgI"/>
-                                    <segue destination="Min-0a-9RG" kind="push" identifier="Image3" id="aDX-MS-dzb"/>
+                                    <segue destination="Min-0a-9RG" kind="modal" identifier="Image3" id="aDX-MS-dzb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -146,6 +142,7 @@
                     <navigationItem key="navigationItem" title="Claim Description" id="Ls6-Ou-y5A"/>
                     <connections>
                         <outlet property="claimDescriptionTextView" destination="y43-jX-of8" id="oDv-Hb-rRn"/>
+                        <outlet property="image1" destination="1IZ-xY-CTC" id="SJe-L4-JEf"/>
                         <outletCollection property="imageButtons" destination="1IZ-xY-CTC" id="m9C-MQ-0c6"/>
                         <outletCollection property="imageButtons" destination="SEZ-sJ-8Lh" id="DYi-8Q-RI6"/>
                         <outletCollection property="imageButtons" destination="QNm-Lc-gMV" id="p9Z-k2-j5q"/>
@@ -156,10 +153,10 @@
             </objects>
             <point key="canvasLocation" x="1054" y="331"/>
         </scene>
-        <!--View Controller-->
+        <!--Quik Claim Description Big PicVC-->
         <scene sceneID="ZBJ-pk-kfw">
             <objects>
-                <viewController id="Min-0a-9RG" sceneMemberID="viewController">
+                <viewController id="Min-0a-9RG" customClass="QuikClaimDescriptionBigPicVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7nt-Wg-C9r"/>
                         <viewControllerLayoutGuide type="bottom" id="hQg-4l-cwz"/>
@@ -169,16 +166,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ubg-LO-m3B">
-                                <rect key="frame" x="20" y="72" width="280" height="280"/>
+                                <rect key="frame" x="20" y="53" width="280" height="280"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-g2-SpQ">
-                                <rect key="frame" x="136" y="420" width="48" height="30"/>
+                                <rect key="frame" x="136" y="421" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancelButtonTapped:" destination="Min-0a-9RG" eventType="touchUpInside" id="i6c-K1-mhc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="o99-62-doU"/>
+                    <connections>
+                        <outlet property="imageView" destination="ubg-LO-m3B" id="40d-XL-7Se"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LYW-1D-Net" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,6 +204,7 @@
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="onSendTapped:" destination="ljs-Ei-lkp" eventType="touchUpInside" id="avo-aJ-xhi"/>
+                                    <segue destination="Qa2-av-jb4" kind="unwind" unwindAction="prepareForUnwind:" id="f4y-Zq-bYi"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write your message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOV-je-7V6">
@@ -209,7 +213,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Message to the user..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Vo-tbd">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Vo-tbd">
                                 <rect key="frame" x="20" y="101" width="280" height="261"/>
                                 <color key="backgroundColor" red="0.92065243187866896" green="1" blue="0.81496858547888484" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -236,6 +240,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q36-fI-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Qa2-av-jb4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1473" y="331"/>
         </scene>

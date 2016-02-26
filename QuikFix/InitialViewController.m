@@ -37,8 +37,9 @@
             NSLog(@"user not logged in");
         }
     }
-    
-    
+
+    UIColor *navColor = [UIColor colorWithRed:221.0 green:230.0 blue:231 alpha:1];
+    [[self.navigationController navigationBar] setTintColor:navColor];
   
 }
 
@@ -61,7 +62,6 @@
     }else if (self.isVenderProfile == NO) {
         QuikUserHomepageVC *quickUserVC = [QuikUserHomepageVC new];
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikUserHomepage" bundle:[NSBundle mainBundle]];
-        
         quickUserVC = [board instantiateInitialViewController];
         [self presentViewController:quickUserVC animated:YES completion:nil];
     }else {

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSString *damageDescription;
 @property (nonatomic, strong) NSDictionary *claimLocation;
+@property NSString *username;
 
 -(instancetype)initWithDictionary: (NSDictionary *)claimDictionary;
 

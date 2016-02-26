@@ -43,6 +43,8 @@
     self.collectionView.delegate = dataSourceDelegate;
     self.collectionView.indexPath = indexPath;
     
+    NSLog(@"index path in tableview cell %lu", indexPath.row);
+    
     [self.collectionView reloadData];
 }
 

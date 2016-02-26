@@ -20,12 +20,12 @@
         self.license = [carDictionary valueForKey:@"license"];
         self.body = [carDictionary valueForKey:@"body"];
         self.color = [carDictionary valueForKey:@"color"];
+        self.image = [UIImage imageNamed:@"180 - iPhone 6 Plus"];
         self.detail = [NSString stringWithFormat:@"%@ - %@ %@  %@",
                        self.color,
                        self.year,
                        self.make,
                        self.model];
-        
     }
     return self;
 }

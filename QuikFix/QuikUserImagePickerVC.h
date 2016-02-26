@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface QuikUserImagePickerVC : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *onLibraryTapped;
 @property (weak, nonatomic) IBOutlet UIButton *onCameraTapped;

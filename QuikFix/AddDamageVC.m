@@ -12,6 +12,7 @@
 #import "QuikClaim.h"
 #import "Firebase/Firebase.h"
 #import "QuikUserImagePickerVC.h"
+#import "QuikClaim.h"
 
 @interface AddDamageVC () <UITextViewDelegate,UIGestureRecognizerDelegate>
 
@@ -54,6 +55,26 @@
     [self.image3 addGestureRecognizer:tap3];
     [self.image4 addGestureRecognizer:tap4];
 
+    if([self.title isEqualToString:@"Edit Damage"]){
+        NSArray *image = self.claim.images;
+        self.image1.contentMode = UIViewContentModeScaleAspectFill;
+        self.image1.clipsToBounds = YES;
+        self.image1.image = image[0];
+
+        self.image2.contentMode = UIViewContentModeScaleAspectFill;
+        self.image2.clipsToBounds = YES;
+        self.image2.image = image[1];
+
+        self.image3.contentMode = UIViewContentModeScaleAspectFill;
+        self.image3.clipsToBounds = YES;
+        self.image3.image = image[2];
+
+        self.image4.contentMode = UIViewContentModeScaleAspectFill;
+        self.image4.clipsToBounds = YES;
+        self.image4.image = image[3];
+
+        self.damageDescription.text = self.claim.damageDescription;
+    }
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -62,13 +83,14 @@
 }
 
 - (IBAction)onSubmitTapped:(UIButton *)sender {
-
     if ([self isClaimReadyToPush]) {
         QuikClaim *claim = [QuikClaim new];
         claim.carWithDamage = self.car.vin;
         claim.images = [NSMutableArray arrayWithObjects:self.image1.image, self.image2.image, self.image3.image, self.image4.image, nil];
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+        claim.username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+        NSLog(@"NSuser defaults %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]);
         [self addClaimToDatabase:claim];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -89,12 +111,13 @@
 
 -(void) addClaimToDatabase:(QuikClaim *)claim{
     Firebase *ref = [[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/claims"] childByAutoId];
-
     NSMutableDictionary *claimDict = [NSMutableDictionary new];
+
     [claimDict setObject:[ref key] forKey:@"claimID"];
     [claimDict setObject:claim.carWithDamage forKey:@"carWithDamage"];
     [claimDict setObject:claim.damageDescription forKey:@"damageDescription"];
     [claimDict setObject:claim.ownerID forKey:@"owner"];
+    [claimDict setObject:claim.username forKey:@"username"];
 
     NSArray *images = claim.images;
 
@@ -108,11 +131,21 @@
                                 @"TwoFt1":encodedTwoFt1,
                                 @"TwoFt2":encodedTwoFt2};
     [claimDict setObject:imageDict forKey:@"images"];
-    [ref setValue: claimDict];
+
+    if([self.title isEqualToString:@"Edit Damage"]){
+        NSString *urlForEdit = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/claims/%@", self.claim.claimID];
+        [claimDict setObject:self.claim.claimID forKey:@"claimID"];
+        Firebase *ref2 = [[Firebase alloc] initWithUrl:urlForEdit];
+        [claimDict setObject:self.claim.claimID forKey:@"claimID"];
+        [ref2 setValue: claimDict];
+    }
+    else{
+        [ref setValue: claimDict];
+    }
+
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView{
     if ([textView.text isEqualToString:@"Cannot be empty"]) {
         textView.text = @"";
         self.damageDescription.textColor = [UIColor blackColor];
@@ -121,7 +154,6 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
