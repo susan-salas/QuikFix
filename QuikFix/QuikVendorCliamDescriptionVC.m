@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.currentClaim.username;
     self.claimDescriptionTextView.text = self.currentClaim.damageDescription;
     int count = 0;
     
@@ -30,6 +31,7 @@
         count ++;
     }
 }
+
 
 - (IBAction)onSendEstimateTapped:(UIButton *)sender {
 }

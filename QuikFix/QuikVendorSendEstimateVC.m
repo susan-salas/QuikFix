@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.currentClaim.username;
 }
 
 - (IBAction)onSendTapped:(UIButton *)sender {
