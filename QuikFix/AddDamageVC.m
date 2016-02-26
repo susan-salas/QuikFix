@@ -85,12 +85,15 @@
 - (IBAction)onSubmitTapped:(UIButton *)sender {
     if ([self isClaimReadyToPush]) {
         QuikClaim *claim = [QuikClaim new];
+        NSNumber *latitude = [NSNumber numberWithFloat:37.79];
+        NSNumber *longitude = [NSNumber numberWithFloat:-122.40] ;
         claim.carWithDamage = self.car.vin;
+        claim.claimLocation = @{@"latitude":latitude, @"longitude":longitude};
         claim.images = [NSMutableArray arrayWithObjects:self.image1.image, self.image2.image, self.image3.image, self.image4.image, nil];
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
         claim.username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-        NSLog(@"NSuser defaults %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]);
+
         [self addClaimToDatabase:claim];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -118,6 +121,7 @@
     [claimDict setObject:claim.damageDescription forKey:@"damageDescription"];
     [claimDict setObject:claim.ownerID forKey:@"owner"];
     [claimDict setObject:claim.username forKey:@"username"];
+    [claimDict setObject:claim.claimLocation forKey:@"location"];
 
     NSArray *images = claim.images;
 
