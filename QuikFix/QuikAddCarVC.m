@@ -13,7 +13,7 @@
 #import "TFHppleElement.h"
 #import "Firebase/Firebase.h"
 
-@interface QuikAddCarVC ()
+@interface QuikAddCarVC() <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vinTextField;
 @property (weak, nonatomic) IBOutlet UITextField *yearTextField;
 @property (weak, nonatomic) IBOutlet UITextField *makeTextField;
@@ -31,7 +31,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.vinTextField.delegate = self;
+    self.yearTextField.delegate = self;
+    self.makeTextField.delegate = self;
+    self.modelTextField.delegate = self;
+    self.bodyTextField.delegate = self;
+    self.colorTextField.delegate = self;
+    self.licenseTextField.delegate = self;
+    self.textField.delegate = self;
 }
 
 - (IBAction)onSearchByVinTapped:(UIButton *)sender {
@@ -74,6 +82,15 @@
                            animated:YES
                          completion:nil];
     }
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    [textView becomeFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)onAddCarTapped:(UIButton *)sender {

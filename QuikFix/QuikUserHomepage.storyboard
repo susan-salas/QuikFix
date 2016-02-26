@@ -19,6 +19,45 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDB-sY-dYK">
+                                <rect key="frame" x="20" y="0.0" width="280" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To begin reporting damages, add your car information first." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om5-49-9fw">
+                                        <rect key="frame" x="0.0" y="142" width="280" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="EDZ-Bg-ymG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dip-CQ-pDL">
+                                        <rect key="frame" x="20" y="222" width="240" height="60"/>
+                                        <color key="backgroundColor" red="0.9686274528503418" green="0.85882353782653809" blue="0.65490198135375977" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="f0K-Pb-hke"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <state key="normal" title="Add a Car">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="bnX-SQ-1FI" kind="push" id="SZp-iI-NXr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Dip-CQ-pDL" secondAttribute="trailing" constant="20" id="4Pb-jG-On4"/>
+                                    <constraint firstItem="Om5-49-9fw" firstAttribute="centerX" secondItem="VDB-sY-dYK" secondAttribute="centerX" id="64O-sU-ERI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Om5-49-9fw" secondAttribute="trailing" id="AwK-1j-2wP"/>
+                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="centerX" secondItem="VDB-sY-dYK" secondAttribute="centerX" id="QDA-hT-xJE"/>
+                                    <constraint firstItem="Om5-49-9fw" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" id="Vjz-nZ-DMe"/>
+                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" constant="20" id="aw7-ZM-Zc3"/>
+                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="top" secondItem="Om5-49-9fw" secondAttribute="bottom" constant="20" id="u36-lc-tsU"/>
+                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="centerY" secondItem="VDB-sY-dYK" secondAttribute="centerY" id="yaW-c8-Ui4"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9p1-yH-R95">
                                 <rect key="frame" x="20" y="0.0" width="280" height="504"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,8 +71,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="VDB-sY-dYK" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="CiH-XX-r8l"/>
+                            <constraint firstItem="VDB-sY-dYK" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="ZnU-OJ-sFV"/>
                             <constraint firstItem="9p1-yH-R95" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="aLj-zA-chf"/>
                             <constraint firstAttribute="trailing" secondItem="9p1-yH-R95" secondAttribute="trailing" constant="20" id="hTc-tX-jq4"/>
+                            <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="VDB-sY-dYK" secondAttribute="bottom" id="hc3-xa-DAt"/>
+                            <constraint firstAttribute="trailing" secondItem="VDB-sY-dYK" secondAttribute="trailing" constant="20" id="nFq-KW-C64"/>
                             <constraint firstItem="9p1-yH-R95" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="rlL-dF-BBC"/>
                             <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="9p1-yH-R95" secondAttribute="bottom" id="wXc-k4-jTc"/>
                         </constraints>
@@ -45,7 +88,7 @@
                                 <action selector="onLogoutTapped:" destination="KDg-O1-fNE" id="Fob-SL-6bt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="nZ5-Z4-pAA">
+                        <barButtonItem key="rightBarButtonItem" title="Add Car" id="nZ5-Z4-pAA">
                             <color key="tintColor" red="0.86666666670000003" green="0.90196078430000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onAddButtonTapped:" destination="KDg-O1-fNE" id="3I1-le-hn2"/>
@@ -54,6 +97,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addACar" destination="Dip-CQ-pDL" id="aCA-X8-IeW"/>
+                        <outlet property="noCarsView" destination="VDB-sY-dYK" id="b8v-Yi-TON"/>
                         <outlet property="tableView" destination="9p1-yH-R95" id="LO8-nB-8IX"/>
                         <segue destination="QT6-Nq-OoK" kind="push" identifier="CellTappedSegue" id="QjN-w0-aAn"/>
                     </connections>
@@ -477,6 +522,7 @@
         <image name="add" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xaE-go-rVj"/>
         <segue reference="4hx-8k-vRS"/>
     </inferredMetricsTieBreakers>
 </document>
