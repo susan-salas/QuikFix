@@ -23,23 +23,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
     self.usernameLabel.delegate = self;
-
+    
     self.passwordTextField.layer.cornerRadius = 3;
     self.passwordTextField.clipsToBounds = YES;
-
+    
     self.emailTextField.layer.cornerRadius = 3;
     self.emailTextField.clipsToBounds = YES;
-
+    
     self.usernameLabel.layer.cornerRadius = 3;
     self.usernameLabel.clipsToBounds = YES;
-
+    
     self.createLabelView.layer.cornerRadius = 3;
     self.createLabelView.clipsToBounds = YES;
-
+    
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -60,7 +60,7 @@
         NSString *password = self.passwordTextField.text;
         
         //   create user
-        if (!([email isEqualToString:@""] && [password isEqualToString:@""])){
+        if (!([self checkIfFormsAreEmtpy])){
             [ref createUser:email password:password withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
                 if (error) {
                     NSLog(@"Error %@", error.description);
@@ -94,6 +94,9 @@
     }
     else{
         NSLog(@"USERNAME IS NOT VALID");
+        self.usernameLabel.placeholder = @"Username required";
+        self.emailTextField.placeholder = @"Email required";
+        self.passwordTextField.placeholder = @"Password required";
     }
 }
 
@@ -105,6 +108,13 @@
     quickUserVC = [board instantiateInitialViewController];
     [self presentViewController:quickUserVC animated:YES completion:nil];
     
+}
+
+- (BOOL) checkIfFormsAreEmtpy{
+    if ([self.emailTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""] || [self.usernameLabel.text isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

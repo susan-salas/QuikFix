@@ -97,14 +97,10 @@
 - (IBAction)onLogInTapped:(UIButton *)sender {
     NSString *email =  self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-    if ([self.emailTextField.text isEqualToString:@""] && [self.passwordTextField.text isEqualToString:@""]){
+    if ([self.emailTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]){
         //ui alert cannot leave textfields blank
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Please enter email and password" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:ok];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
+        self.emailTextField.placeholder = @"Email required";
+        self.passwordTextField.placeholder = @"Password required";
     }else{
         Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
         [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
