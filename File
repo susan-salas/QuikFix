@@ -1,0 +1,8 @@
+//:configuration = Debug
+FRAMEWORK_SEARCH_PATHS = $(PROJECT_DIR)
+
+//:configuration = Release
+FRAMEWORK_SEARCH_PATHS = $(PROJECT_DIR)
+
+//:completeSettings = some
+FRAMEWORK_SEARCH_PATHS

@@ -9,6 +9,7 @@
 #import "CreateAccountViewController.h"
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
+#import "Batch/Batch.h"
 
 @interface CreateAccountViewController() <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -22,23 +23,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
     self.usernameLabel.delegate = self;
-
+    
     self.passwordTextField.layer.cornerRadius = 3;
     self.passwordTextField.clipsToBounds = YES;
-
+    
     self.emailTextField.layer.cornerRadius = 3;
     self.emailTextField.clipsToBounds = YES;
-
+    
     self.usernameLabel.layer.cornerRadius = 3;
     self.usernameLabel.clipsToBounds = YES;
-
+    
     self.createLabelView.layer.cornerRadius = 3;
     self.createLabelView.clipsToBounds = YES;
-
+    
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -59,7 +60,7 @@
         NSString *password = self.passwordTextField.text;
         
         //   create user
-        if (!([email isEqualToString:@""] && [password isEqualToString:@""])){
+        if (!([self checkIfFormsAreEmtpy])){
             [ref createUser:email password:password withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
                 if (error) {
                     NSLog(@"Error %@", error.description);
@@ -69,7 +70,15 @@
                             NSLog(@"Error %@", error.description);
                         } else {
                             [[NSUserDefaults standardUserDefaults] setValue: authData.uid forKey:@"uid"];
+                            
+                            //set idetifier for Batch
+                            BatchUserDataEditor *editor = [BatchUser editor];
+                            [editor setIdentifier: authData.uid];
+                            [editor save];
+                            
                             [[NSUserDefaults standardUserDefaults] setValue: self.usernameLabel.text forKey:@"username"];
+                            NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+                            NSLog(@"nsuserdefaults set in facebook log in == %@",uid);
                             NSDictionary *newUser = @{
                                                       @"email": self.emailTextField.text,
                                                       @"uid": authData.uid,
@@ -85,6 +94,9 @@
     }
     else{
         NSLog(@"USERNAME IS NOT VALID");
+        self.usernameLabel.placeholder = @"Username required";
+        self.emailTextField.placeholder = @"Email required";
+        self.passwordTextField.placeholder = @"Password required";
     }
 }
 
@@ -96,6 +108,13 @@
     quickUserVC = [board instantiateInitialViewController];
     [self presentViewController:quickUserVC animated:YES completion:nil];
     
+}
+
+- (BOOL) checkIfFormsAreEmtpy{
+    if ([self.emailTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""] || [self.usernameLabel.text isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

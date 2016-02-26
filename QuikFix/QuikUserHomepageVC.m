@@ -13,6 +13,7 @@
 #import "Firebase/Firebase.h"
 #import "LoginViewController.h"
 #import "QuikCarTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -23,6 +24,8 @@
 @property QuikUser *currentUser;
 @property QuikCar *carSelected;
 @property NSString *selectedCellText;
+@property (weak, nonatomic) IBOutlet UIView *noCarsView;
+@property (weak, nonatomic) IBOutlet UIButton *addACar;
 
 @end
 
@@ -30,6 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.noCarsView.hidden = YES;
+    self.addACar.layer.cornerRadius = 3;
+    self.addACar.clipsToBounds = YES;
     [self.tableView registerClass:[QuikCarTableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.selectedCellText = @"";
     self.currentUser = [QuikUser new];
@@ -58,6 +64,15 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.myCars.count == 0) {
+        self.tableView.hidden = YES;
+        self.noCarsView.hidden = NO;
+    }
+    else{
+        self.tableView.hidden = NO;
+        self.noCarsView.hidden = YES;
+    }
+
     return self.myCars.count;
 }
 

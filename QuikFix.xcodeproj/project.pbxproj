@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		07AB6352E467CF0405949481 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C25AAE528576EBAC209E60CE /* libPods.a */; };
 		363D0EC61C7562010032DDE1 /* QuikUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D01127EC1C73C3150051E7EF /* QuikUser.m */; };
+		368F03111C7960DA00A785C5 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368F03101C7960DA00A785C5 /* Notifications.storyboard */; };
+		368F03141C79622100A785C5 /* NotificationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F03131C79622100A785C5 /* NotificationsVC.m */; };
+		368F03211C7CE4AE00A785C5 /* Batch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368F03201C7CE4AE00A785C5 /* Batch.framework */; };
 		36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6D1C72D46B000DEB1E /* AppDelegate.m */; };
 		36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B721C72D46B000DEB1E /* Main.storyboard */; };
 		36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B751C72D46B000DEB1E /* Assets.xcassets */; };
@@ -47,6 +50,10 @@
 
 /* Begin PBXFileReference section */
 		1209437E249E004225786735 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		368F03101C7960DA00A785C5 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		368F03121C79622100A785C5 /* NotificationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsVC.h; sourceTree = "<group>"; };
+		368F03131C79622100A785C5 /* NotificationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsVC.m; sourceTree = "<group>"; };
+		368F03201C7CE4AE00A785C5 /* Batch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Batch.framework; path = Pods/Batch/Batch.embeddedframework/Batch.framework; sourceTree = "<group>"; };
 		36E57B661C72D46B000DEB1E /* QuikFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuikFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E57B6A1C72D46B000DEB1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		36E57B6C1C72D46B000DEB1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				368F03211C7CE4AE00A785C5 /* Batch.framework in Frameworks */,
 				BD5E71581C75296100716E21 /* CoreLocation.framework in Frameworks */,
 				BD5E71561C75295700716E21 /* MapKit.framework in Frameworks */,
 				D0151CD01C74F45E00DF4CC4 /* libxml2.2.dylib in Frameworks */,
@@ -175,6 +183,7 @@
 		8E41E5E215C8C38294163A02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				368F03201C7CE4AE00A785C5 /* Batch.framework */,
 				BD5E71571C75296100716E21 /* CoreLocation.framework */,
 				BD5E71551C75295700716E21 /* MapKit.framework */,
 				D0151CCF1C74F45E00DF4CC4 /* libxml2.2.dylib */,
@@ -216,6 +225,7 @@
 				BD5E715B1C758E1000716E21 /* LoginViewController.storyboard */,
 				D01127EE1C73C56F0051E7EF /* QuikUserHomepage.storyboard */,
 				BD6E78471C73E6B500C68256 /* QuikVendorHomepage.storyboard */,
+				368F03101C7960DA00A785C5 /* Notifications.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -252,6 +262,8 @@
 		D0151CDB1C768B6C00DF4CC4 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				368F03121C79622100A785C5 /* NotificationsVC.h */,
+				368F03131C79622100A785C5 /* NotificationsVC.m */,
 				D01127F01C73C6A50051E7EF /* QuikUserHomepageVC.h */,
 				D01127F11C73C6A50051E7EF /* QuikUserHomepageVC.m */,
 				D0151CC21C74F1BC00DF4CC4 /* QuikAddCarVC.h */,
@@ -335,6 +347,7 @@
 				TargetAttributes = {
 					36E57B651C72D46B000DEB1E = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 46X5QCBWSZ;
 					};
 				};
 			};
@@ -365,6 +378,7 @@
 				36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */,
 				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
 				BD5E715C1C758E1000716E21 /* LoginViewController.storyboard in Resources */,
+				368F03111C7960DA00A785C5 /* Notifications.storyboard in Resources */,
 				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
 				36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */,
 			);
@@ -440,6 +454,7 @@
 				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
 				D0151D171C77FDB400DF4CC4 /* AFTableViewCell.m in Sources */,
 				BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */,
+				368F03141C79622100A785C5 /* NotificationsVC.m in Sources */,
 				36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */,
 				D0151CCD1C74F24900DF4CC4 /* TFHppleElement.m in Sources */,
 				36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */,
@@ -560,7 +575,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/Batch/Batch.embeddedframework",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -569,7 +587,7 @@
 				);
 				INFOPLIST_FILE = QuikFix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.susansalas.QuikFix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QuikFix.QuikFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -582,7 +600,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/Batch/Batch.embeddedframework",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -591,7 +612,7 @@
 				);
 				INFOPLIST_FILE = QuikFix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.susansalas.QuikFix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QuikFix.QuikFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

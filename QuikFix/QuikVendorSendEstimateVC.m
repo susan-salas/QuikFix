@@ -46,10 +46,6 @@
 - (IBAction)onSendTapped:(UIButton *)sender {
     if ([self.messageTextView.text  isEqualToString:@""] || [self.priceEstimateTextField.text  isEqualToString:@""] || [self.messageTextView.text isEqualToString:@"Please write your message here..."]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Please write a message and set the price..." preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [alertController removeFromParentViewController];
-        }];
         [alertController addAction:ok];
         [self presentViewController:alertController animated:YES completion:nil];
 

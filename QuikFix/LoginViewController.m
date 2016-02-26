@@ -13,6 +13,7 @@
 #import "Firebase/Firebase.h"
 #import "QuikUserHomepageVC.h"
 #import "QuikVendorHomepageVC.h"
+#import "Batch/Batch.h"
 
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate, UITextFieldDelegate>
@@ -96,81 +97,82 @@
 - (IBAction)onLogInTapped:(UIButton *)sender {
     NSString *email =  self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
-
-        if (error) {
-            NSLog(@"We are not logged in %@", error);
-        } else {
-            [self callPresentVC];
-            NSLog(@"user is now logged in");
-        }
-
-        [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
-
-        NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
-
-        Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
-        [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            NSDictionary *userDict = snapshot.value;
-            [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+    if ([self.emailTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]){
+        //ui alert cannot leave textfields blank
+        self.emailTextField.placeholder = @"Email required";
+        self.passwordTextField.placeholder = @"Password required";
+    }else{
+        Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
+        [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
+            
+            if (error) {
+                NSLog(@"We are not logged in %@", error);
+            } else {
+                [self callPresentVC];
+                NSLog(@"user is now logged in");
+            }
+            
+            [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+            
+            NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
+            
+            Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
+            [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                NSDictionary *userDict = snapshot.value;
+                [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+            }];
+            
         }];
-
-    }];
-
+    }
+    
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-
-    NSLog(@"RESULT == %@",result);
-
+    
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-
     if (error) {
         NSLog(@"Facebook login failed. Error: %@", error);
     }
     else {
         NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
         NSLog(@"This is our access token %@",accessToken);
-
+        
         [ref authWithOAuthProvider:@"facebook" token:accessToken withCompletionBlock:^(NSError *error, FAuthData *authData) {
-
+            
             if (error) {
                 NSLog(@"Login failed. %@", error.description);
             } else {
-
+                
                 Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
                 [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    
                     [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
-                    if (snapshot.value == [NSNull null]) {
-
-                        NSLog(@"Logged in! %@", authData);
-                        NSLog(@"displayname == %@", authData.providerData[@"displayName"]);
-                        NSLog(@"provider == %@", authData.provider);
-                        NSLog(@"uid == %@", authData.uid);
-                        NSLog(@"facebook email == %@",authData.providerData[@"email"]);
-                        if (authData.providerData[@"email"] == NULL){
+                    [[NSUserDefaults standardUserDefaults] setValue:authData.providerData[@"displayName"] forKey:@"username"];
+                    
+                    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+                    NSLog(@"nsuserdefaults set in facebook log in == %@",uid);
+                    NSLog(@"authData.providerData[@displayName] == %@",authData.providerData[@"displayName"]);
+                if (snapshot.value == [NSNull null]) {
+                       if (authData.providerData[@"email"] == NULL){
                             NSDictionary *newUser = @{
                                                       @"provider": authData.provider,
                                                       @"username": authData.providerData[@"displayName"],
+                                                      
                                                       @"uid": authData.uid
                                                       };
                             [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
-
-
+                            
+                            
                         }else {
                             NSDictionary *newUser = @{
                                                       @"provider": authData.provider,
-                                                      @"full name": authData.providerData[@"displayName"],
+                                                      @"username": authData.providerData[@"displayName"],
                                                       @"email":authData.providerData[@"email"],
                                                       @"uid": authData.uid
                                                       };
                             [[[ref childByAppendingPath:@"users"] childByAppendingPath:authData.uid] setValue:newUser];
-                            NSLog(@"facebook email !x= NULL");
                             [self callPresentVC];
                         }
-
                     }
                 }];
             }
@@ -183,8 +185,6 @@
 }
 
 - (void) callPresentVC {
-
-    NSLog(@"PRESENT VIEW CONTROLLER GETS CALLED");
 
     if (self.isVendorLogIn == true){
         QuikVendorHomepageVC *vendorHomepageVC = [QuikVendorHomepageVC new];
@@ -199,9 +199,6 @@
         quickUserVC = [board instantiateInitialViewController];
         [self presentViewController:quickUserVC animated:YES completion:nil];
     }
-    
-    
-    
 }
 
 
