@@ -38,6 +38,7 @@
     self.ref = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/users"] childByAppendingPath:uid];
     UIColor *navColor = [UIColor colorWithRed:221.0 green:230.0 blue:231 alpha:1];
     [[self.navigationController navigationBar] setTintColor:navColor];
+
     [self populateUser];
     [self loadMyCars];
 }
