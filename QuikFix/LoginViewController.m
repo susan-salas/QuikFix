@@ -33,21 +33,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
-
+    
     self.passwordTextField.layer.cornerRadius = 3;
     self.passwordTextField.clipsToBounds = YES;
-
+    
     self.emailTextField.layer.cornerRadius = 3;
     self.emailTextField.clipsToBounds = YES;
-
+    
     self.logInLabelView.layer.cornerRadius = 3;
     self.logInLabelView.clipsToBounds = YES;
-
+    
     self.isVendorLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
-
+    
     if (self.isVendorLogIn == YES) {
         self.orLabelView.hidden = YES;
     }
@@ -57,18 +57,18 @@
         if([loginButton.currentTitle isEqualToString:@"Log out"]){
             [self callPresentVC];
         }
-
+        
         UIBarButtonItem *createButton = [[UIBarButtonItem alloc] initWithTitle:@"Create Account"
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self
                                                                         action:@selector(onCreateTapped)];
         self.navigationItem.rightBarButtonItem = createButton;
-
+        
         loginButton.delegate = self;
         CGRect fbFrame = loginButton.frame;
         fbFrame = CGRectMake(20, 20, self.view.bounds.size.width - 40, 60);
         loginButton.frame = fbFrame;
-
+        
         [self.view addSubview:loginButton];
     }
 }
@@ -110,17 +110,18 @@
             } else {
                 [self callPresentVC];
                 NSLog(@"user is now logged in");
+                [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+                
+                NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
+                
+                Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
+                [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    NSDictionary *userDict = snapshot.value;
+                    [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+                }];
             }
             
-            [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
             
-            NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
-            
-            Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
-            [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                NSDictionary *userDict = snapshot.value;
-                [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
-            }];
             
         }];
     }
@@ -152,8 +153,8 @@
                     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
                     NSLog(@"nsuserdefaults set in facebook log in == %@",uid);
                     NSLog(@"authData.providerData[@displayName] == %@",authData.providerData[@"displayName"]);
-                if (snapshot.value == [NSNull null]) {
-                       if (authData.providerData[@"email"] == NULL){
+                    if (snapshot.value == [NSNull null]) {
+                        if (authData.providerData[@"email"] == NULL){
                             NSDictionary *newUser = @{
                                                       @"provider": authData.provider,
                                                       @"username": authData.providerData[@"displayName"],
@@ -181,17 +182,17 @@
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
-
+    
 }
 
 - (void) callPresentVC {
-
+    
     if (self.isVendorLogIn == true){
         QuikVendorHomepageVC *vendorHomepageVC = [QuikVendorHomepageVC new];
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikVendorHomepage" bundle:[NSBundle mainBundle]];
         vendorHomepageVC = [board instantiateInitialViewController];
         [self presentViewController:vendorHomepageVC animated:YES completion:nil];
-
+        
     }else{
         QuikUserHomepageVC *quickUserVC = [QuikUserHomepageVC new];
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"QuikUserHomepage" bundle:[NSBundle mainBundle]];

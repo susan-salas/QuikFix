@@ -577,7 +577,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					Ussers/SusanSalas/Documents/Batch_iOS_1.5,
 					"$(PROJECT_DIR)/Pods/Batch/Batch.embeddedframework",
 				);
 				HEADER_SEARCH_PATHS = (

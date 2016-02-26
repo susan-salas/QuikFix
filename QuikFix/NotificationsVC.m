@@ -29,7 +29,7 @@
 }
 
 - (void) pullNotificationsfromFirebase{
-    Firebase *ref = [[Firebase alloc] initWithUrl:@""];
+    Firebase *ref = [[[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"] childByAppendingPath:@"user"] childByAppendingPath:@"offers"];
     
 }
 @end
