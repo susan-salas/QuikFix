@@ -68,6 +68,8 @@
     }
 }
 
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.selectedClaim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];

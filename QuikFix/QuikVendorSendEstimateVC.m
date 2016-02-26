@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.currentClaim.username;
 }
 
 - (IBAction)onSendTapped:(UIButton *)sender {
@@ -32,6 +33,8 @@
                                    @"meesage": self.messageTextView.text,
                                    @"bid": self.priceEstimateTextField.text};
     [notificationRef setValue:notification];
+    
+
     
 }
 
