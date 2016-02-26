@@ -9,7 +9,7 @@
 #import "QuikVendorSendEstimateVC.h"
 #import "Firebase/Firebase.h"
 
-@interface QuikVendorSendEstimateVC ()
+@interface QuikVendorSendEstimateVC () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 
 @property (weak, nonatomic) IBOutlet UITextField *priceEstimateTextField;
@@ -20,22 +20,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.currentClaim.username;
+    NSString * name = self.currentClaim.username;
+    self.title = name;
+    self.messageTextView.text = @"Please write your message here...";
+    self.messageTextView.textColor = [UIColor lightGrayColor];
+    self.messageTextView.delegate = self;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.messageTextView.text = @"";
+    self.messageTextView.textColor = [UIColor blackColor];
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if(self.messageTextView.text.length == 0){
+        self.messageTextView.textColor = [UIColor lightGrayColor];
+        self.messageTextView.text = @"Please write your message here...";
+        [self.messageTextView resignFirstResponder];
+    }
 }
 
 - (IBAction)onSendTapped:(UIButton *)sender {
-    NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
-    Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
-    
-    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-    
-    NSDictionary *notification = @{@"vendor": uid,
-                                   @"meesage": self.messageTextView.text,
-                                   @"bid": self.priceEstimateTextField.text};
-    [notificationRef setValue:notification];
-    
-
-    
+    if ([self.messageTextView.text  isEqualToString:@""] || [self.priceEstimateTextField.text  isEqualToString:@""] || [self.messageTextView.text isEqualToString:@"Please write your message here..."]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Please write a message and set the price..." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:ok];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
+        Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
+        
+        NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+        
+        NSDictionary *notification = @{@"vendor": uid,
+                                       @"meesage": self.messageTextView.text,
+                                       @"bid": self.priceEstimateTextField.text};
+        [notificationRef setValue:notification];
+    }
 }
 
 
@@ -43,5 +68,5 @@
 
 
 
-    
+
 
