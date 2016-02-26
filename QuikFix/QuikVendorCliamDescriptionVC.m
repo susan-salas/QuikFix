@@ -23,6 +23,7 @@
     [super viewDidLoad];
     self.title = self.currentClaim.username;
     self.claimDescriptionTextView.text = self.currentClaim.damageDescription;
+    self.claimDescriptionTextView.editable = NO;
     int count = 0;
     
     for (UIButton *button in self.imageButtons) {
