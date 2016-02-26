@@ -21,7 +21,8 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)onCancelButtonTapped:(UIButton *)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    //this logs users out
+//    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 

@@ -23,7 +23,14 @@
 }
 
 - (IBAction)onSendTapped:(UIButton *)sender {
-    NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
+    if ([self.priceEstimateTextField.text isEqualToString:@""]){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Please enter estimate" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:ok];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else {
     Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
@@ -32,7 +39,7 @@
                                    @"meesage": self.messageTextView.text,
                                    @"bid": self.priceEstimateTextField.text};
     [notificationRef setValue:notification];
-    
+    }
 }
 
 

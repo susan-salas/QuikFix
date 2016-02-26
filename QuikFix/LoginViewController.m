@@ -66,27 +66,38 @@
     NSString *email =  self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
-    [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
+    
+    if ([self.emailTextField.text isEqualToString:@""] && [self.passwordTextField.text isEqualToString:@""]){
+        //ui alert cannot leave textfields blank
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Please enter email and password" preferredStyle:UIAlertControllerStyleAlert];
         
-        if (error) {
-            NSLog(@"We are not logged in %@", error);
-        } else {
-            [self callPresentVC];
-            NSLog(@"user is now logged in");
-        }
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:ok];
         
-        [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
-        
-        NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
-        
-        Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
-        [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            NSDictionary *userDict = snapshot.value;
-            [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else{
+        Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
+        [ref authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
+            
+            if (error) {
+                NSLog(@"We are not logged in %@", error);
+            } else {
+                [self callPresentVC];
+                NSLog(@"user is now logged in");
+            }
+            
+            [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+            
+            NSString *userURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/users/%@",authData.uid];
+            
+            Firebase *usersRef = [[Firebase alloc] initWithUrl: userURL];
+            [usersRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                NSDictionary *userDict = snapshot.value;
+                [[NSUserDefaults standardUserDefaults] setValue:[userDict objectForKey:@"username"] forKey:@"username"];
+            }];
+            
         }];
-
-    }];
+    }
     
 }
 
@@ -109,7 +120,13 @@
                 
                 Firebase *userRef = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/user"] childByAppendingPath:authData.uid];
                 [userRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    
                     [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
+                    [[NSUserDefaults standardUserDefaults] setValue:authData.providerData[@"displayName"] forKey:@"username"];
+                    
+                    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+                    NSLog(@"nsuserdefaults set in facebook log in == %@",uid);
+                    NSLog(@"authData.providerData[@displayName] == %@",authData.providerData[@"displayName"]);
                 if (snapshot.value == [NSNull null]) {
                        if (authData.providerData[@"email"] == NULL){
                             NSDictionary *newUser = @{
@@ -124,7 +141,7 @@
                         }else {
                             NSDictionary *newUser = @{
                                                       @"provider": authData.provider,
-                                                      @"full name": authData.providerData[@"displayName"],
+                                                      @"username": authData.providerData[@"displayName"],
                                                       @"email":authData.providerData[@"email"],
                                                       @"uid": authData.uid
                                                       };

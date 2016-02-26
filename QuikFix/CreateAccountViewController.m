@@ -43,6 +43,8 @@
                         } else {
                             [[NSUserDefaults standardUserDefaults] setValue: authData.uid forKey:@"uid"];
                             [[NSUserDefaults standardUserDefaults] setValue: self.usernameLabel.text forKey:@"username"];
+                            NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+                            NSLog(@"nsuserdefaults set in facebook log in == %@",uid);
                             NSDictionary *newUser = @{
                                                       @"email": self.emailTextField.text,
                                                       @"uid": authData.uid,
