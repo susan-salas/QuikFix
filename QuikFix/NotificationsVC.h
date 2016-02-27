@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuikClaim.h"
 
 @interface NotificationsVC : UIViewController
+@property QuikClaim *currentClaim;
 
 @end

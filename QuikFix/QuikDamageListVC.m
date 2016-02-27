@@ -11,6 +11,7 @@
 #import "Firebase/Firebase.h"
 #import "QuikCar.h"
 #import "QuikClaim.h"
+#import "NotificationsVC.h"
 
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
@@ -25,6 +26,15 @@
     self.carDetailLabel.text = self.car.detail;
     self.damageListForCar = [NSMutableArray new];
     [self loadMyDamage];
+    
+//    QuikClaim *currentClaim = self.damageListForCar[0];
+//    NotificationsVC *notificationsVC = [NotificationsVC new];
+//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Notifications" bundle:[NSBundle mainBundle]];
+//    
+//    notificationsVC = [board instantiateInitialViewController];
+//    notificationsVC.currentClaim = currentClaim;
+//    
+//    [self presentViewController:notificationsVC animated:YES completion:nil];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -90,5 +100,17 @@
         }
     }];
 }
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    QuikClaim *currentClaim = self.damageListForCar[indexPath.row];
+//    NotificationsVC *notificationsVC = [NotificationsVC new];
+//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Notifications" bundle:[NSBundle mainBundle]];
+//    
+//    notificationsVC = [board instantiateInitialViewController];
+//    notificationsVC.currentClaim = currentClaim;
+//    
+//    [self presentViewController:notificationsVC animated:YES completion:nil];
+//    
+//}
 
 @end

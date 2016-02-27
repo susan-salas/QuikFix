@@ -8,28 +8,32 @@
 
 #import "NotificationsVC.h"
 #import "Firebase/Firebase.h"
+#import "QuikOffers.h"
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
-@property NSArray *orrfersArray;
+@property NSMutableArray *offersArray;
 @end
 
 @implementation NotificationsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.offersArray = [NSMutableArray new];
+    for (NSDictionary *offerDictionary in self.currentClaim.offers) {
+        QuikOffers *currentOffer = [[QuikOffers alloc]initWithDictionary:offerDictionary];
+        [self.offersArray addObject:currentOffer];
+    }
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.orrfersArray.count;
+    return self.offersArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
+    QuikOffers *currentOffer = self.offersArray[indexPath.row];
+    cell.textLabel.text = currentOffer.message;
     return cell; 
 }
 
-- (void) pullNotificationsfromFirebase{
-    Firebase *ref = [[[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"] childByAppendingPath:@"user"] childByAppendingPath:@"offers"];
-    
-}
 @end
