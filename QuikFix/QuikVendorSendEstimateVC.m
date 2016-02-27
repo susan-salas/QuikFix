@@ -9,9 +9,9 @@
 #import "QuikVendorSendEstimateVC.h"
 #import "Firebase/Firebase.h"
 
-@interface QuikVendorSendEstimateVC () <UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
+@interface QuikVendorSendEstimateVC () <UITextViewDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITextField *priceEstimateTextField;
 
 @end
@@ -25,6 +25,15 @@
     self.messageTextView.text = @"Please write your message here...";
     self.messageTextView.textColor = [UIColor lightGrayColor];
     self.messageTextView.delegate = self;
+    self.priceEstimateTextField.delegate = self;
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    [textView becomeFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
@@ -44,18 +53,15 @@
 }
 
 - (IBAction)onSendTapped:(UIButton *)sender {
-    if ([self.messageTextView.text  isEqualToString:@""] || [self.priceEstimateTextField.text  isEqualToString:@""] || [self.messageTextView.text isEqualToString:@"Please write your message here..."]) {
+    if ([self.messageTextView.text  isEqualToString:@""] || [self.priceEstimateTextField.text  isEqualToString:@""] || [self.messageTextView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text  isEqualToString:@" "]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error!" message:@"Please write a message and set the price..." preferredStyle:UIAlertControllerStyleAlert];
-        
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
         [self presentViewController:alertController animated:YES completion:nil];
     } else {
         NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
         Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
-        
         NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-        
         NSDictionary *notification = @{@"vendor": uid,
                                        @"meesage": self.messageTextView.text,
                                        @"bid": self.priceEstimateTextField.text};
