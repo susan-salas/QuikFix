@@ -204,7 +204,6 @@
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="onSendTapped:" destination="ljs-Ei-lkp" eventType="touchUpInside" id="avo-aJ-xhi"/>
-                                    <segue destination="Qa2-av-jb4" kind="unwind" unwindAction="prepareForUnwind:" id="f4y-Zq-bYi"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write your message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOV-je-7V6">
@@ -240,7 +239,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q36-fI-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Qa2-av-jb4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1473" y="331"/>
         </scene>

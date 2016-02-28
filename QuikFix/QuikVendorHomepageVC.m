@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableDictionary *contentOffsetDictionary;
 @property QuikClaim *selectedClaim;
 @property NSMutableArray *claims;
+@property CLLocationManager *locationManager;
 
 @end
 
@@ -32,8 +33,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
+//    for (NSDictionary *location in self.claims) {
+//        <#statements#>
+//    }
     self.mapView.hidden = YES;
     self.mapView.delegate = self;
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    self.mapView.showsUserLocation = YES;
+    self.locationManager = [CLLocationManager new];
+    
     [self populateClaimsArray];
 
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];    
@@ -56,6 +67,26 @@
 //        [[self presentingViewController] presentViewController:nav animated:YES completion:nil];
 //    }
 }
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
+    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+    pin.canShowCallout = YES;
+    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    return pin;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"ERROR");
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+}
+
+
 
 - (IBAction)switchButtonMoved:(UISwitch *)sender {
     if([sender isOn] == NO){
