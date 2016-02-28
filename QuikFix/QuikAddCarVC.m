@@ -12,6 +12,7 @@
 #import "TFHpple.h"
 #import "TFHppleElement.h"
 #import "Firebase/Firebase.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface QuikAddCarVC() <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vinTextField;
@@ -20,8 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *modelTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bodyTextField;
 @property (weak, nonatomic) IBOutlet UITextField *colorTextField;
-@property (weak, nonatomic) IBOutlet UITextField *licenseTextField;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *addCar;
 @property QuikCar *carToAdd;
 
 
@@ -38,11 +39,21 @@
     self.modelTextField.delegate = self;
     self.bodyTextField.delegate = self;
     self.colorTextField.delegate = self;
-    self.licenseTextField.delegate = self;
     self.textField.delegate = self;
+
+    [self hideFormToAddCar];
+
+    UIColor *white50 = [UIColor colorWithRed:255 green:255 blue:255 alpha:.5];
+    self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"🔍Search by VIN Number"
+                                                                           attributes:@{NSForegroundColorAttributeName: white50}];
+    self.textField.layer.cornerRadius = 3;
+    self.textField.clipsToBounds = YES;
+
+    self.addCar.layer.cornerRadius = 3;
+    self.addCar.clipsToBounds = YES;
 }
 
-- (IBAction)onSearchByVinTapped:(UIButton *)sender {
+- (void)onSearchByVinPressReturn{
     NSString *urlFromTextField = [NSString stringWithFormat:@"http://www.vin-decoder.org/details?vin=%@",self.textField.text];
     NSURL *targetURL = [NSURL URLWithString:urlFromTextField];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
@@ -65,6 +76,8 @@
         self.makeTextField.text = listItems[[listItems indexOfObject:@"Make"] + 1];
         self.modelTextField.text = listItems[[listItems indexOfObject:@"Model"] + 1];
         self.bodyTextField.text = listItems[[listItems indexOfObject:@"Body"] + 1];
+
+        [self showFormToAddCar];
     }
     else{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Could not find VIN"
@@ -89,11 +102,39 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    if(textField.tag == 999){
+        [self onSearchByVinPressReturn];
+    }
+
     [textField resignFirstResponder];
     return YES;
 }
 
+-(void)hideFormToAddCar{
+    self.vinTextField.hidden = YES;
+    self.yearTextField.hidden = YES;
+    self.makeTextField.hidden = YES;
+    self.modelTextField.hidden = YES;
+    self.bodyTextField.hidden = YES;
+    self.colorTextField.hidden = YES;
+}
+
+-(void)showFormToAddCar{
+    self.vinTextField.hidden = NO;
+    self.yearTextField.hidden = NO;
+    self.makeTextField.hidden = NO;
+    self.modelTextField.hidden = NO;
+    self.bodyTextField.hidden = NO;
+    self.colorTextField.hidden = NO;
+}
+
+- (IBAction)onEnterManuallyTapped:(id)sender {
+    [self showFormToAddCar];
+}
+
 - (IBAction)onAddCarTapped:(UIButton *)sender {
+    [self showFormToAddCar];
     if ([self areTextFieldsFilled]) {
         self.carToAdd = [QuikCar new];
         self.carToAdd.vin = self.vinTextField.text;
@@ -102,7 +143,6 @@
         self.carToAdd.model = self.modelTextField.text;
         self.carToAdd.body = self.bodyTextField.text;
         self.carToAdd.color = self.colorTextField.text;
-        self.carToAdd.license = self.licenseTextField.text;
         self.carToAdd.owner = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
         [self sendCarToDataBase:self.carToAdd];
         [self.navigationController popViewControllerAnimated:YES];
@@ -110,25 +150,31 @@
 }
 
 -(BOOL)areTextFieldsFilled{
+    UIColor *red50 = [UIColor colorWithRed:255 green:0 blue:0 alpha:.5];
+    NSAttributedString *requiredString = [[NSAttributedString alloc] initWithString:@"Required" attributes:@{NSForegroundColorAttributeName: red50}];
     if (self.vinTextField.text.length != 17) {
+        self.vinTextField.textColor = red50;
+        self.vinTextField.attributedPlaceholder = requiredString;
         return false;
     }
     else if (self.yearTextField.text.length != 4) {
+        self.yearTextField.attributedPlaceholder = requiredString;
         return false;
     }
     else if (self.makeTextField.text.length == 0) {
+        self.makeTextField.attributedPlaceholder = requiredString;
         return false;
     }
     else if (self.modelTextField.text.length == 0) {
+        self.modelTextField.attributedPlaceholder = requiredString;
         return false;
     }
     else if (self.bodyTextField.text.length == 0) {
+        self.bodyTextField.attributedPlaceholder = requiredString;
         return false;
     }
     else if (self.colorTextField.text.length == 0) {
-        return false;
-    }
-    else if (self.licenseTextField.text.length != 7) {
+        self.colorTextField.attributedPlaceholder = requiredString;
         return false;
     }
     return true;
@@ -141,7 +187,6 @@
                               @"model":car.model,
                               @"body":car.body,
                               @"color":car.color,
-                              @"license":car.license,
                               @"owner":car.owner};
 
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/cars"];

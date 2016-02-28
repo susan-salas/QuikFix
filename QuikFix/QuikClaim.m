@@ -38,6 +38,8 @@
         self.ownerID = claimDictionary[@"owner"];
         self.images = imagesArray;
         self.offers = offersArray;
+        self.panel = claimDictionary[@"panel"];
+        self.damageType = claimDictionary[@"damageType"];
         self.username = claimDictionary[@"username"];
     }
     

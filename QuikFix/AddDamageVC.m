@@ -5,6 +5,7 @@
 //  Created by Sean Barry on 2/18/16.
 //  Copyright © 2016 Susan Salas. All rights reserved.
 //
+//  comment
 
 #import "AddDamageVC.h"
 #import "QuikClaim.h"
@@ -13,15 +14,18 @@
 #import "Firebase/Firebase.h"
 #import "QuikUserImagePickerVC.h"
 #import "QuikClaim.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AddDamageVC () <UITextViewDelegate,UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
-@property (weak, nonatomic) IBOutlet UITextView *damageDescription;
+@property (weak, nonatomic) IBOutlet UITextField *panelTextField;
+@property (weak, nonatomic) IBOutlet UITextField *damageTypeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *damageDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 @property (weak, nonatomic) IBOutlet UIImageView *image2;
 @property (weak, nonatomic) IBOutlet UIImageView *image3;
 @property (weak, nonatomic) IBOutlet UIImageView *image4;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
@@ -43,7 +47,6 @@
                                    initWithTarget:self action:@selector(handleTap:)];
     tap3.delegate = self;
 
-    self.carDetailLabel.text = self.carDetailText;
 
     self.image1.userInteractionEnabled = YES;
     self.image2.userInteractionEnabled = YES;
@@ -54,6 +57,18 @@
     [self.image2 addGestureRecognizer:tap2];
     [self.image3 addGestureRecognizer:tap3];
     [self.image4 addGestureRecognizer:tap4];
+
+    self.image1.layer.cornerRadius = 3;
+    self.image2.layer.cornerRadius = 3;
+    self.image3.layer.cornerRadius = 3;
+    self.image4.layer.cornerRadius = 3;
+    self.submitButton.layer.cornerRadius = 3;
+
+    self.image1.clipsToBounds = YES;
+    self.image2.clipsToBounds = YES;
+    self.image3.clipsToBounds = YES;
+    self.image4.clipsToBounds = YES;
+    self.submitButton.clipsToBounds = YES;
 
     if([self.title isEqualToString:@"Edit Damage"]){
         NSArray *image = self.claim.images;
@@ -73,7 +88,11 @@
         self.image4.clipsToBounds = YES;
         self.image4.image = image[3];
 
+        self.panelTextField.text = self.claim.panel;
+        self.damageTypeTextField.text = self.claim.damageType;
         self.damageDescription.text = self.claim.damageDescription;
+
+        [self.submitButton setTitle:@"Save" forState:UIControlStateNormal];
     }
 }
 
@@ -93,19 +112,24 @@
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
         claim.username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-
+        claim.panel = self.panelTextField.text;
+        claim.damageType = self.damageTypeTextField.text;
         [self addClaimToDatabase:claim];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 -(BOOL)isClaimReadyToPush{
-    if (self.damageDescription.text.length == 0) {
-        self.damageDescription.textColor = [UIColor redColor];
-        self.damageDescription.text = @"Cannot be empty";
+    if (self.panelTextField.text.length == 0) {
+        self.panelTextField.placeholder = @"Panel Required";
         return false;
     }
-    else if ([self.damageDescription.text isEqualToString:@"Cannot be empty"]) {
+    else if (self.damageTypeTextField.text.length == 0) {
+        self.damageTypeTextField.placeholder = @"Type Required";
+        return false;
+    }
+    else if (self.damageDescription.text.length == 0) {
+        self.damageDescription.placeholder = @"Description Required";
         return false;
     }
     return true;
@@ -118,6 +142,8 @@
 
     [claimDict setObject:[ref key] forKey:@"claimID"];
     [claimDict setObject:claim.carWithDamage forKey:@"carWithDamage"];
+    [claimDict setObject:claim.panel forKey:@"panel"];
+    [claimDict setObject:claim.damageType forKey:@"damageType"];
     [claimDict setObject:claim.damageDescription forKey:@"damageDescription"];
     [claimDict setObject:claim.ownerID forKey:@"owner"];
     [claimDict setObject:claim.username forKey:@"username"];
@@ -146,7 +172,6 @@
     else{
         [ref setValue: claimDict];
     }
-
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{

@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString *make;
 @property (nonatomic, strong) NSString *model;
 @property (nonatomic, strong) NSString *vin;
-@property (nonatomic, strong) NSString *license;
 @property (nonatomic, strong) NSString *body;
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *detail;

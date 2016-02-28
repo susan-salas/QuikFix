@@ -17,15 +17,14 @@
         self.make = [carDictionary valueForKey:@"make"];
         self.model = [carDictionary valueForKey:@"model"];
         self.vin = [carDictionary valueForKey:@"vin"];
-        self.license = [carDictionary valueForKey:@"license"];
         self.body = [carDictionary valueForKey:@"body"];
         self.color = [carDictionary valueForKey:@"color"];
         self.image = [UIImage imageNamed:@"180 - iPhone 6 Plus"];
-        self.detail = [NSString stringWithFormat:@"%@ - %@ %@  %@",
-                       self.color,
+        self.detail = [NSString stringWithFormat:@"%@ %@ %@  %@",
                        self.year,
                        self.make,
-                       self.model];
+                       self.model,
+                       self.color];
     }
     return self;
 }

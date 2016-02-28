@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSString *claimID;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSString *damageDescription;
+@property (nonatomic, strong) NSString *panel;
+@property (nonatomic, strong) NSString *damageType;
 @property (nonatomic, strong) NSDictionary *claimLocation;
 @property NSString *username;
 
