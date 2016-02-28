@@ -18,14 +18,14 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface QuikUserHomepageVC () <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) NSMutableArray *myCars;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property Firebase *ref;
-@property QuikUser *currentUser;
-@property QuikCar *carSelected;
-@property NSString *selectedCellText;
 @property (weak, nonatomic) IBOutlet UIView *noCarsView;
 @property (weak, nonatomic) IBOutlet UIButton *addACar;
+@property (nonatomic, strong) NSMutableArray *myCars;
+@property (nonatomic, strong) NSString *selectedCellText;
+@property (nonatomic, strong) QuikUser *currentUser;
+@property (nonatomic, strong) QuikCar *carSelected;
 
 @end
 
@@ -33,17 +33,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    UIColor *navColor = [UIColor colorWithRed:221.0 green:230.0 blue:231 alpha:1];
+    [[self.navigationController navigationBar] setTintColor:navColor];
+
+    [self.tableView registerClass:[QuikCarTableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.noCarsView.hidden = YES;
     self.addACar.layer.cornerRadius = 3;
     self.addACar.clipsToBounds = YES;
-    [self.tableView registerClass:[QuikCarTableViewCell class] forCellReuseIdentifier:@"Cell"];
+
     self.selectedCellText = @"";
-    self.currentUser = [QuikUser new];
-    self.myCars = [NSMutableArray new];
-    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-    self.ref = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/users"] childByAppendingPath:uid];
-    UIColor *navColor = [UIColor colorWithRed:221.0 green:230.0 blue:231 alpha:1];
-    [[self.navigationController navigationBar] setTintColor:navColor];
+    //self.currentUser = [QuikUser new];
+    //self.myCars = [NSMutableArray new];
+
 
     [self populateUser];
     [self loadMyCars];
@@ -53,7 +55,10 @@
     QuikCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     QuikCar *car = self.myCars[indexPath.section];
     cell.tableViewWidth = self.tableView.bounds.size.width;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.car = car;
+    cell.layer.cornerRadius = 3;
+    cell.clipsToBounds = YES;
 
     return cell;
 }
@@ -96,8 +101,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSMutableArray *removeFromArray = [[NSMutableArray alloc] initWithArray:self.myCars];
-        QuikCar *removeCar = self.myCars[indexPath.row];
-        [removeFromArray removeObjectAtIndex:indexPath.row];
+        QuikCar *removeCar = self.myCars[indexPath.section];
+        [removeFromArray removeObjectAtIndex:indexPath.section];
 
         self.myCars = removeFromArray;
         [self.tableView reloadData];
@@ -124,7 +129,9 @@
 }
 
 - (void) populateUser{
-    [self.ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    Firebase* ref = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/users"] childByAppendingPath:uid];
+    [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSDictionary *userDictionary = snapshot.value;
         self.currentUser = [self.currentUser initWithDictionary:userDictionary];
     }];
@@ -156,16 +163,14 @@
     if (accessToken == nil){
         Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
         [ref unauth];
-    }else {
+    }
+    else {
         FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+
         [loginManager logOut];
     }
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
     [self dismissViewControllerAnimated:YES completion:nil];
-//    LoginViewController *controller = [LoginViewController new];
-//    UIStoryboard *board = [UIStoryboard storyboardWithName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-//    controller = [board instantiateInitialViewController];
-//    [[self presentingViewController] presentViewController:controller animated:YES completion:nil];
 }
 
 @end
