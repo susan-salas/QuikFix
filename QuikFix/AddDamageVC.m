@@ -16,7 +16,7 @@
 #import "QuikClaim.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface AddDamageVC () <UITextViewDelegate,UIGestureRecognizerDelegate>
+@interface AddDamageVC () <UITextFieldDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *panelTextField;
 @property (weak, nonatomic) IBOutlet UITextField *damageTypeTextField;
@@ -46,7 +46,6 @@
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self action:@selector(handleTap:)];
     tap3.delegate = self;
-
 
     self.image1.userInteractionEnabled = YES;
     self.image2.userInteractionEnabled = YES;
@@ -174,22 +173,11 @@
     }
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:@"Cannot be empty"]) {
-        textView.text = @"";
-        self.damageDescription.textColor = [UIColor blackColor];
-    }
-    [textView becomeFirstResponder];
-}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
+    [textField resignFirstResponder];
     return YES;
 }
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITapGestureRecognizer *)sender{
     QuikUserImagePickerVC *dest = segue.destinationViewController;
