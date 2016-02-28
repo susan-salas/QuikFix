@@ -166,7 +166,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Damage Log" id="rYe-lU-nLu">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="gCV-px-xxL"/>
-                        <barButtonItem key="rightBarButtonItem" title="Report" id="RLV-dF-lIm">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="RLV-dF-lIm">
                             <connections>
                                 <segue destination="NAk-0k-UW4" kind="push" id="nLF-ed-8wg"/>
                             </connections>
