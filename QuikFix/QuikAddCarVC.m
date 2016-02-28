@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *bodyTextField;
 @property (weak, nonatomic) IBOutlet UITextField *colorTextField;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *addCar;
 @property QuikCar *carToAdd;
 
 
@@ -47,6 +48,9 @@
                                                                            attributes:@{NSForegroundColorAttributeName: white50}];
     self.textField.layer.cornerRadius = 3;
     self.textField.clipsToBounds = YES;
+
+    self.addCar.layer.cornerRadius = 3;
+    self.addCar.clipsToBounds = YES;
 }
 
 - (void)onSearchByVinPressReturn{

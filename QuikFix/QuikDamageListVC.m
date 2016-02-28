@@ -13,7 +13,6 @@
 #import "QuikClaim.h"
 
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *carDetailLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *damageListForCar;
 @end
@@ -22,20 +21,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.carDetailLabel.text = self.car.detail;
+    self.title = self.car.detail;
     self.damageListForCar = [NSMutableArray new];
     [self loadMyDamage];
+
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:nil
+                                                                action:nil];
+
+    [self.navigationItem setBackBarButtonItem:backItem];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.damageListForCar.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 20;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.damageListForCar.count;
+    return 1;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = [UIColor clearColor];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    QuikClaim *claim = self.damageListForCar[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"Description: %@",claim.damageDescription];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Claim ID: %@",claim.claimID];
+    QuikClaim *claim = self.damageListForCar[indexPath.section];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", claim.panel, claim.damageType];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",claim.damageDescription];
+
+    cell.layer.cornerRadius = 3;
+    cell.clipsToBounds = YES;
+    
     return cell;
 }
 
@@ -47,8 +74,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSMutableArray *removeFromArray = [[NSMutableArray alloc] initWithArray:self.damageListForCar];
-        QuikClaim *removeClaim = self.damageListForCar[indexPath.row];
-        [removeFromArray removeObjectAtIndex:indexPath.row];
+        QuikClaim *removeClaim = self.damageListForCar[indexPath.section];
+        [removeFromArray removeObjectAtIndex:indexPath.section];
         NSString *removeURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/claims/%@", removeClaim.claimID];
         Firebase *removeRef = [[Firebase alloc] initWithUrl: removeURL];
         [removeRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
@@ -61,15 +88,15 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([sender isKindOfClass:[UIBarButtonItem class]]){
         AddDamageVC *dest = segue.destinationViewController;
-        dest.carDetailText = self.carDetailLabel.text;
+        dest.carDetailText = self.car.detail;
         dest.car = self.car;
     }
     else if([sender isKindOfClass:[UITableViewCell class]]) {
         AddDamageVC *dest = segue.destinationViewController;
         NSIndexPath *path =  [self.tableView indexPathForCell:(UITableViewCell *)sender];
-        QuikClaim *claim = self.damageListForCar[path.row];
+        QuikClaim *claim = self.damageListForCar[path.section];
         dest.title = @"Edit Damage";
-        dest.carDetailText = self.carDetailLabel.text;
+        dest.carDetailText = self.car.detail;
         dest.car = self.car;
         dest.claim = claim;
     }
