@@ -27,7 +27,8 @@
     self.damageListForCar = [NSMutableArray new];
     [self loadMyDamage];
     
-//    QuikClaim *currentClaim = self.damageListForCar[0];
+//    if ([self.damageListForCar objectAtIndex:0] != nil){
+//        QuikClaim *currentClaim = self.damageListForCar[0];
 //    NotificationsVC *notificationsVC = [NotificationsVC new];
 //    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Notifications" bundle:[NSBundle mainBundle]];
 //    
@@ -35,6 +36,7 @@
 //    notificationsVC.currentClaim = currentClaim;
 //    
 //    [self presentViewController:notificationsVC animated:YES completion:nil];
+//    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -95,10 +97,21 @@
                 QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
                 [damageFromFirebase addObject:claim];
             }
+            [self sendClaimToNotificationVC:damageFromFirebase[0]];
             self.damageListForCar = damageFromFirebase;
             [self.tableView reloadData];
         }
     }];
+}
+
+-(void)sendClaimToNotificationVC:(QuikClaim *) claim{
+    
+    NotificationsVC *notificationsVC = [NotificationsVC new];
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Notifications" bundle:[NSBundle mainBundle]];
+    notificationsVC = [board instantiateInitialViewController];
+    notificationsVC.currentClaim = claim;
+    
+    [self presentViewController:notificationsVC animated:YES completion:nil];
 }
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

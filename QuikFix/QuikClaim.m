@@ -21,9 +21,9 @@
         NSMutableArray *imagesArray = [NSMutableArray new];
 
         for (NSString *key in offersDict) {
-            for (NSDictionary *offer in [offersDict valueForKey:key]) {
+            NSDictionary *offer = [offersDict valueForKey:key];
+            NSLog(@"offer in offerDict == %@", offer);
                 [offersArray addObject:offer];
-            }
         }
 
         for (NSString *imageKey in imagesDict) {

@@ -9,6 +9,7 @@
 #import "NotificationsVC.h"
 #import "Firebase/Firebase.h"
 #import "QuikOffers.h"
+#import "QuikClaim.h"
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
 @property NSMutableArray *offersArray;
@@ -18,9 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"HELLO!");
     self.offersArray = [NSMutableArray new];
+    NSLog(@"self.currentClaim.offers == %@", self.currentClaim.offers);
+    
     for (NSDictionary *offerDictionary in self.currentClaim.offers) {
+        NSLog(@"offerDictionary == %@", offerDictionary);
         QuikOffers *currentOffer = [[QuikOffers alloc]initWithDictionary:offerDictionary];
+        NSLog(@" currentOffer.message == %@", currentOffer.message);
         [self.offersArray addObject:currentOffer];
     }
 }

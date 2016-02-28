@@ -12,9 +12,9 @@
 
 -(instancetype)initWithDictionary: (NSDictionary *) offersDictionary{
     if (self) {
-        self.vendor = offersDictionary[@"vendor"];
-        self.message = offersDictionary[@"message"];
-        self.bid = offersDictionary[@"bid"];
+        self.vendor = [offersDictionary objectForKey:@"vendor"];
+        self.message = [offersDictionary objectForKey:@"message"];
+        self.bid = [offersDictionary objectForKey:@"bid"];
     }
     return self;
 }
