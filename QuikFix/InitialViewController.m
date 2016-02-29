@@ -21,9 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [Firebase defaultConfig].persistenceEnabled = YES;
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-    NSLog(@"current user id%@",uid);
     self.isVenderProfile = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVenderProfile"];
     
     if (uid != nil){

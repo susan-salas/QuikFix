@@ -52,7 +52,6 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    NSLog(@"tableview width %lu",(long)self.tableViewWidth);
     CGFloat imageHeight = self.car.image.size.height / self.car.image.size.width * CGRectGetWidth(self.contentView.bounds);
     self.carImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), imageHeight);
 

@@ -109,7 +109,6 @@
                 NSLog(@"We are not logged in %@", error);
             } else {
                 [self callPresentVC];
-                NSLog(@"user is now logged in");
             }
             
             [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
@@ -135,8 +134,7 @@
     }
     else {
         NSString *accessToken = [[FBSDKAccessToken currentAccessToken] tokenString];
-        NSLog(@"This is our access token %@",accessToken);
-        
+
         [ref authWithOAuthProvider:@"facebook" token:accessToken withCompletionBlock:^(NSError *error, FAuthData *authData) {
             
             if (error) {
@@ -148,10 +146,7 @@
                     
                     [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
                     [[NSUserDefaults standardUserDefaults] setValue:authData.providerData[@"displayName"] forKey:@"username"];
-                    
-                    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-                    NSLog(@"nsuserdefaults set in facebook log in == %@",uid);
-                    NSLog(@"authData.providerData[@displayName] == %@",authData.providerData[@"displayName"]);
+
                 if (snapshot.value == [NSNull null]) {
                        if (authData.providerData[@"email"] == NULL){
                             NSDictionary *newUser = @{

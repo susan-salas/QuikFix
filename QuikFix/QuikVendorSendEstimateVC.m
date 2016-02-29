@@ -86,7 +86,6 @@
 
 - (IBAction)onSendTapped:(UIButton *)sender {
     if ([self isClaimMessageReadyToPush] && [self isClaimPriceReadyToPush]) {
-                NSLog(@"self.currentClaims.claimID on estimate VC == %@",self.currentClaim.claimID);
                 Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
                 NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
                 NSDictionary *notification = @{@"vendor": uid,
