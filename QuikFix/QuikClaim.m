@@ -39,6 +39,7 @@
         self.images = imagesArray;
         self.offers = offersArray;
         self.panel = claimDictionary[@"panel"];
+        self.carDetail = claimDictionary[@"carDetail"];
         self.damageType = claimDictionary[@"damageType"];
         self.username = claimDictionary[@"username"];
     }

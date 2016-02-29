@@ -487,7 +487,7 @@
                                     <constraint firstAttribute="height" constant="60" id="efk-dr-jxY"/>
                                 </constraints>
                                 <color key="textColor" red="0.86666667461395264" green="0.90196079015731812" blue="0.90588235855102539" alpha="0.43688701923076922" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sT-aV-eWp">

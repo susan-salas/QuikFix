@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIColor *navColor = [UIColor colorWithRed:221.0 green:230.0 blue:231 alpha:1];
+    UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
     [[self.navigationController navigationBar] setTintColor:navColor];
 
     [self.tableView registerClass:[QuikCarTableViewCell class] forCellReuseIdentifier:@"Cell"];
