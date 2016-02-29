@@ -127,7 +127,7 @@
     notificationsVC = [board instantiateInitialViewController];
     notificationsVC.currentClaim = claim;
     
-    [self presentViewController:notificationsVC animated:YES completion:nil];
+    [self.navigationController pushViewController:notificationsVC animated:YES];
 }
 
 

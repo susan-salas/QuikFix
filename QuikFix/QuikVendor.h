@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIKit/UIKit.h"
 
 @interface QuikVendor : NSObject
 
@@ -17,5 +18,10 @@
 @property (nonatomic, strong) NSString *vendorPhoneNumber;
 @property (nonatomic, strong) NSString *vendorEmail;
 @property (nonatomic, strong) NSNumber *vendorRating;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *address;
+
+
+-(instancetype)initWithDictionary: (NSDictionary *) vendorDictionary;
 
 @end

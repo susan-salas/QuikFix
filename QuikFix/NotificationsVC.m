@@ -12,9 +12,10 @@
 #import "QuikClaim.h"
 #import "Firebase/Firebase.h"
 #import "QuikOffers.h"
-#import "QuikVendorSendEstimateVC.h"
+#import "QuikOfferDetailsVC.h"
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *offersArray;
 @end
 
@@ -22,17 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"HELLO!");
+    NSLog(@"HELLO");
     self.offersArray = [NSMutableArray new];
-    NSLog(@"self.currentClaim.offers == %@", self.currentClaim.offers);
     
     for (NSDictionary *offerDictionary in self.currentClaim.offers) {
-        NSLog(@"offerDictionary == %@", offerDictionary);
         QuikOffers *currentOffer = [[QuikOffers alloc]initWithDictionary:offerDictionary];
-        NSLog(@" currentOffer.message == %@", currentOffer.message);
-        [self.offersArray addObject:currentOffer];
-        
-        
+        [self.offersArray addObject:currentOffer];       
     }
 }
 
@@ -52,9 +48,10 @@
 //    [claimRef ];
 //}
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    QuikOffers *currentOffer = self.offersArray[indexPath.row];
-    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UITableViewCell *cell = sender;
+    QuikOfferDetailsVC *dest = segue.destinationViewController;
+    dest.currentOffer = [self.offersArray objectAtIndex:[self.tableView indexPathForCell:cell].row];
 }
 
 @end

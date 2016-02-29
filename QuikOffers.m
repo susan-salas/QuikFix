@@ -13,7 +13,7 @@
 -(instancetype)initWithDictionary: (NSDictionary *) offersDictionary{
     if (self) {
         self.vendor = [offersDictionary objectForKey:@"vendor"];
-        self.message = [offersDictionary objectForKey:@"message"];
+        self.message = [offersDictionary objectForKey:@"meesage"];
         self.bid = [offersDictionary objectForKey:@"bid"];
     }
     return self;

@@ -40,7 +40,7 @@
                                 <items>
                                     <barButtonItem style="plain" id="1cI-eV-FeS">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="O6X-gG-8Yz">
-                                            <rect key="frame" x="16" y="6.5" width="51" height="31"/>
+                                            <rect key="frame" x="16" y="7" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="onTintColor" red="0.96862745289999996" green="0.85882353779999998" blue="0.6549019814" alpha="1" colorSpace="calibratedRGB"/>

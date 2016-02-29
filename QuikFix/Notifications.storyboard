@@ -21,13 +21,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" id="mV4-dT-8bX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NotificationCell" id="RPh-ac-7No">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mV4-dT-8bX" id="GDa-rS-kk5">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RPh-ac-7No" id="AW8-NU-qCO">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Xop-MG-8U5" kind="push" identifier="detailSegue" id="f18-ul-kjy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -66,10 +68,123 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="8dZ-91-TQQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="Ysw-LU-cTk" id="xJe-EP-77T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJF-1F-klN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="258"/>
+            <point key="canvasLocation" x="1359" y="258"/>
+        </scene>
+        <!--Quik Offer DetailsVC-->
+        <scene sceneID="etd-IM-1ub">
+            <objects>
+                <viewController storyboardIdentifier="OfferDetail" id="Xop-MG-8U5" customClass="QuikOfferDetailsVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="81f-c7-j5w"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rn6-3y-kHq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nlY-2n-ChX">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1tB-YG-keS">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="28" y="218" width="352" height="131"/>
+                                </variation>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="estimate label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mej-ke-7g0">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="28" y="357" width="352" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guw-uE-9kk">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Call"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="570" width="67" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onCallTapped:" destination="Xop-MG-8U5" eventType="touchUpInside" id="O9c-hs-dzE"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GRf-i6-4dO">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="76" y="386" width="249" height="176"/>
+                                </variation>
+                            </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sA0-Jk-p5v">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="78" width="199" height="127"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDg-gg-DmG">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Web"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="328" y="570" width="52" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onWebTapped:" destination="Xop-MG-8U5" eventType="touchUpInside" id="Sor-3c-bTX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Do-eJ-Thn">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Email"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="172" y="570" width="65" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onEmailTapped:" destination="Xop-MG-8U5" eventType="touchUpInside" id="vPW-Wm-dCe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="1tB-YG-keS"/>
+                                <exclude reference="Mej-ke-7g0"/>
+                                <exclude reference="guw-uE-9kk"/>
+                                <exclude reference="GRf-i6-4dO"/>
+                                <exclude reference="sA0-Jk-p5v"/>
+                                <exclude reference="mDg-gg-DmG"/>
+                                <exclude reference="4Do-eJ-Thn"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="1tB-YG-keS"/>
+                                <include reference="Mej-ke-7g0"/>
+                                <include reference="guw-uE-9kk"/>
+                                <include reference="GRf-i6-4dO"/>
+                                <include reference="sA0-Jk-p5v"/>
+                                <include reference="mDg-gg-DmG"/>
+                                <include reference="4Do-eJ-Thn"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="7oS-Gq-NB2"/>
+                    <connections>
+                        <outlet property="estimateLabel" destination="Mej-ke-7g0" id="qpD-NC-2yF"/>
+                        <outlet property="mapView" destination="GRf-i6-4dO" id="C6X-kH-e6c"/>
+                        <outlet property="messageTextView" destination="1tB-YG-keS" id="zHJ-9B-QRo"/>
+                        <outlet property="vendorImageView" destination="sA0-Jk-p5v" id="P5A-ze-EBQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVc-bR-ivq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2025" y="258"/>
         </scene>
     </scenes>
 </document>
