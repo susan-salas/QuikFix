@@ -36,31 +36,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self populateClaimsArray];
+    self.contentOffsetDictionary = [NSMutableDictionary dictionary];
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     [self.view addGestureRecognizer:tapGesture];
     self.mapView.hidden = YES;
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     [self updateUserCurrentLocation];
-    
-    [self populateClaimsArray];
-    self.contentOffsetDictionary = [NSMutableDictionary dictionary];
-    
-    
-    CGFloat latitude = 37.7;
-    CGFloat longitude = -122.4;
-    
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    point.coordinate = coordinate;
-    point.title = @"Username";
-    
-    [self.mapView addAnnotation:point];
 
-    
     UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
     [[self.navigationController navigationBar] setTintColor:navColor];
+}
+
+-(void)addAnnotations {
+    for (QuikClaim *claim in self.claims)
+    {
+        CLLocationDirection latitude = [[claim.claimLocation objectForKey:@"latitude"] doubleValue];
+        CLLocationDirection longitude = [[claim.claimLocation objectForKey:@"longitude"] doubleValue];
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        point.coordinate = coordinate;
+        point.title = claim.username;
+        [self.mapView addAnnotation:point];
+    }
 }
 
 -(void)hideKeyBoard {
@@ -80,18 +79,17 @@
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.15f, 0.15f)) animated:NO];
-    [self.locationManager stopUpdatingLocation];
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if (annotation == mapView.userLocation) {
-        return nil;
-    }
-    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
-    pin.canShowCallout = YES;
-    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    return pin;
-}
+//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+//    if (annotation == mapView.userLocation) {
+//        return nil;
+//    }
+//    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+//    pin.canShowCallout = YES;
+//    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    return pin;
+//}
 
 
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
@@ -166,15 +164,17 @@
             NSMutableArray *claimsFromFirebase = [NSMutableArray new];
             for (NSDictionary* claim in snapshot.value) {
                 
-                NSDictionary *currentClaimDict = snapshot.value [claim];
+                NSDictionary *currentClaimDict = snapshot.value[claim];
                 QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
                 [claimsFromFirebase addObject:currentClaim];
             }
             self.claims = claimsFromFirebase;
             [self.tableView reloadData];
+            [self addAnnotations];
         }
     }];
 }
+
 
 #pragma mark - UITableViewDataSource Methods
 

@@ -42,6 +42,7 @@
         self.carDetail = claimDictionary[@"carDetail"];
         self.damageType = claimDictionary[@"damageType"];
         self.username = claimDictionary[@"username"];
+        self.claimLocation = claimDictionary[@"location"];
     }
     
     return self;
