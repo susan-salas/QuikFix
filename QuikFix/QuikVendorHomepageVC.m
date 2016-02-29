@@ -57,7 +57,11 @@
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
         point.coordinate = coordinate;
-        point.title = claim.username;
+        NSString *title = [NSString stringWithFormat:@"%@: %@ - %@",
+                                  claim.username,
+                                  claim.panel,
+                                  claim.damageType];
+        point.title = title;
         [self.mapView addAnnotation:point];
     }
 }
@@ -81,15 +85,16 @@
     [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.15f, 0.15f)) animated:NO];
 }
 
-//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-//    if (annotation == mapView.userLocation) {
-//        return nil;
-//    }
-//    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
-//    pin.canShowCallout = YES;
-//    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    return pin;
-//}
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
+    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+    pin.canShowCallout = YES;
+    pin.image = [UIImage imageNamed:@"car"];
+    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    return pin;
+}
 
 
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
