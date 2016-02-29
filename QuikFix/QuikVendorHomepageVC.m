@@ -17,7 +17,7 @@
 #import "AFTableViewCell.h"
 
 
-@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
+@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -34,27 +34,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.locationManager requestWhenInUseAuthorization];
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
+    [self.view addGestureRecognizer:tapGesture];
     self.mapView.hidden = YES;
-    self.locationManager.delegate = self;
     self.mapView.delegate = self;
-    self.locationManager = [CLLocationManager new];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.mapView.showsUserLocation = YES;
-    [self.locationManager startUpdatingLocation];
+    [self updateUserCurrentLocation];
     
     [self populateClaimsArray];
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];
     
     
+    CGFloat latitude = self.claims;
+    CGFloat longitude = -122.4;
+    
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    point.coordinate = coordinate;
+    point.title = @"Username";
+    
+    [self.mapView addAnnotation:point];
 
     
 }
 
+-(void)hideKeyBoard {
+    [self.searchBar resignFirstResponder];
+}
+
+-(void)updateUserCurrentLocation
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager requestWhenInUseAuthorization];
+    
+}
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.15f, 0.15f)) animated:NO];
     [self.locationManager stopUpdatingLocation];
 }
 
