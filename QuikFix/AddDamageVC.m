@@ -113,6 +113,7 @@
         claim.username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
         claim.panel = self.panelTextField.text;
         claim.damageType = self.damageTypeTextField.text;
+        claim.carDetail = self.car.detail;
         [self addClaimToDatabase:claim];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -147,6 +148,7 @@
     [claimDict setObject:claim.ownerID forKey:@"owner"];
     [claimDict setObject:claim.username forKey:@"username"];
     [claimDict setObject:claim.claimLocation forKey:@"location"];
+    [claimDict setObject:claim.carDetail forKey:@"carDetail"];
 
     NSArray *images = claim.images;
 

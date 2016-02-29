@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.currentClaim.username;
+    self.title = self.currentClaim.carDetail;
     self.claimDescriptionTextView.text = self.currentClaim.damageDescription;
     self.claimDescriptionTextView.editable = NO;
     int count = 0;

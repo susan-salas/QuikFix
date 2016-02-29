@@ -15,24 +15,25 @@
                         <viewControllerLayoutGuide type="bottom" id="fhP-fR-RYw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="T1C-KT-Ihn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6Mp-bb-fcV">
-                                <rect key="frame" x="0.0" y="109" width="320" height="414"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="414"/>
                                 <connections>
                                     <outlet property="delegate" destination="Ljl-vL-AGO" id="lfA-QF-wjh"/>
                                 </connections>
                             </mapView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bgH-VD-bD0">
-                                <rect key="frame" x="0.0" y="64" width="320" height="45"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="J5G-m2-IHj"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-Mg-xNq">
-                                <rect key="frame" x="0.0" y="523" width="320" height="45"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-Mg-xNq">
+                                <rect key="frame" x="0.0" y="459" width="320" height="45"/>
+                                <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="sme-x4-6ok"/>
                                 </constraints>
@@ -41,10 +42,14 @@
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="O6X-gG-8Yz">
                                             <rect key="frame" x="16" y="7" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="onTintColor" red="0.96862745289999996" green="0.85882353779999998" blue="0.6549019814" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="thumbTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="switchButtonMoved:" destination="Ljl-vL-AGO" eventType="valueChanged" id="V0u-8O-59e"/>
                                             </connections>
                                         </switch>
+                                        <color key="tintColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="C3U-CB-mSZ"/>
                                     <barButtonItem title="History" id="Hd0-I1-vDW">
@@ -59,10 +64,11 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="243" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ulr-p7-AcQ">
-                                <rect key="frame" x="0.0" y="109" width="320" height="414"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="243" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ulr-p7-AcQ">
+                                <rect key="frame" x="0.0" y="45" width="320" height="414"/>
+                                <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Ljl-vL-AGO" id="xPT-8F-RFd"/>
                                     <outlet property="delegate" destination="Ljl-vL-AGO" id="eax-YN-veF"/>
@@ -88,7 +94,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Claims" id="jGM-2H-zFf">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="QGA-b2-OMT">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Kxk-MN-0hl"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="QGA-b2-OMT">
                             <connections>
                                 <action selector="logoutButtonPressed:" destination="Ljl-vL-AGO" id="IdG-ee-erR"/>
                             </connections>
@@ -114,11 +121,11 @@
                         <viewControllerLayoutGuide type="bottom" id="l2Q-rh-O6q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3kr-mE-np8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-v2-9Cb">
-                                <rect key="frame" x="20" y="488" width="280" height="60"/>
+                                <rect key="frame" x="20" y="424" width="280" height="60"/>
                                 <color key="backgroundColor" red="0.9686274528503418" green="0.85882353782653809" blue="0.65490198135375977" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="vOH-nr-kN5"/>
@@ -131,7 +138,7 @@
                                     <action selector="onSendEstimateTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="1RE-Yz-5H6"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="The claim description is going to be right here...hahaha" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y43-jX-of8">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="The claim description is going to be right here...hahaha" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y43-jX-of8">
                                 <rect key="frame" x="20" y="84" width="280" height="60"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -140,7 +147,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rBm-M8-x79">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rBm-M8-x79">
                                 <rect key="frame" x="20" y="154" width="280" height="280"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-Hs-US7">
@@ -204,7 +211,9 @@
                             <constraint firstAttribute="trailing" secondItem="y43-jX-of8" secondAttribute="trailing" constant="20" id="zer-tf-jbB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Claim Description" id="Ls6-Ou-y5A"/>
+                    <navigationItem key="navigationItem" title="Claim Description" id="Ls6-Ou-y5A">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="EOQ-dN-g2u"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="claimDescriptionTextView" destination="y43-jX-of8" id="oDv-Hb-rRn"/>
                         <outlet property="image1" destination="1IZ-xY-CTC" id="SJe-L4-JEf"/>
@@ -280,10 +289,10 @@
                         <viewControllerLayoutGuide type="bottom" id="cxL-EW-wt9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f0f-bS-cAQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Vo-tbd">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Vo-tbd">
                                 <rect key="frame" x="20" y="84" width="280" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -292,7 +301,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$ Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nq4-dm-b6O">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$ Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nq4-dm-b6O">
                                 <rect key="frame" x="20" y="214" width="123" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="epD-VX-lZ2"/>
@@ -302,7 +311,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbw-Ca-Ibm">
-                                <rect key="frame" x="20" y="488" width="280" height="60"/>
+                                <rect key="frame" x="20" y="424" width="280" height="60"/>
                                 <color key="backgroundColor" red="0.90588235855102539" green="0.26274511218070984" blue="0.14509804546833038" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="eMz-wU-mzc"/>
@@ -343,9 +352,13 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i0b-hU-1Z1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hou-WD-uJt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Hou-WD-uJt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.16078431904315948" green="0.18823529779911041" blue="0.26274511218070984" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

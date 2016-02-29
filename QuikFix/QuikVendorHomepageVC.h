@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QuikCar.h"
+@class QuikCar;
 
 @interface QuikVendorHomepageVC : UIViewController
 

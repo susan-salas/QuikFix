@@ -13,8 +13,10 @@
 #import "InitialViewController.h"
 #import "Firebase/Firebase.h"
 #import "QuikClaim.h"
+#import "QuikCar.h"
 #import "QuikVendorCliamDescriptionVC.h"
 #import "AFTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
@@ -45,7 +47,7 @@
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];
     
     
-    CGFloat latitude = self.claims;
+    CGFloat latitude = 37.7;
     CGFloat longitude = -122.4;
     
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
@@ -57,6 +59,8 @@
     [self.mapView addAnnotation:point];
 
     
+    UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
+    [[self.navigationController navigationBar] setTintColor:navColor];
 }
 
 -(void)hideKeyBoard {
@@ -211,7 +215,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     QuikClaim *claim = self.claims[section];
-    return claim.username;
+    NSString *sectionTitle = [NSString stringWithFormat:@"%@: %@ - %@",
+                              claim.username,
+                              claim.panel,
+                              claim.damageType];
+    return sectionTitle;
 }
         
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -228,11 +236,9 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
-  
-    NSLog(@"indexpath.item %lu", indexPath.item);
-
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.layer.cornerRadius = 3;
     imageView.clipsToBounds = YES;
     QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
     imageView.image = claim.images[indexPath.item];
