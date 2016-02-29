@@ -7,6 +7,7 @@
 //
 
 #import "QuikUserImagePickerVC.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface QuikUserImagePickerVC ()
 
@@ -18,6 +19,12 @@
 
     [super viewDidLoad];
     self.imageView.image = self.imageViewFromPreviousVC.image;
+    self.imageView.layer.cornerRadius = 3;
+    self.imageView.clipsToBounds = YES;
+    self.onCameraTapped.layer.cornerRadius = 3;
+    self.onCameraTapped.clipsToBounds = YES;
+    self.onLibraryTapped.layer.cornerRadius = 3;
+    self.onLibraryTapped.clipsToBounds = YES;
 
     // Do any additional setup after loading the view, typically from a nib.
 

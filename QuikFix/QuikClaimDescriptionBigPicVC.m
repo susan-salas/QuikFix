@@ -21,7 +21,7 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)onCancelButtonTapped:(UIButton *)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

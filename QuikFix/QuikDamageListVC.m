@@ -32,7 +32,6 @@
                                                                 action:nil];
 
     [self.navigationItem setBackBarButtonItem:backItem];
->>>>>>> 9dbd2ba402912a2d89e3ca5ba77260d08cfc7707
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

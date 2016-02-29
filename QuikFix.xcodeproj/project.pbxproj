@@ -15,7 +15,6 @@
 		368F03211C7CE4AE00A785C5 /* Batch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368F03201C7CE4AE00A785C5 /* Batch.framework */; };
 		36E57B6E1C72D46B000DEB1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B6D1C72D46B000DEB1E /* AppDelegate.m */; };
 		36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B721C72D46B000DEB1E /* Main.storyboard */; };
-		36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B751C72D46B000DEB1E /* Assets.xcassets */; };
 		36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E57B771C72D46B000DEB1E /* LaunchScreen.storyboard */; };
 		36E57B821C72E2BE000DEB1E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E57B811C72E2BE000DEB1E /* LoginViewController.m */; };
 		36E57B921C7302E6000DEB1E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E57B8F1C7302E6000DEB1E /* FBSDKShareKit.framework */; };
@@ -47,6 +46,7 @@
 		D0151D171C77FDB400DF4CC4 /* AFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D161C77FDB400DF4CC4 /* AFTableViewCell.m */; };
 		D0151D1A1C7963DC00DF4CC4 /* QuikUserImagePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */; };
 		D0151D1F1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */; };
+		D04E7AFC1C82C4D800659E48 /* Assets 22-00-33-896.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04E7AFB1C82C4D800659E48 /* Assets 22-00-33-896.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +62,6 @@
 		36E57B6C1C72D46B000DEB1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		36E57B6D1C72D46B000DEB1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		36E57B731C72D46B000DEB1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		36E57B751C72D46B000DEB1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36E57B781C72D46B000DEB1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36E57B7A1C72D46B000DEB1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E57B801C72E2BE000DEB1E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikUserImagePickerVC.m; sourceTree = "<group>"; };
 		D0151D1D1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCarTableViewCell.h; sourceTree = "<group>"; };
 		D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCarTableViewCell.m; sourceTree = "<group>"; };
+		D04E7AFB1C82C4D800659E48 /* Assets 22-00-33-896.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 22-00-33-896.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				36E57B681C72D46B000DEB1E /* QuikFix */,
+				D04E7AFB1C82C4D800659E48 /* Assets 22-00-33-896.xcassets */,
 				36E57B671C72D46B000DEB1E /* Products */,
 				D615B691160607FC1B8EF534 /* Pods */,
 				8E41E5E215C8C38294163A02 /* Frameworks */,
@@ -163,7 +164,6 @@
 				D0151CD31C74F86800DF4CC4 /* Model */,
 				D0151CD21C74F84400DF4CC4 /* View */,
 				D0151CD11C74F83F00DF4CC4 /* Controller */,
-				36E57B751C72D46B000DEB1E /* Assets.xcassets */,
 				D0151CDD1C77B07500DF4CC4 /* AFTabledCollectionView */,
 				D0151CC51C74F22F00DF4CC4 /* HTPPLE */,
 				36E57B691C72D46B000DEB1E /* Supporting Files */,
@@ -382,9 +382,9 @@
 				BD6E78481C73E6B500C68256 /* QuikVendorHomepage.storyboard in Resources */,
 				36E57B791C72D46B000DEB1E /* LaunchScreen.storyboard in Resources */,
 				D01127EF1C73C56F0051E7EF /* QuikUserHomepage.storyboard in Resources */,
+				D04E7AFC1C82C4D800659E48 /* Assets 22-00-33-896.xcassets in Resources */,
 				BD5E715C1C758E1000716E21 /* LoginViewController.storyboard in Resources */,
 				368F03111C7960DA00A785C5 /* Notifications.storyboard in Resources */,
-				36E57B761C72D46B000DEB1E /* Assets.xcassets in Resources */,
 				36E57B741C72D46B000DEB1E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

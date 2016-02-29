@@ -13,8 +13,10 @@
 #import "InitialViewController.h"
 #import "Firebase/Firebase.h"
 #import "QuikClaim.h"
+#import "QuikCar.h"
 #import "QuikVendorCliamDescriptionVC.h"
 #import "AFTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
@@ -25,6 +27,8 @@
 @property (nonatomic, strong) NSMutableDictionary *contentOffsetDictionary;
 @property QuikClaim *selectedClaim;
 @property NSMutableArray *claims;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation* currentLocation;
 
 @end
 
@@ -32,12 +36,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.locationManager requestWhenInUseAuthorization];
     self.mapView.hidden = YES;
+    self.locationManager.delegate = self;
     self.mapView.delegate = self;
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.mapView.showsUserLocation = YES;
+    [self.locationManager startUpdatingLocation];
+    
     [self populateClaimsArray];
-
-    self.contentOffsetDictionary = [NSMutableDictionary dictionary];    
+    self.contentOffsetDictionary = [NSMutableDictionary dictionary];
+    
+    UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
+    [[self.navigationController navigationBar] setTintColor:navColor];
 }
+
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
+    [self.locationManager stopUpdatingLocation];
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
+    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+    pin.canShowCallout = YES;
+    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    return pin;
+}
+
 
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"];
@@ -160,7 +191,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     QuikClaim *claim = self.claims[section];
-    return claim.username;
+    NSString *sectionTitle = [NSString stringWithFormat:@"%@: %@ - %@",
+                              claim.username,
+                              claim.panel,
+                              claim.damageType];
+    return sectionTitle;
 }
         
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -177,11 +212,9 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
-  
-    NSLog(@"indexpath.item %lu", indexPath.item);
-
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.layer.cornerRadius = 3;
     imageView.clipsToBounds = YES;
     QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
     imageView.image = claim.images[indexPath.item];

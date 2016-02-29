@@ -10,6 +10,9 @@
 #import "Firebase/Firebase.h"
 #import "QuikOffers.h"
 #import "QuikClaim.h"
+#import "Firebase/Firebase.h"
+#import "QuikOffers.h"
+#import "QuikVendorSendEstimateVC.h"
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
 @property NSMutableArray *offersArray;
@@ -28,6 +31,8 @@
         QuikOffers *currentOffer = [[QuikOffers alloc]initWithDictionary:offerDictionary];
         NSLog(@" currentOffer.message == %@", currentOffer.message);
         [self.offersArray addObject:currentOffer];
+        
+        
     }
 }
 
@@ -40,6 +45,16 @@
     QuikOffers *currentOffer = self.offersArray[indexPath.row];
     cell.textLabel.text = currentOffer.message;
     return cell; 
+}
+
+//- (void) loadOffersFromFirebase{
+//    Firebase *claimRef = [[[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/claims"] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"];
+//    [claimRef ];
+//}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    QuikOffers *currentOffer = self.offersArray[indexPath.row];
+    
 }
 
 @end

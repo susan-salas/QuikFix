@@ -97,10 +97,6 @@
     }
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    [textView becomeFirstResponder];
-}
-
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
 
     if(textField.tag == 999){
