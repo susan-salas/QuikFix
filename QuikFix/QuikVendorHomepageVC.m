@@ -38,8 +38,6 @@
     [super viewDidLoad];
     [self populateClaimsArray];
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
-    [self.view addGestureRecognizer:tapGesture];
     self.mapView.hidden = YES;
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
@@ -132,7 +130,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     QuikVendorCliamDescriptionVC *claimDescription = segue.destinationViewController;
     claimDescription.currentClaim = self.selectedClaim;
 }
@@ -163,7 +160,6 @@
         if(snapshot.exists){
             NSMutableArray *claimsFromFirebase = [NSMutableArray new];
             for (NSDictionary* claim in snapshot.value) {
-                
                 NSDictionary *currentClaimDict = snapshot.value[claim];
                 QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
                 [claimsFromFirebase addObject:currentClaim];
@@ -186,7 +182,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CellIdentifier";
-
     AFTableViewCell *cell = (AFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (!cell)
@@ -238,7 +233,6 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.layer.cornerRadius = 3;
     imageView.clipsToBounds = YES;
     QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
     imageView.image = claim.images[indexPath.item];
@@ -253,7 +247,6 @@
     if (![scrollView isKindOfClass:[UICollectionView class]]) return;
 
     CGFloat horizontalOffset = scrollView.contentOffset.x;
-
     UICollectionView *collectionView = (UICollectionView *)scrollView;
     NSInteger index = collectionView.tag;
     self.contentOffsetDictionary[[@(index) stringValue]] = @(horizontalOffset);

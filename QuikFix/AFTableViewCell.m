@@ -23,7 +23,6 @@
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.collectionView = [[AFIndexedCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
-    self.collectionView.backgroundColor = [UIColor colorWithRed:41 green:48 blue:67 alpha:1];
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:self.collectionView];
     
@@ -33,17 +32,15 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
     self.collectionView.frame = self.contentView.bounds;
 }
 
 - (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"inside the set collection view delegate");
     self.collectionView.dataSource = dataSourceDelegate;
     self.collectionView.delegate = dataSourceDelegate;
     self.collectionView.indexPath = indexPath;
-    
-    NSLog(@"index path in tableview cell %lu", indexPath.row);
     
     [self.collectionView reloadData];
 }

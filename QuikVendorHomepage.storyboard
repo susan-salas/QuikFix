@@ -24,11 +24,12 @@
                                     <outlet property="delegate" destination="Ljl-vL-AGO" id="lfA-QF-wjh"/>
                                 </connections>
                             </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bgH-VD-bD0">
+                            <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgH-VD-bD0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="J5G-m2-IHj"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-Mg-xNq">
