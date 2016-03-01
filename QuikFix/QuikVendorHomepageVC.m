@@ -345,6 +345,8 @@
         QuikClaim *claim = self.filteredClaims[[(AFIndexedCollectionView *)collectionView indexPath].section];
         imageView.image = claim.images[indexPath.item];
         [cell addSubview:imageView];
+        cell.layer.cornerRadius = 3;
+        cell.clipsToBounds = YES;
         return cell;
     }else {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
@@ -354,6 +356,8 @@
         QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
         imageView.image = claim.images[indexPath.item];
         [cell addSubview:imageView];
+        cell.layer.cornerRadius = 3;
+        cell.clipsToBounds = YES;
         return cell;
     }
 }
