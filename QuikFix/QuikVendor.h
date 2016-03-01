@@ -13,7 +13,8 @@
 
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) NSString *vendorName;
-@property (nonatomic, strong) NSDictionary *vendorLocation;
+@property (nonatomic, strong) NSString *locationLatitude;
+@property (nonatomic, strong) NSString *locationLongitude;
 @property (nonatomic, strong) NSURL *vendorWebsite;
 @property (nonatomic, strong) NSString *vendorPhoneNumber;
 @property (nonatomic, strong) NSString *vendorEmail;

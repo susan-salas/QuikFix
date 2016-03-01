@@ -14,16 +14,18 @@
     if (self) {
         self.idNumber = vendorDictionary[@"vendorid"];
         self.vendorName = vendorDictionary[@"name"];
-        self.vendorLocation = vendorDictionary[@"location"];
-        self.vendorWebsite = [NSURL URLWithString:vendorDictionary[@"@website"]];
+        self.locationLatitude = vendorDictionary[@"latitude"];
+        self.locationLongitude = vendorDictionary [@"longitude"];
+        self.vendorWebsite = [[NSURL alloc] initWithString: vendorDictionary[@"website"]];
         self.vendorPhoneNumber = vendorDictionary[@"phone"];
         self.vendorEmail = vendorDictionary[@"email"];
         if (vendorDictionary[@"rating"] != NULL) {
             self.vendorRating = vendorDictionary[@"rating"];
         }
-        
+        if (vendorDictionary[@"image"] != NULL){
         NSData *data = [[NSData alloc] initWithBase64EncodedString:vendorDictionary[@"image"] options:NSDataBase64DecodingIgnoreUnknownCharacters];
         self.image = [UIImage imageWithData:data];
+        }
         self.address = vendorDictionary[@"address"];
     }
     return self; 
