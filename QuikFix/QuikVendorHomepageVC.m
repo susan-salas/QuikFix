@@ -55,7 +55,10 @@
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
         point.coordinate = coordinate;
+        point.accessibilityHint = [NSString stringWithFormat:@"%lu",(unsigned long)[self.claims indexOfObject:claim]];
+        NSString *subtitle = [NSString stringWithFormat:@"%@ - %@", claim.panel, claim.damageType];
         point.title = claim.username;
+        point.subtitle = subtitle;
         [self.mapView addAnnotation:point];
     }
 }
@@ -69,8 +72,8 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
     [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
     
 }
 
@@ -79,15 +82,45 @@
     [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.15f, 0.15f)) animated:NO];
 }
 
-//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-//    if (annotation == mapView.userLocation) {
-//        return nil;
-//    }
-//    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
-//    pin.canShowCallout = YES;
-//    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    return pin;
-//}
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
+    MKAnnotationView *pin = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+    pin.canShowCallout = YES;
+    pin.image = [UIImage imageNamed:@"car"];
+    //pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+
+    // Add a detail disclosure button to the callout.
+    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    pin.rightCalloutAccessoryView = rightButton;
+    
+    // Add an image to the left callout.
+    UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"car"]];
+    pin.leftCalloutAccessoryView = iconView;
+    return pin;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    MKPointAnnotation *point = view.annotation;
+    int index = (int)[point.accessibilityHint integerValue];
+    self.selectedClaim = self.claims[index];
+    [self performSegueWithIdentifier:@"FromCellSegue" sender:view];
+}
+
+#pragma mark Zoom
+
+- (IBAction)zoomToCurrentLocation:(UIBarButtonItem *)sender {
+    float spanX = 0.00725;
+    float spanY = 0.00725;
+    MKCoordinateRegion region;
+    region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+    region.center.longitude = self.mapView.userLocation.coordinate.longitude;
+    region.span.latitudeDelta = spanX;
+    region.span.longitudeDelta = spanY;
+    [self.mapView setRegion:region animated:YES];
+}
 
 
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
@@ -124,7 +157,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.selectedClaim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
-    
     [self performSegueWithIdentifier:@"FromCellSegue" sender:self];
     
 }

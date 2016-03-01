@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSURL *vendorWebsite;
 @property (nonatomic, strong) NSString *vendorPhoneNumber;
 @property (nonatomic, strong) NSString *vendorEmail;
+@property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSNumber *vendorRating;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSString *address;
