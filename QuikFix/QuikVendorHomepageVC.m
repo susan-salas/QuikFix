@@ -255,6 +255,7 @@
 
 #pragma mark - UICollectionViewDataSource Methods
 
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return 4;
@@ -268,11 +269,18 @@
     imageView.clipsToBounds = YES;
     QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
     imageView.image = claim.images[indexPath.item];
+    cell.layer.cornerRadius = 3;
+    cell.clipsToBounds = YES;
     [cell addSubview:imageView];
     return cell;
 }
 
 #pragma mark - UIScrollViewDelegate Methods
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:1];
+    view.tintColor = appYellow;
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
