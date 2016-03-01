@@ -19,7 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
+@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -29,6 +29,9 @@
 @property NSMutableArray *claims;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation* currentLocation;
+@property BOOL isFiltered;
+@property NSMutableArray *filteredClaims;
+@property NSInteger timesUpdated;
 
 @end
 
@@ -42,29 +45,69 @@
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     [self updateUserCurrentLocation];
-
+    self.isFiltered = NO;
+    self.searchBar.delegate = self;
+    self.timesUpdated = 0;
+    
     UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
     [[self.navigationController navigationBar] setTintColor:navColor];
 }
 
 -(void)addAnnotations {
-    for (QuikClaim *claim in self.claims)
-    {
-        CLLocationDirection latitude = [[claim.claimLocation objectForKey:@"latitude"] doubleValue];
-        CLLocationDirection longitude = [[claim.claimLocation objectForKey:@"longitude"] doubleValue];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-        point.coordinate = coordinate;
-        point.accessibilityHint = [NSString stringWithFormat:@"%lu",(unsigned long)[self.claims indexOfObject:claim]];
-        NSString *subtitle = [NSString stringWithFormat:@"%@ - %@", claim.panel, claim.damageType];
-        point.title = claim.username;
-        point.subtitle = subtitle;
-        [self.mapView addAnnotation:point];
+    if (self.isFiltered == YES) {
+        for (QuikClaim *claim in self.filteredClaims)
+        {
+            CLLocationDirection latitude = [[claim.claimLocation objectForKey:@"latitude"] doubleValue];
+            CLLocationDirection longitude = [[claim.claimLocation objectForKey:@"longitude"] doubleValue];
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+            MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+            point.coordinate = coordinate;
+            point.accessibilityHint = [NSString stringWithFormat:@"%lu",(unsigned long)[self.filteredClaims indexOfObject:claim]];
+            NSString *subtitle = [NSString stringWithFormat:@"%@ - %@", claim.panel, claim.damageType];
+            point.title = claim.username;
+            point.subtitle = subtitle;
+            [self.mapView addAnnotation:point];
+        }
+    }else {
+        for (QuikClaim *claim in self.claims)
+        {
+            CLLocationDirection latitude = [[claim.claimLocation objectForKey:@"latitude"] doubleValue];
+            CLLocationDirection longitude = [[claim.claimLocation objectForKey:@"longitude"] doubleValue];
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+            MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+            point.coordinate = coordinate;
+            point.accessibilityHint = [NSString stringWithFormat:@"%lu",(unsigned long)[self.claims indexOfObject:claim]];
+            NSString *subtitle = [NSString stringWithFormat:@"%@ - %@", claim.panel, claim.damageType];
+            point.title = claim.username;
+            point.subtitle = subtitle;
+            [self.mapView addAnnotation:point];
+        }
     }
 }
 
 -(void)hideKeyBoard {
     [self.searchBar resignFirstResponder];
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length == 0) {
+        self.isFiltered = NO;
+    } else {
+        
+        self.isFiltered = YES;
+        self.filteredClaims = [NSMutableArray new];
+        for (QuikClaim *claim in self.claims) {
+            NSRange claimUsernameRange = [claim.username rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSRange claimDamageTypeRange = [claim.damageType rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSRange claimPanelRange = [claim.panel rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (claimUsernameRange.location != NSNotFound || claimDamageTypeRange.location != NSNotFound || claimPanelRange.location != NSNotFound) {
+                [self.filteredClaims addObject:claim];
+            }
+        }
+    }
+    [self.tableView reloadData];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self addAnnotations];
 }
 
 -(void)updateUserCurrentLocation
@@ -79,7 +122,15 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.15f, 0.15f)) animated:NO];
+    if(self.timesUpdated<1) {
+        MKCoordinateRegion mapregion;
+        mapregion.center.latitude = self.mapView.userLocation.coordinate.latitude;
+        mapregion.center.longitude = self.mapView.userLocation.coordinate.longitude;
+        mapregion.span = MKCoordinateSpanMake(0.005,0.005);
+        [self.mapView setRegion:mapregion animated:YES];
+        self.mapView.userLocation.title = @"You're here";
+        self.timesUpdated++;
+    }
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -103,10 +154,17 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    MKPointAnnotation *point = view.annotation;
-    int index = (int)[point.accessibilityHint integerValue];
-    self.selectedClaim = self.claims[index];
-    [self performSegueWithIdentifier:@"FromCellSegue" sender:view];
+    if (self.isFiltered == YES) {
+        MKPointAnnotation *point = view.annotation;
+        int index = (int)[point.accessibilityHint integerValue];
+        self.selectedClaim = self.filteredClaims[index];
+        [self performSegueWithIdentifier:@"FromCellSegue" sender:view];
+    } else {
+        MKPointAnnotation *point = view.annotation;
+        int index = (int)[point.accessibilityHint integerValue];
+        self.selectedClaim = self.claims[index];
+        [self performSegueWithIdentifier:@"FromCellSegue" sender:view];
+    }
 }
 
 #pragma mark Zoom
@@ -156,9 +214,12 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.isFiltered == YES) {
+       self.selectedClaim = self.filteredClaims[[(AFIndexedCollectionView *)collectionView indexPath].section];
+    } else {
     self.selectedClaim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
+    }
     [self performSegueWithIdentifier:@"FromCellSegue" sender:self];
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -241,16 +302,29 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    QuikClaim *claim = self.claims[section];
-    NSString *sectionTitle = [NSString stringWithFormat:@"%@: %@ - %@",
-                              claim.username,
-                              claim.panel,
-                              claim.damageType];
-    return sectionTitle;
+    if (self.isFiltered == YES) {
+        QuikClaim *claim = self.filteredClaims[section];
+        NSString *sectionTitle = [NSString stringWithFormat:@"%@: %@ - %@",
+                                  claim.username,
+                                  claim.panel,
+                                  claim.damageType];
+        return sectionTitle;
+    }else {
+        QuikClaim *claim = self.claims[section];
+        NSString *sectionTitle = [NSString stringWithFormat:@"%@: %@ - %@",
+                                  claim.username,
+                                  claim.panel,
+                                  claim.damageType];
+        return sectionTitle;
+    }
 }
         
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.claims.count;
+    if (self.isFiltered == YES) {
+        return self.filteredClaims.count;
+    }else {
+        return self.claims.count;
+    }
 }
 
 #pragma mark - UICollectionViewDataSource Methods
@@ -262,14 +336,25 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds = YES;
-    QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
-    imageView.image = claim.images[indexPath.item];
-    [cell addSubview:imageView];
-    return cell;
+    if (self.isFiltered == YES) {
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        QuikClaim *claim = self.filteredClaims[[(AFIndexedCollectionView *)collectionView indexPath].section];
+        imageView.image = claim.images[indexPath.item];
+        [cell addSubview:imageView];
+        return cell;
+    }else {
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
+        imageView.image = claim.images[indexPath.item];
+        [cell addSubview:imageView];
+        return cell;
+    }
 }
 
 #pragma mark - UIScrollViewDelegate Methods
