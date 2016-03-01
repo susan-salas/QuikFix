@@ -101,4 +101,13 @@
     }
 }
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if ([identifier isEqualToString:@"unwindToTable"]) {
+        if ([self isClaimMessageReadyToPush]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 @end

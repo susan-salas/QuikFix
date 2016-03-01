@@ -48,7 +48,6 @@
     [self performSegueWithIdentifier:@"SendEstimateSegue" sender:nil];
 }
 
-
 - (IBAction)onImageButtonsTapped:(UIButton *)sender {
     
 }
