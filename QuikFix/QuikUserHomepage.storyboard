@@ -58,7 +58,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9p1-yH-R95">
-                                <rect key="frame" x="20" y="0.0" width="280" height="504"/>
+                                <rect key="frame" x="20" y="0.0" width="280" height="459"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,27 +67,43 @@
                                     <outlet property="delegate" destination="KDg-O1-fNE" id="6IY-lc-CVs"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIX-bM-xyp">
+                                <rect key="frame" x="0.0" y="459" width="320" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="9NR-iy-xfU"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="New Offers" id="DPl-DJ-lYO">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="KIX-bM-xyp" firstAttribute="top" secondItem="9p1-yH-R95" secondAttribute="bottom" id="1iU-Fy-iI2"/>
+                            <constraint firstItem="KIX-bM-xyp" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" id="5op-Ug-Cjt"/>
+                            <constraint firstAttribute="trailing" secondItem="9p1-yH-R95" secondAttribute="trailing" constant="20" id="7hw-Y7-cek"/>
                             <constraint firstItem="VDB-sY-dYK" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="CiH-XX-r8l"/>
+                            <constraint firstItem="9p1-yH-R95" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="Tvs-j6-b3F"/>
                             <constraint firstItem="VDB-sY-dYK" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="ZnU-OJ-sFV"/>
-                            <constraint firstItem="9p1-yH-R95" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="aLj-zA-chf"/>
-                            <constraint firstAttribute="trailing" secondItem="9p1-yH-R95" secondAttribute="trailing" constant="20" id="hTc-tX-jq4"/>
+                            <constraint firstAttribute="trailing" secondItem="KIX-bM-xyp" secondAttribute="trailing" id="gEg-oP-BtQ"/>
                             <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="VDB-sY-dYK" secondAttribute="bottom" id="hc3-xa-DAt"/>
+                            <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="KIX-bM-xyp" secondAttribute="bottom" id="jEq-5N-1be"/>
+                            <constraint firstItem="9p1-yH-R95" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="jZo-pS-q0O"/>
                             <constraint firstAttribute="trailing" secondItem="VDB-sY-dYK" secondAttribute="trailing" constant="20" id="nFq-KW-C64"/>
-                            <constraint firstItem="9p1-yH-R95" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="rlL-dF-BBC"/>
-                            <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="9p1-yH-R95" secondAttribute="bottom" id="wXc-k4-jTc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Cars" id="Vl5-4M-Ga5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="1xK-nk-EfW"/>
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="lWP-di-Ob0">
                             <color key="tintColor" red="0.86666666670000003" green="0.90196078430000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onLogoutTapped:" destination="KDg-O1-fNE" id="Fob-SL-6bt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Car" id="nZ5-Z4-pAA">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="nZ5-Z4-pAA">
                             <color key="tintColor" red="0.86666666670000003" green="0.90196078430000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onAddButtonTapped:" destination="KDg-O1-fNE" id="3I1-le-hn2"/>
@@ -166,7 +182,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Damage Log" id="rYe-lU-nLu">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="gCV-px-xxL"/>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="RLV-dF-lIm">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="RLV-dF-lIm">
                             <connections>
                                 <segue destination="NAk-0k-UW4" kind="push" id="nLF-ed-8wg"/>
                             </connections>
