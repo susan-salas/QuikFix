@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 @class QuikCar;
 @class QuikClaim;
 
 @interface AddDamageVC : UIViewController
+
+
+@property (nonatomic,retain) CLLocationManager *locationManager;
 @property NSString *carDetailText;
 @property QuikCar *car;
 @property QuikClaim *claim;
