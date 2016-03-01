@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITextField *priceEstimateTextField;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
 
 @end
 
@@ -26,6 +27,10 @@
     self.messageTextView.textColor = [UIColor lightGrayColor];
     self.messageTextView.delegate = self;
     self.priceEstimateTextField.delegate = self;
+    self.messageTextView.layer.cornerRadius = 3;
+    self.messageTextView.clipsToBounds = YES;
+    self.sendButton.layer.cornerRadius = 3;
+    self.sendButton.clipsToBounds = YES;
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if ([textView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@""]) {

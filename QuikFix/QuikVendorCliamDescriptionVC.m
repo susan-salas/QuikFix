@@ -9,11 +9,13 @@
 #import "QuikVendorCliamDescriptionVC.h"
 #import "QuikVendorSendEstimateVC.h"
 #import "QuikClaimDescriptionBigPicVC.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface QuikVendorCliamDescriptionVC ()
 @property (weak, nonatomic) IBOutlet UIButton *image1;
 @property (weak, nonatomic) IBOutlet UITextView *claimDescriptionTextView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *imageButtons;
+@property (weak, nonatomic) IBOutlet UIButton *sendEstimateButton;
 
 @end
 
@@ -23,12 +25,20 @@
     [super viewDidLoad];
     self.title = self.currentClaim.carDetail;
     self.claimDescriptionTextView.text = self.currentClaim.damageDescription;
+    self.claimDescriptionTextView.layer.cornerRadius = 3;
+    self.claimDescriptionTextView.clipsToBounds = YES;
     self.claimDescriptionTextView.editable = NO;
+    self.sendEstimateButton.layer.cornerRadius = 3;
+    self.sendEstimateButton.clipsToBounds = YES;
+
     int count = 0;
     
     for (UIButton *button in self.imageButtons) {
         UIImage *image = self.currentClaim.images[count];
-        [button setBackgroundImage:image forState:UIControlStateNormal];
+
+        [button setBackgroundImage: image forState:UIControlStateNormal];
+        button.layer.cornerRadius = 3;
+        button.clipsToBounds = YES;
         count ++;
     }
 }

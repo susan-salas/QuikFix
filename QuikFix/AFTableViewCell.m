@@ -23,6 +23,7 @@
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.collectionView = [[AFIndexedCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:41.0/255.0 green:48.0/255.0 blue:67.0/255.0 alpha:1];
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:self.collectionView];
     

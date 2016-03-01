@@ -63,6 +63,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = chosenImage;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
     self.imageViewFromPreviousVC.contentMode = UIViewContentModeScaleAspectFill;
     self.imageViewFromPreviousVC.clipsToBounds = YES;
     self.imageViewFromPreviousVC.image = chosenImage;

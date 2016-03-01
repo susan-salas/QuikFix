@@ -329,6 +329,7 @@
 
 #pragma mark - UICollectionViewDataSource Methods
 
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return 4;
@@ -358,6 +359,11 @@
 }
 
 #pragma mark - UIScrollViewDelegate Methods
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:1];
+    view.tintColor = appYellow;
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
