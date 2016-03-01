@@ -19,7 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
+@interface QuikVendorHomepageVC () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -36,38 +36,58 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.locationManager requestWhenInUseAuthorization];
-    self.mapView.hidden = YES;
-    self.locationManager.delegate = self;
-    self.mapView.delegate = self;
-    self.locationManager = [CLLocationManager new];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.mapView.showsUserLocation = YES;
-    [self.locationManager startUpdatingLocation];
-    
     [self populateClaimsArray];
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];
-    
+    self.mapView.hidden = YES;
+    self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    [self updateUserCurrentLocation];
+
     UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
     [[self.navigationController navigationBar] setTintColor:navColor];
 }
 
+-(void)addAnnotations {
+    for (QuikClaim *claim in self.claims)
+    {
+        CLLocationDirection latitude = [[claim.claimLocation objectForKey:@"latitude"] doubleValue];
+        CLLocationDirection longitude = [[claim.claimLocation objectForKey:@"longitude"] doubleValue];
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        point.coordinate = coordinate;
+        point.title = claim.username;
+        [self.mapView addAnnotation:point];
+    }
+}
+
+-(void)hideKeyBoard {
+    [self.searchBar resignFirstResponder];
+}
+
+-(void)updateUserCurrentLocation
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager requestWhenInUseAuthorization];
+    
+}
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
-    [self.locationManager stopUpdatingLocation];
+    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.15f, 0.15f)) animated:NO];
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if (annotation == mapView.userLocation) {
-        return nil;
-    }
-    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
-    pin.canShowCallout = YES;
-    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    return pin;
-}
+//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+//    if (annotation == mapView.userLocation) {
+//        return nil;
+//    }
+//    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+//    pin.canShowCallout = YES;
+//    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    return pin;
+//}
 
 
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
@@ -110,7 +130,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     QuikVendorCliamDescriptionVC *claimDescription = segue.destinationViewController;
     claimDescription.currentClaim = self.selectedClaim;
 }
@@ -141,16 +160,17 @@
         if(snapshot.exists){
             NSMutableArray *claimsFromFirebase = [NSMutableArray new];
             for (NSDictionary* claim in snapshot.value) {
-                
-                NSDictionary *currentClaimDict = snapshot.value [claim];
+                NSDictionary *currentClaimDict = snapshot.value[claim];
                 QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:currentClaimDict];
                 [claimsFromFirebase addObject:currentClaim];
             }
             self.claims = claimsFromFirebase;
             [self.tableView reloadData];
+            [self addAnnotations];
         }
     }];
 }
+
 
 #pragma mark - UITableViewDataSource Methods
 
@@ -162,7 +182,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CellIdentifier";
-
     AFTableViewCell *cell = (AFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (!cell)
@@ -214,7 +233,6 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.layer.cornerRadius = 3;
     imageView.clipsToBounds = YES;
     QuikClaim *claim = self.claims[[(AFIndexedCollectionView *)collectionView indexPath].section];
     imageView.image = claim.images[indexPath.item];
@@ -229,7 +247,6 @@
     if (![scrollView isKindOfClass:[UICollectionView class]]) return;
 
     CGFloat horizontalOffset = scrollView.contentOffset.x;
-
     UICollectionView *collectionView = (UICollectionView *)scrollView;
     NSInteger index = collectionView.tag;
     self.contentOffsetDictionary[[@(index) stringValue]] = @(horizontalOffset);

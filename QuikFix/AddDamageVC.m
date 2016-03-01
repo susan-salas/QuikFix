@@ -93,6 +93,12 @@
 
         [self.submitButton setTitle:@"Save" forState:UIControlStateNormal];
     }
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -103,10 +109,11 @@
 - (IBAction)onSubmitTapped:(UIButton *)sender {
     if ([self isClaimReadyToPush]) {
         QuikClaim *claim = [QuikClaim new];
-        NSNumber *latitude = [NSNumber numberWithFloat:37.79];
-        NSNumber *longitude = [NSNumber numberWithFloat:-122.40] ;
+        float latitude = self.locationManager.location.coordinate.latitude;
+        float longitude = self.locationManager.location.coordinate.longitude;
+
         claim.carWithDamage = self.car.vin;
-        claim.claimLocation = @{@"latitude":latitude, @"longitude":longitude};
+        claim.claimLocation = @{@"latitude":[NSNumber numberWithFloat:latitude], @"longitude":[NSNumber numberWithFloat:longitude]};
         claim.images = [NSMutableArray arrayWithObjects:self.image1.image, self.image2.image, self.image3.image, self.image4.image, nil];
         claim.damageDescription = self.damageDescription.text;
         claim.ownerID = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];

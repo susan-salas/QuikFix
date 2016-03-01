@@ -5,7 +5,7 @@
 
 pod 'Firebase', '>= 2.5.0'
 pod 'Batch', '~> 1.5'
-
+pod 'AFNetworking'
 target 'QuikFix' do
 
 end
