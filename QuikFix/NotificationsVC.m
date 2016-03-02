@@ -76,6 +76,7 @@
     QuikOfferDetailsVC *dest = segue.destinationViewController;
     QuikClaim *currentClaim = [self.claimsArray objectAtIndex:[self.tableView indexPathForCell:cell].section];
     dest.currentOffer = [currentClaim.offers objectAtIndex:[self.tableView indexPathForCell:cell].row];
+
 }
 
 - (BOOL) checkIfUserHasOffers: (NSMutableArray *) arrayOfClaims{

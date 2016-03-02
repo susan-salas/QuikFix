@@ -58,64 +58,55 @@
     [self.messageTextView resignFirstResponder];
     [self.priceEstimateTextField resignFirstResponder];
 }
-
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@""]) {
-        textView.text = @"";
-        self.messageTextView.textColor = [UIColor blackColor];
-    }else if ([self.priceEstimateTextField.text isEqualToString:@"Required"]) {
-        self.priceEstimateTextField.text = @"";
-        self.priceEstimateTextField.textColor = [UIColor blackColor];
-    }
-    [textView becomeFirstResponder];
-}
--(BOOL)isClaimMessageReadyToPush{
-    if (self.messageTextView.text.length == 0 || [self.messageTextView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@"Cannot be empty"]) {
-        self.messageTextView.textColor = [UIColor redColor];
-        self.messageTextView.text = @"Cannot be empty";
-        return false;
-    }
-    else if ([self.messageTextView.text isEqualToString:@"Cannot be empty"]) {
-        return false;
-    }
-    return true;
-}
--(BOOL)isClaimPriceReadyToPush{
-    if (self.priceEstimateTextField.text.length == 0 || [self.priceEstimateTextField.text isEqualToString:@"Required"]) {
-        self.priceEstimateTextField.textColor = [UIColor redColor];
-        self.priceEstimateTextField.text = @"Required";
-        return false;
-    }
-    else if ([self.priceEstimateTextField.text isEqualToString:@"Required"]) {
-        return false;
-    }
-    return true;
-}
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView{
+//    [textView becomeFirstResponder];
+//}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    if ([self.messageTextView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@"Cannot be empty"]) {
-        self.messageTextView.text = @"";
-    }else if ([self.priceEstimateTextField.text isEqualToString:@"Required"]) {
-        self.priceEstimateTextField.text = @"";
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView.textColor == [UIColor lightGrayColor]) {
+        textView.text = @"";
     }
-    self.messageTextView.textColor = [UIColor blackColor];
-    self.priceEstimateTextField.textColor = [UIColor blackColor];
-    return YES;
+    textView.textColor = [UIColor blackColor];
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField.textColor == [UIColor lightGrayColor]) {
+        textField.text = @"";
+    }
+    textField.textColor = [UIColor blackColor];
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
-    if(self.messageTextView.text.length == 0 || [self.messageTextView.text isEqualToString:@""]){
-        self.messageTextView.textColor = [UIColor lightGrayColor];
-        self.messageTextView.text = @"Please write your message here...";
-        [self.messageTextView resignFirstResponder];
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+//    if ((textView.textColor = [UIColor lightGrayColor])) {
+//        textView.text = @"";
+//    }
+//    textView.textColor = [UIColor blackColor];
+//    return YES;
+//}
+
+-(BOOL)isClaimMessageReadyToPush{
+    if ([self.messageTextView.text length] > 0 || self.messageTextView.text != nil || [self.messageTextView.text isEqual:@""] == FALSE || self.priceEstimateTextField.text) {
+        return true;
+    }else if ([self.messageTextView.text isEqualToString:@"Message required"]) {
+        return false;
     }
+    self.messageTextView.text = @"Message required";
+    return false;
 }
+
+-(BOOL)isClaimPriceReadyToPush{
+    if ([self.priceEstimateTextField.text length] > 0 || self.priceEstimateTextField.text != nil || [self.priceEstimateTextField.text isEqual:@""] == FALSE) {
+        return true;
+    }
+    self.priceEstimateTextField.placeholder = @"$ required";
+    return false;
+}
+
 
 - (IBAction)onSendTapped:(UIButton *)sender {
 
@@ -127,15 +118,23 @@
                                                @"bid": self.priceEstimateTextField.text};
                 [notificationRef setValue:notification];
     }
+    //ui alert cannot leave textfields blank
+    if ([self.priceEstimateTextField.text isEqualToString:@""]) {
+        self.priceEstimateTextField.placeholder = @"$ required";
+    }
+    if ([self.messageTextView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@""]) {
+    self.messageTextView.textColor = [UIColor lightGrayColor];
+    self.messageTextView.text = @"Message required";
+    }
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     if ([identifier isEqualToString:@"unwindToTable"]) {
-        if ([self isClaimMessageReadyToPush] && [self isClaimPriceReadyToPush]) {
-            return true;
+        if ([self.priceEstimateTextField.text isEqualToString:@""] || [self.messageTextView.text isEqualToString:@""] || [self.messageTextView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@"Message required"]) {
+            return false;
         }
     }
-    return false;
+    return true;
 }
 
 @end
