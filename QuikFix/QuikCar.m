@@ -20,7 +20,7 @@
         self.body = [carDictionary valueForKey:@"body"];
         self.color = [carDictionary valueForKey:@"color"];
         self.image = [UIImage imageNamed:@"180 - iPhone 6 Plus"];
-        self.detail = [NSString stringWithFormat:@"%@ %@ %@  %@",
+        self.detail = [NSString stringWithFormat:@"%@ %@ %@ %@",
                        self.year,
                        self.make,
                        self.model,

@@ -28,23 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadVendor];
-    
-}
-
--(void) loadVendor{
-    //
-    Firebase *vendorRef = [[[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"] childByAppendingPath:@"vendors"] childByAppendingPath: self.currentOffer.vendor];
-    [vendorRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        if (snapshot.exists) {
-            self.currentVendor = [[QuikVendor alloc]initWithDictionary:snapshot.value];
-            [self loadMyViews];
-        }
-    }];
-}
-
-- (void) loadMyViews{
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.currentVendor.locationLatitude doubleValue], [self.currentVendor.locationLongitude doubleValue]);
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.currentOffer.vendor.locationLatitude doubleValue], [self.currentOffer.vendor.locationLongitude doubleValue]);
     
     MKCoordinateSpan span = MKCoordinateSpanMake(0.009, 0.009);
     MKCoordinateRegion region = {coord, span};
@@ -56,23 +40,23 @@
     [self.mapView addAnnotation:annotation];
     self.messageTextView.text = self.currentOffer.message;
     self.estimateLabel.text = [NSString stringWithFormat:@"$%@", self.currentOffer.bid];
-    self.vendorImageView.image = self.currentVendor.image;
-    self.vendorNameLabel.text = self.currentVendor.vendorName;
-    self.ratingsLabel.text = [NSString stringWithFormat:@"Rating: %@", self.currentVendor.vendorRating];
-    self.addressTextView.text = self.currentVendor.address;
+    self.vendorImageView.image = self.currentOffer.vendor.image;
+    self.vendorNameLabel.text = self.currentOffer.vendor.vendorName;
+    self.ratingsLabel.text = [NSString stringWithFormat:@"Rating: %@", self.currentOffer.vendor.vendorRating];
+    self.addressTextView.text = self.currentOffer.vendor.address;
     
 }
 
 - (IBAction)onCallTapped:(UIButton *)sender {
-    NSURL *phoneNumber = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"tel:%@", self.currentVendor.vendorPhoneNumber]];
+    NSURL *phoneNumber = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"tel:%@", self.currentOffer.vendor.vendorPhoneNumber]];
     [[UIApplication sharedApplication] openURL: phoneNumber];
 }
 - (IBAction)onEmailTapped:(UIButton *)sender {
-    NSString *mailString = [NSString stringWithFormat:@"mailto://%@", self.currentVendor.vendorEmail];
+    NSString *mailString = [NSString stringWithFormat:@"mailto://%@", self.currentOffer.vendor.vendorEmail];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailString]];
 }
 - (IBAction)onWebTapped:(UIButton *)sender {
-    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:self.currentVendor.vendorWebsite];
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:self.currentOffer.vendor.vendorWebsite];
     safariVC.delegate = self;
     [self presentViewController:safariVC animated:YES completion:nil];
 }

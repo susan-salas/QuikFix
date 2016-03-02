@@ -13,6 +13,8 @@
 #import "Firebase/Firebase.h"
 #import "QuikOffers.h"
 #import "QuikOfferDetailsVC.h"
+#import "QuikNotificationCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,18 +26,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Offers";
     self.claimsArray = [NSMutableArray new];
     self.allOffersArray = [NSMutableArray new];
     [self loadOffersFromFirebase];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:1];
+    view.tintColor = appYellow;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    QuikClaim *claim = self.claimsArray[section];
+    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:1];
+    UILabel *sectionTextLabel = [[UILabel alloc] init];
+    [sectionTextLabel setFont:[UIFont systemFontOfSize:14]];
+    sectionTextLabel.text = [NSString stringWithFormat: @"   %@ %@ - %@",claim.carDetail, claim.panel, claim.damageType];
+    sectionTextLabel.textColor = [UIColor blackColor];
+    sectionTextLabel.numberOfLines = 0;
+    sectionTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    sectionTextLabel.backgroundColor = appYellow;
+    
+    return sectionTextLabel;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30.0;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.claimsArray.count;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section{
+    view.tintColor = [UIColor clearColor];
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     QuikClaim *currentClaim = [self.claimsArray objectAtIndex:section];
-    return currentClaim.damageDescription;
+    NSString *sectionTitle = [NSString stringWithFormat:@"%@: %@-%@",currentClaim.carDetail, currentClaim.panel,currentClaim.damageType];
+    return sectionTitle;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -48,7 +82,11 @@
     QuikClaim *currentClaim = [self.claimsArray objectAtIndex:indexPath.section];
     QuikOffers *currentOffer = [currentClaim.offers objectAtIndex:indexPath.row];
     cell.textLabel.text = currentOffer.message;
-    return cell; 
+    
+    cell.layer.cornerRadius = 3;
+    cell.clipsToBounds = YES;
+    [cell setFrame:cell.frame];
+    return cell;
 }
 
 - (void) loadOffersFromFirebase{
@@ -61,13 +99,15 @@
             QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:snapshot.value];
             [self.claimsArray addObject:currentClaim];
             //            [self setupLocalNotifications];
+            
+            if ([self checkIfUserHasOffers:self.claimsArray]){
+                NSLog(@"user has offers");
+            }else{
+                NSLog(@"user has no offers");
+            }
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
-        if ([self checkIfUserHasOffers:self.claimsArray]){
-            NSLog(@"user has offers");
-        }else{
-            NSLog(@"user has no offers");
-        }
+        
     }];
 }
 
@@ -76,7 +116,7 @@
     QuikOfferDetailsVC *dest = segue.destinationViewController;
     QuikClaim *currentClaim = [self.claimsArray objectAtIndex:[self.tableView indexPathForCell:cell].section];
     dest.currentOffer = [currentClaim.offers objectAtIndex:[self.tableView indexPathForCell:cell].row];
-
+    
 }
 
 - (BOOL) checkIfUserHasOffers: (NSMutableArray *) arrayOfClaims{
