@@ -43,6 +43,7 @@
         self.damageType = claimDictionary[@"damageType"];
         self.username = claimDictionary[@"username"];
         self.claimLocation = claimDictionary[@"location"];
+        self.offersDictionary = claimDictionary[@"offers"]; 
     }
     
     return self;

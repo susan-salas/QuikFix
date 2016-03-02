@@ -63,10 +63,10 @@
             //            [self setupLocalNotifications];
         }
         [self.tableView reloadData];
-        if ([self checkIfUserHasOffers:self.claimsArray] == false){
-            NSLog(@"user has no offers");
-        }else{
+        if ([self checkIfUserHasOffers:self.claimsArray]){
             NSLog(@"user has offers");
+        }else{
+            NSLog(@"user has no offers");
         }
     }];
 }
@@ -82,35 +82,11 @@
 - (BOOL) checkIfUserHasOffers: (NSMutableArray *) arrayOfClaims{
     NSLog(@"checkIfUserHasOffers gets called");
     for (QuikClaim *currentClaim in arrayOfClaims) {
-        if (currentClaim.offers.count == 0) {
-            return false;
+        if (currentClaim.offers.count > 0) {
+            return true;
         }
     }
-    return true;
+    return false;
 }
-- (void) checkForNewOffers: (NSMutableArray *) arrayOfClaims{
-    
-    for (QuikClaim *currentClaim in arrayOfClaims) {
-        if (currentClaim.offers.count == 0) {
-        }
-    }
-}
-
-//- (void)setupLocalNotifications {
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//    
-//    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//    NSDate *now = [NSDate date];
-//    localNotification.fireDate = now;
-//    localNotification.alertBody = @"From: ";
-//    localNotification.soundName = UILocalNotificationDefaultSoundName;
-//    localNotification.applicationIconBadgeNumber = 1; // increment
-//    
-////    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
-////    localNotification.userInfo = infoDict;
-//    
-//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//}
-
 
 @end

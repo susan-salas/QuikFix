@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *ownerID;
 @property (nonatomic, strong) QuikVendor *assignedToVendor;
 @property (nonatomic, strong) NSMutableArray *offers;
+@property (nonatomic, strong) NSDictionary *offersDictionary;
 @property (nonatomic, strong) NSString *claimID;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSString *damageDescription;

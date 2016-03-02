@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@class QuikVendor;
 
 @interface QuikOffers : NSObject
-@property NSString *vendor;
+@property QuikVendor *vendor;
 @property NSString *message;
-@property NSString *bid; 
+@property NSString *bid;
+@property BOOL hasBeenChecked;
 
 -(instancetype)initWithDictionary: (NSDictionary *) offersDictionary;
 
