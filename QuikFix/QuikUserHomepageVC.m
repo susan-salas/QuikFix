@@ -34,8 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
-    [[self.navigationController navigationBar] setTintColor:navColor];
+    [[self.navigationController navigationBar] setTintColor:[UIColor whiteColor]];
 
     [self.tableView registerClass:[QuikCarTableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.noCarsView.hidden = YES;
@@ -110,8 +109,8 @@
         NSString *removeCarURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/cars/%@", removeCar.vin];
         Firebase *removeRef = [[Firebase alloc] initWithUrl: removeCarURL];
         [removeRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
-            Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
-            [[[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:removeCar.vin] ref] removeValue];
+//            Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
+//            [[[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:removeCar.vin] ref] removeValue];
         }];
     }
 }

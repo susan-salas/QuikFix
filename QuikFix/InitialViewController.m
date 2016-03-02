@@ -11,9 +11,14 @@
 #import "QuikUserHomepageVC.h"
 #import "Firebase/Firebase.h"
 #import "QuikVendorHomepageVC.h"
+#import <QuartzCore/QuartzCore.h>
+
+
 
 @interface InitialViewController ()
 @property bool isVenderProfile;
+@property (weak, nonatomic) IBOutlet UIButton *userButton;
+@property (weak, nonatomic) IBOutlet UIButton *vendorButton;
 
 @end
 
@@ -21,6 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.userButton.layer.cornerRadius = 3;
+    self.userButton.clipsToBounds = YES;
+    self.vendorButton.layer.cornerRadius = 3;
+    self.vendorButton.clipsToBounds = YES;
 
     [Firebase defaultConfig].persistenceEnabled = YES;
     

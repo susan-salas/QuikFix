@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--New Claims-->
@@ -139,22 +140,13 @@
                                     <action selector="onSendEstimateTapped:" destination="Gji-b5-4E7" eventType="touchUpInside" id="1RE-Yz-5H6"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="The claim description is going to be right here...hahaha" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y43-jX-of8">
-                                <rect key="frame" x="20" y="84" width="280" height="60"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="fD0-EE-ySY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rBm-M8-x79">
-                                <rect key="frame" x="20" y="154" width="280" height="280"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rBm-M8-x79">
+                                <rect key="frame" x="20" y="90" width="280" height="280"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-Hs-US7">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="135"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IZ-xY-CTC">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IZ-xY-CTC">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
@@ -162,7 +154,7 @@
                                                     <segue destination="Min-0a-9RG" kind="modal" identifier="Image1" id="kaB-yJ-jtQ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEZ-sJ-8Lh">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEZ-sJ-8Lh">
                                                 <rect key="frame" x="145" y="0.0" width="135" height="135"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
@@ -175,7 +167,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W42-v1-A81">
                                         <rect key="frame" x="0.0" y="145" width="280" height="135"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNm-Lc-gMV">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNm-Lc-gMV">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
@@ -183,7 +175,7 @@
                                                     <segue destination="Min-0a-9RG" kind="modal" identifier="Image3" id="aDX-MS-dzb"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFC-ZF-tbL">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFC-ZF-tbL">
                                                 <rect key="frame" x="145" y="0.0" width="135" height="135"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
@@ -198,6 +190,15 @@
                                     <constraint firstAttribute="width" secondItem="rBm-M8-x79" secondAttribute="height" multiplier="1:1" id="WZm-rv-M2V"/>
                                 </constraints>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="The claim description is going to be right here...hahaha" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y43-jX-of8">
+                                <rect key="frame" x="20" y="20" width="280" height="60"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fD0-EE-ySY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -218,6 +219,7 @@
                     <connections>
                         <outlet property="claimDescriptionTextView" destination="y43-jX-of8" id="oDv-Hb-rRn"/>
                         <outlet property="image1" destination="1IZ-xY-CTC" id="SJe-L4-JEf"/>
+                        <outlet property="sendEstimateButton" destination="aPO-v2-9Cb" id="ynP-2D-u8k"/>
                         <outletCollection property="imageButtons" destination="1IZ-xY-CTC" id="m9C-MQ-0c6"/>
                         <outletCollection property="imageButtons" destination="SEZ-sJ-8Lh" id="DYi-8Q-RI6"/>
                         <outletCollection property="imageButtons" destination="QNm-Lc-gMV" id="p9Z-k2-j5q"/>
@@ -274,6 +276,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="o99-62-doU"/>
                     <connections>
+                        <outlet property="closeButton" destination="qLO-g2-SpQ" id="a2l-Ac-BiH"/>
                         <outlet property="imageView" destination="ubg-LO-m3B" id="40d-XL-7Se"/>
                     </connections>
                 </viewController>
@@ -293,20 +296,20 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Vo-tbd">
-                                <rect key="frame" x="20" y="84" width="280" height="120"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-Vo-tbd">
+                                <rect key="frame" x="16" y="97" width="288" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="dUa-ed-cJB"/>
+                                    <constraint firstAttribute="height" constant="120" id="eUG-1Z-clW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$ Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nq4-dm-b6O">
-                                <rect key="frame" x="20" y="214" width="123" height="50"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$ Price" textAlignment="natural" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="nq4-dm-b6O">
+                                <rect key="frame" x="16" y="227" width="123" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="epD-VX-lZ2"/>
-                                    <constraint firstAttribute="width" constant="123" id="z63-0U-Cez"/>
+                                    <constraint firstAttribute="height" constant="50" id="Q70-eQ-ZNk"/>
+                                    <constraint firstAttribute="width" constant="123" id="gan-EP-Du8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -323,28 +326,31 @@
                                 </state>
                                 <connections>
                                     <action selector="onSendTapped:" destination="ljs-Ei-lkp" eventType="touchUpInside" id="avo-aJ-xhi"/>
+                                    <segue destination="OwH-32-lDX" kind="unwind" identifier="unwindToTable" unwindAction="prepareForUnwind:" id="Zgt-Cx-Gyp"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cbw-Ca-Ibm" firstAttribute="leading" secondItem="f0f-bS-cAQ" secondAttribute="leading" constant="20" id="29V-eX-LC3"/>
-                            <constraint firstItem="HXR-Vo-tbd" firstAttribute="leading" secondItem="f0f-bS-cAQ" secondAttribute="leading" constant="20" id="41s-9K-kzw"/>
-                            <constraint firstItem="nq4-dm-b6O" firstAttribute="leading" secondItem="f0f-bS-cAQ" secondAttribute="leading" constant="20" id="792-K6-v6R"/>
-                            <constraint firstItem="nq4-dm-b6O" firstAttribute="top" secondItem="HXR-Vo-tbd" secondAttribute="bottom" constant="10" id="9EW-7f-Yre"/>
                             <constraint firstAttribute="trailing" secondItem="cbw-Ca-Ibm" secondAttribute="trailing" constant="20" id="JEp-Vp-WTd"/>
-                            <constraint firstItem="HXR-Vo-tbd" firstAttribute="top" secondItem="zDU-SN-REF" secondAttribute="bottom" constant="20" id="bhq-2q-6jt"/>
+                            <constraint firstItem="HXR-Vo-tbd" firstAttribute="trailing" secondItem="f0f-bS-cAQ" secondAttribute="trailingMargin" id="Q3U-Wl-pLJ"/>
+                            <constraint firstItem="HXR-Vo-tbd" firstAttribute="leading" secondItem="f0f-bS-cAQ" secondAttribute="leadingMargin" id="YAx-46-iiJ"/>
                             <constraint firstItem="cxL-EW-wt9" firstAttribute="top" secondItem="cbw-Ca-Ibm" secondAttribute="bottom" constant="20" id="dTH-ch-Z1h"/>
-                            <constraint firstAttribute="trailing" secondItem="HXR-Vo-tbd" secondAttribute="trailing" constant="20" id="fHb-iV-dov"/>
+                            <constraint firstItem="nq4-dm-b6O" firstAttribute="leading" secondItem="f0f-bS-cAQ" secondAttribute="leadingMargin" id="dpz-vw-KMf"/>
+                            <constraint firstItem="nq4-dm-b6O" firstAttribute="top" secondItem="HXR-Vo-tbd" secondAttribute="bottom" constant="10" id="gDO-Ti-FgN"/>
+                            <constraint firstItem="nq4-dm-b6O" firstAttribute="centerY" secondItem="f0f-bS-cAQ" secondAttribute="centerY" id="iJO-bK-Fxu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Send Estimate" id="L4W-vR-qMm"/>
                     <connections>
                         <outlet property="messageTextView" destination="HXR-Vo-tbd" id="3yB-Ta-MFK"/>
                         <outlet property="priceEstimateTextField" destination="nq4-dm-b6O" id="1If-tD-7jz"/>
+                        <outlet property="sendButton" destination="cbw-Ca-Ibm" id="vbS-TA-pFJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q36-fI-37m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="OwH-32-lDX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1473" y="331"/>
         </scene>

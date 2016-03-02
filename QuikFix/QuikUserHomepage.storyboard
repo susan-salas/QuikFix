@@ -31,7 +31,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dip-CQ-pDL">
-                                        <rect key="frame" x="20" y="222" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="222" width="280" height="60"/>
                                         <color key="backgroundColor" red="0.9686274528503418" green="0.85882353782653809" blue="0.65490198135375977" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="f0K-Pb-hke"/>
@@ -47,18 +47,18 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Dip-CQ-pDL" secondAttribute="trailing" constant="20" id="4Pb-jG-On4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dip-CQ-pDL" secondAttribute="trailing" id="4Pb-jG-On4"/>
                                     <constraint firstItem="Om5-49-9fw" firstAttribute="centerX" secondItem="VDB-sY-dYK" secondAttribute="centerX" id="64O-sU-ERI"/>
                                     <constraint firstAttribute="trailing" secondItem="Om5-49-9fw" secondAttribute="trailing" id="AwK-1j-2wP"/>
                                     <constraint firstItem="Dip-CQ-pDL" firstAttribute="centerX" secondItem="VDB-sY-dYK" secondAttribute="centerX" id="QDA-hT-xJE"/>
                                     <constraint firstItem="Om5-49-9fw" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" id="Vjz-nZ-DMe"/>
-                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" constant="20" id="aw7-ZM-Zc3"/>
+                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" id="aw7-ZM-Zc3"/>
                                     <constraint firstItem="Dip-CQ-pDL" firstAttribute="top" secondItem="Om5-49-9fw" secondAttribute="bottom" constant="20" id="u36-lc-tsU"/>
                                     <constraint firstItem="Dip-CQ-pDL" firstAttribute="centerY" secondItem="VDB-sY-dYK" secondAttribute="centerY" id="yaW-c8-Ui4"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9p1-yH-R95">
-                                <rect key="frame" x="20" y="0.0" width="280" height="504"/>
+                                <rect key="frame" x="20" y="0.0" width="280" height="459"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,27 +67,43 @@
                                     <outlet property="delegate" destination="KDg-O1-fNE" id="6IY-lc-CVs"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIX-bM-xyp">
+                                <rect key="frame" x="0.0" y="459" width="320" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="9NR-iy-xfU"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="New Offers" id="DPl-DJ-lYO">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="KIX-bM-xyp" firstAttribute="top" secondItem="9p1-yH-R95" secondAttribute="bottom" id="1iU-Fy-iI2"/>
+                            <constraint firstItem="KIX-bM-xyp" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" id="5op-Ug-Cjt"/>
+                            <constraint firstAttribute="trailing" secondItem="9p1-yH-R95" secondAttribute="trailing" constant="20" id="7hw-Y7-cek"/>
                             <constraint firstItem="VDB-sY-dYK" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="CiH-XX-r8l"/>
+                            <constraint firstItem="9p1-yH-R95" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="Tvs-j6-b3F"/>
                             <constraint firstItem="VDB-sY-dYK" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="ZnU-OJ-sFV"/>
-                            <constraint firstItem="9p1-yH-R95" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="aLj-zA-chf"/>
-                            <constraint firstAttribute="trailing" secondItem="9p1-yH-R95" secondAttribute="trailing" constant="20" id="hTc-tX-jq4"/>
+                            <constraint firstAttribute="trailing" secondItem="KIX-bM-xyp" secondAttribute="trailing" id="gEg-oP-BtQ"/>
                             <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="VDB-sY-dYK" secondAttribute="bottom" id="hc3-xa-DAt"/>
+                            <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="KIX-bM-xyp" secondAttribute="bottom" id="jEq-5N-1be"/>
+                            <constraint firstItem="9p1-yH-R95" firstAttribute="leading" secondItem="zVa-pR-qxv" secondAttribute="leading" constant="20" id="jZo-pS-q0O"/>
                             <constraint firstAttribute="trailing" secondItem="VDB-sY-dYK" secondAttribute="trailing" constant="20" id="nFq-KW-C64"/>
-                            <constraint firstItem="9p1-yH-R95" firstAttribute="top" secondItem="UMM-Jk-wsB" secondAttribute="bottom" id="rlL-dF-BBC"/>
-                            <constraint firstItem="wDZ-Tp-WHr" firstAttribute="top" secondItem="9p1-yH-R95" secondAttribute="bottom" id="wXc-k4-jTc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Cars" id="Vl5-4M-Ga5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="1xK-nk-EfW"/>
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="lWP-di-Ob0">
                             <color key="tintColor" red="0.86666666670000003" green="0.90196078430000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onLogoutTapped:" destination="KDg-O1-fNE" id="Fob-SL-6bt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Car" id="nZ5-Z4-pAA">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="nZ5-Z4-pAA">
                             <color key="tintColor" red="0.86666666670000003" green="0.90196078430000004" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onAddButtonTapped:" destination="KDg-O1-fNE" id="3I1-le-hn2"/>
@@ -118,6 +134,44 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MR-98-1oJ">
+                                <rect key="frame" x="20" y="0.0" width="280" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new damage to get connected with the auto shops near you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAY-Hx-z2L">
+                                        <rect key="frame" x="0.0" y="132" width="280" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="IF4-iG-6kD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPL-4X-bPS">
+                                        <rect key="frame" x="0.0" y="222" width="280" height="60"/>
+                                        <color key="backgroundColor" red="0.9686274528503418" green="0.85882353782653809" blue="0.65490198135375977" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Yc3-uD-wCL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <state key="normal" title="Add Damage">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="NAk-0k-UW4" kind="push" id="VLC-zn-FUP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="centerY" secondItem="2MR-98-1oJ" secondAttribute="centerY" id="1qx-fj-arQ"/>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="leading" secondItem="2MR-98-1oJ" secondAttribute="leading" id="Ygp-hB-ooa"/>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="top" secondItem="KAY-Hx-z2L" secondAttribute="bottom" constant="10" id="aXy-FC-iPg"/>
+                                    <constraint firstAttribute="trailing" secondItem="DPL-4X-bPS" secondAttribute="trailing" id="cXT-cR-9th"/>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="centerX" secondItem="2MR-98-1oJ" secondAttribute="centerX" id="lMP-LP-UIE"/>
+                                    <constraint firstItem="KAY-Hx-z2L" firstAttribute="leading" secondItem="2MR-98-1oJ" secondAttribute="leading" id="uGn-vq-nNf"/>
+                                    <constraint firstAttribute="trailing" secondItem="KAY-Hx-z2L" secondAttribute="trailing" id="vMm-2N-N6E"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-go-UOr">
                                 <rect key="frame" x="20" y="0.0" width="280" height="504"/>
                                 <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -158,21 +212,26 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2MR-98-1oJ" secondAttribute="trailing" constant="20" id="6R6-CI-1e5"/>
+                            <constraint firstItem="2MR-98-1oJ" firstAttribute="top" secondItem="QH6-U9-QXq" secondAttribute="bottom" id="BkR-TT-WbM"/>
                             <constraint firstItem="XBy-go-UOr" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" constant="20" id="EwU-mK-Ls2"/>
                             <constraint firstAttribute="trailing" secondItem="XBy-go-UOr" secondAttribute="trailing" constant="20" id="FpZ-Uy-sqv"/>
+                            <constraint firstItem="2MR-98-1oJ" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" constant="20" id="IA1-Ds-eax"/>
                             <constraint firstItem="XBy-go-UOr" firstAttribute="top" secondItem="QH6-U9-QXq" secondAttribute="bottom" id="Shd-b3-I5m"/>
+                            <constraint firstItem="h0f-PK-fxX" firstAttribute="top" secondItem="2MR-98-1oJ" secondAttribute="bottom" id="YKt-Gi-Ndx"/>
                             <constraint firstItem="h0f-PK-fxX" firstAttribute="top" secondItem="XBy-go-UOr" secondAttribute="bottom" id="zr5-iX-YQH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Damage Log" id="rYe-lU-nLu">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="gCV-px-xxL"/>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="RLV-dF-lIm">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="RLV-dF-lIm">
                             <connections>
                                 <segue destination="NAk-0k-UW4" kind="push" id="nLF-ed-8wg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noDamageAddButton" destination="DPL-4X-bPS" id="gjE-no-IKU"/>
                         <outlet property="tableView" destination="XBy-go-UOr" id="lGL-Jl-F8n"/>
                     </connections>
                 </viewController>
@@ -229,7 +288,7 @@
                                     <constraint firstAttribute="height" constant="60" id="0l6-B4-AxY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                <state key="normal" title="Report">
+                                <state key="normal" title="Add">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>

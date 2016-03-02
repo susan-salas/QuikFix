@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image3;
 @property (weak, nonatomic) IBOutlet UIImageView *image4;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -33,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self toDismissKeyboard];
 
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]
                                      initWithTarget:self action:@selector(handleTap:)];
@@ -192,5 +194,33 @@
     QuikUserImagePickerVC *dest = segue.destinationViewController;
     dest.imageViewFromPreviousVC = (UIImageView *)[sender view];
 }
+
+#pragma mark - Dismiss Keyboard Methods
+
+-(void)toDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(didTapAnywhere:)];
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    [self.panelTextField resignFirstResponder];
+    [self.damageTypeTextField resignFirstResponder];
+    [self.damageDescription resignFirstResponder];
+}
+
 
 @end
