@@ -48,6 +48,7 @@
 		D0151D1A1C7963DC00DF4CC4 /* QuikUserImagePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */; };
 		D0151D1F1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */; };
 		D04E7AFC1C82C4D800659E48 /* Assets 22-00-33-896.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04E7AFB1C82C4D800659E48 /* Assets 22-00-33-896.xcassets */; };
+		D08A4D0E1C87937A00406FBF /* QuikNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D08A4D0D1C87937A00406FBF /* QuikNotificationCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +122,8 @@
 		D0151D1D1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikCarTableViewCell.h; sourceTree = "<group>"; };
 		D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikCarTableViewCell.m; sourceTree = "<group>"; };
 		D04E7AFB1C82C4D800659E48 /* Assets 22-00-33-896.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 22-00-33-896.xcassets"; sourceTree = "<group>"; };
+		D08A4D0C1C87937A00406FBF /* QuikNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuikNotificationCell.h; sourceTree = "<group>"; };
+		D08A4D0D1C87937A00406FBF /* QuikNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuikNotificationCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 				D0151D191C7963DC00DF4CC4 /* QuikUserImagePickerVC.m */,
 				D0151D1D1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.h */,
 				D0151D1E1C7F9C1F00DF4CC4 /* QuikCarTableViewCell.m */,
+				D08A4D0C1C87937A00406FBF /* QuikNotificationCell.h */,
+				D08A4D0D1C87937A00406FBF /* QuikNotificationCell.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -357,7 +362,7 @@
 				TargetAttributes = {
 					36E57B651C72D46B000DEB1E = {
 						CreatedOnToolsVersion = 7.2;
-                        DevelopmentTeam = TX9H52K7VN;
+						DevelopmentTeam = TX9H52K7VN;
 					};
 				};
 			};
@@ -465,6 +470,7 @@
 				BD6E78461C73E67000C68256 /* QuikVendorHomepageVC.m in Sources */,
 				D0151D171C77FDB400DF4CC4 /* AFTableViewCell.m in Sources */,
 				BD6E78541C73F4D400C68256 /* QuikVendorSendEstimateVC.m in Sources */,
+				D08A4D0E1C87937A00406FBF /* QuikNotificationCell.m in Sources */,
 				364A6DB11C812254009F3F54 /* QuikOffers.m in Sources */,
 				368F03141C79622100A785C5 /* NotificationsVC.m in Sources */,
 				36E57B9A1C740795000DEB1E /* InitialViewController.m in Sources */,

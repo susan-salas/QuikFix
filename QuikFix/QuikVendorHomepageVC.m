@@ -50,9 +50,8 @@
     self.isFiltered = NO;
     self.searchBar.delegate = self;
     self.timesUpdated = 0;
-    
-    UIColor *navColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1];
-    [[self.navigationController navigationBar] setTintColor:navColor];
+
+    [[self.navigationController navigationBar] setTintColor:[UIColor whiteColor]];
 }
 
 -(void)addAnnotations {
