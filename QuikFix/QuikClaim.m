@@ -9,6 +9,7 @@
 #import "QuikClaim.h"
 #import "QuikCar.h"
 #import "Firebase/Firebase.h"
+#import "QuikOffers.h"
 
 @implementation QuikClaim
 
@@ -21,9 +22,8 @@
         NSMutableArray *imagesArray = [NSMutableArray new];
 
         for (NSString *key in offersDict) {
-            NSDictionary *offer = [offersDict valueForKey:key];
-            NSLog(@"offer in offerDict == %@", offer);
-                [offersArray addObject:offer];
+            QuikOffers *currentOffer = [[QuikOffers alloc]initWithDictionary:[offersDict objectForKey:key]];
+                [offersArray addObject:currentOffer];
         }
 
         for (NSString *imageKey in imagesDict) {

@@ -10,6 +10,5 @@
 @class QuikClaim;
 
 @interface NotificationsVC : UIViewController
-@property QuikClaim *currentClaim;
 
 @end

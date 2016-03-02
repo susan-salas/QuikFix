@@ -16,6 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "NotificationsVC.h"
 
 @interface QuikUserHomepageVC () <UITableViewDataSource, UITableViewDelegate>
 
@@ -170,6 +171,14 @@
     }
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)onOffersTapped:(UIBarButtonItem *)sender {
+    NotificationsVC *notificationsVC = [NotificationsVC new];
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Notifications" bundle:[NSBundle mainBundle]];
+    notificationsVC = [board instantiateInitialViewController];
+    
+    
+    [self.navigationController pushViewController:notificationsVC animated:YES];
 }
 
 @end

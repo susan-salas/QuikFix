@@ -16,7 +16,7 @@
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSMutableArray *offersArray;
+@property NSMutableArray *claimsArray;
 @property NSMutableArray *allOffersArray;
 @end
 
@@ -24,19 +24,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.offersArray = [NSMutableArray new];
+    self.claimsArray = [NSMutableArray new];
     self.allOffersArray = [NSMutableArray new];
     [self loadOffersFromFirebase];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.claimsArray.count;
+}
 
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.allOffersArray.count;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    QuikClaim *currentClaim = [self.claimsArray objectAtIndex:section];
+    return currentClaim.damageDescription;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    QuikClaim *currentSection= [self.claimsArray objectAtIndex:section];
+    return currentSection.offers.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
-    QuikOffers *currentOffer = self.allOffersArray[indexPath.row];
+    QuikClaim *currentClaim = [self.claimsArray objectAtIndex:indexPath.section];
+    QuikOffers *currentOffer = [currentClaim.offers objectAtIndex:indexPath.row];
     cell.textLabel.text = currentOffer.message;
     return cell; 
 }
@@ -47,42 +57,59 @@
     NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
     
     [[[claimRef queryOrderedByChild:@"owner"] queryEqualToValue:uid] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"loadOffersFromFirebase");
         if(snapshot.exists){
-            NSDictionary *offersDictionary = snapshot.value[@"offers"];
-            for (NSString *key in offersDictionary) {
-                QuikOffers *currentOffer = [[QuikOffers alloc]initWithDictionary:[offersDictionary objectForKey:key]];
-                [self.allOffersArray addObject:currentOffer];
-              
-            }
-            [self setupLocalNotifications];
+            QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:snapshot.value];
+            [self.claimsArray addObject:currentClaim];
+            //            [self setupLocalNotifications];
         }
         [self.tableView reloadData];
-
-        }];
+        if ([self checkIfUserHasOffers:self.claimsArray] == false){
+            NSLog(@"user has no offers");
+        }else{
+            NSLog(@"user has offers");
+        }
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     UITableViewCell *cell = sender;
     QuikOfferDetailsVC *dest = segue.destinationViewController;
-    dest.currentOffer = [self.allOffersArray objectAtIndex:[self.tableView indexPathForCell:cell].row];
+    QuikClaim *currentClaim = [self.claimsArray objectAtIndex:[self.tableView indexPathForCell:cell].section];
+    dest.currentOffer = [currentClaim.offers objectAtIndex:[self.tableView indexPathForCell:cell].row];
 }
 
-- (void)setupLocalNotifications {
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    NSDate *now = [NSDate date];
-    localNotification.fireDate = now;
-    localNotification.alertBody = @"From: ";
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = 1; // increment
-    
-//    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
-//    localNotification.userInfo = infoDict;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+- (BOOL) checkIfUserHasOffers: (NSMutableArray *) arrayOfClaims{
+    NSLog(@"checkIfUserHasOffers gets called");
+    for (QuikClaim *currentClaim in arrayOfClaims) {
+        if (currentClaim.offers.count == 0) {
+            return false;
+        }
+    }
+    return true;
 }
+- (void) checkForNewOffers: (NSMutableArray *) arrayOfClaims{
+    
+    for (QuikClaim *currentClaim in arrayOfClaims) {
+        if (currentClaim.offers.count == 0) {
+        }
+    }
+}
+
+//- (void)setupLocalNotifications {
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    
+//    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+//    NSDate *now = [NSDate date];
+//    localNotification.fireDate = now;
+//    localNotification.alertBody = @"From: ";
+//    localNotification.soundName = UILocalNotificationDefaultSoundName;
+//    localNotification.applicationIconBadgeNumber = 1; // increment
+//    
+////    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
+////    localNotification.userInfo = infoDict;
+//    
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//}
 
 
 @end

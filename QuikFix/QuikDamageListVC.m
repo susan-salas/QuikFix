@@ -11,7 +11,6 @@
 #import "Firebase/Firebase.h"
 #import "QuikCar.h"
 #import "QuikClaim.h"
-#import "NotificationsVC.h"
 
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -125,22 +124,12 @@
                 QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
                 [damageFromFirebase addObject:claim];
             }
-            [self sendClaimToNotificationVC:damageFromFirebase[0]];
             self.damageListForCar = damageFromFirebase;
             [self.tableView reloadData];
         }
     }];
 }
 
--(void)sendClaimToNotificationVC:(QuikClaim *) claim{
-    
-    NotificationsVC *notificationsVC = [NotificationsVC new];
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Notifications" bundle:[NSBundle mainBundle]];
-    notificationsVC = [board instantiateInitialViewController];
-    notificationsVC.currentClaim = claim;
-    
-    [self.navigationController pushViewController:notificationsVC animated:YES];
-}
 
 
 
