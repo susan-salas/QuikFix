@@ -79,7 +79,6 @@
                             [editor save];
                             
                             [[NSUserDefaults standardUserDefaults] setValue: self.usernameLabel.text forKey:@"username"];
-                            NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
                             NSDictionary *newUser = @{
                                                       @"email": self.emailTextField.text,
                                                       @"uid": authData.uid,

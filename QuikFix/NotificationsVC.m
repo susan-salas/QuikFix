@@ -29,7 +29,6 @@
 }
 
 - (void) pullNotificationsfromFirebase{
-    Firebase *ref = [[Firebase alloc] initWithUrl:@""];
-    
+    //Firebase *ref = [[Firebase alloc] initWithUrl:@""];
 }
 @end

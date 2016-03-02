@@ -125,7 +125,6 @@
                                                @"meesage": self.messageTextView.text,
                                                @"bid": self.priceEstimateTextField.text};
                 [notificationRef setValue:notification];
-
     }
 }
 
