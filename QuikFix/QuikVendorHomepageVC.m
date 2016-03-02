@@ -32,6 +32,7 @@
 @property BOOL isFiltered;
 @property NSMutableArray *filteredClaims;
 @property NSInteger timesUpdated;
+@property UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -39,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self toDismissKeyboard];
     [self populateClaimsArray];
     self.contentOffsetDictionary = [NSMutableDictionary dictionary];
     self.mapView.hidden = YES;
@@ -378,6 +380,31 @@
     UICollectionView *collectionView = (UICollectionView *)scrollView;
     NSInteger index = collectionView.tag;
     self.contentOffsetDictionary[[@(index) stringValue]] = @(horizontalOffset);
+}
+
+#pragma mark - Dismiss Keyboard Methods
+
+-(void)toDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(didTapAnywhere:)];
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    [self.searchBar resignFirstResponder];
 }
 
 @end

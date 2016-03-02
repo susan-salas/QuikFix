@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *logInLabelView;
 @property NSString *email;
 @property bool isVendorLogIn;
+@property UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -33,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self toDismissKeyboard];
 
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
@@ -196,6 +198,31 @@
     }
 }
 
+#pragma mark - Dismiss Keyboard Methods
+
+-(void)toDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(didTapAnywhere:)];
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    [self.emailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
 
 
 

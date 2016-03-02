@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *addCar;
 @property QuikCar *carToAdd;
+@property UITapGestureRecognizer *tapRecognizer;
 
 
 @end
@@ -32,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self toDismissKeyboard];
 
     self.vinTextField.delegate = self;
     self.yearTextField.delegate = self;
@@ -188,5 +190,36 @@
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com/cars"];
     [[ref childByAppendingPath:car.vin] setValue:carDict];
 }
+#pragma mark - Dismiss Keyboard Methods
+
+-(void)toDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(didTapAnywhere:)];
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    [self.textField resignFirstResponder];
+    [self.vinTextField resignFirstResponder];
+    [self.yearTextField resignFirstResponder];
+    [self.makeTextField resignFirstResponder];
+    [self.modelTextField resignFirstResponder];
+    [self.bodyTextField resignFirstResponder];
+    [self.colorTextField resignFirstResponder];
+}
+
 
 @end

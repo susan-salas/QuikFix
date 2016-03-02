@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITextField *priceEstimateTextField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
-
+@property UITapGestureRecognizer *tapRecognizer;
 @end
 
 @implementation QuikVendorSendEstimateVC
@@ -31,7 +31,34 @@
     self.messageTextView.clipsToBounds = YES;
     self.sendButton.layer.cornerRadius = 3;
     self.sendButton.clipsToBounds = YES;
+    [self toDismissKeyboard];
+    
 }
+
+-(void)toDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(didTapAnywhere:)];
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    [self.messageTextView resignFirstResponder];
+    [self.priceEstimateTextField resignFirstResponder];
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if ([textView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@""]) {
         textView.text = @"";
@@ -77,6 +104,7 @@
         self.priceEstimateTextField.text = @"";
     }
     self.messageTextView.textColor = [UIColor blackColor];
+    self.priceEstimateTextField.textColor = [UIColor blackColor];
     return YES;
 }
 
@@ -103,7 +131,7 @@
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     if ([identifier isEqualToString:@"unwindToTable"]) {
-        if ([self isClaimMessageReadyToPush]) {
+        if ([self isClaimMessageReadyToPush] && [self isClaimPriceReadyToPush]) {
             return true;
         }
     }
