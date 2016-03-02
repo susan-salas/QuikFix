@@ -124,6 +124,7 @@
     if ([self.messageTextView.text isEqualToString:@"Please write your message here..."] || [self.messageTextView.text isEqualToString:@""]) {
     self.messageTextView.textColor = [UIColor lightGrayColor];
     self.messageTextView.text = @"Message required";
+
     }
 }
 
