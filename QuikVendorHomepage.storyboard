@@ -276,6 +276,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="o99-62-doU"/>
                     <connections>
+                        <outlet property="closeButton" destination="qLO-g2-SpQ" id="a2l-Ac-BiH"/>
                         <outlet property="imageView" destination="ubg-LO-m3B" id="40d-XL-7Se"/>
                     </connections>
                 </viewController>

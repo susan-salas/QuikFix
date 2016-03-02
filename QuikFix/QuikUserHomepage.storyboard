@@ -31,7 +31,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dip-CQ-pDL">
-                                        <rect key="frame" x="20" y="222" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="222" width="280" height="60"/>
                                         <color key="backgroundColor" red="0.9686274528503418" green="0.85882353782653809" blue="0.65490198135375977" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="f0K-Pb-hke"/>
@@ -47,12 +47,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Dip-CQ-pDL" secondAttribute="trailing" constant="20" id="4Pb-jG-On4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dip-CQ-pDL" secondAttribute="trailing" id="4Pb-jG-On4"/>
                                     <constraint firstItem="Om5-49-9fw" firstAttribute="centerX" secondItem="VDB-sY-dYK" secondAttribute="centerX" id="64O-sU-ERI"/>
                                     <constraint firstAttribute="trailing" secondItem="Om5-49-9fw" secondAttribute="trailing" id="AwK-1j-2wP"/>
                                     <constraint firstItem="Dip-CQ-pDL" firstAttribute="centerX" secondItem="VDB-sY-dYK" secondAttribute="centerX" id="QDA-hT-xJE"/>
                                     <constraint firstItem="Om5-49-9fw" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" id="Vjz-nZ-DMe"/>
-                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" constant="20" id="aw7-ZM-Zc3"/>
+                                    <constraint firstItem="Dip-CQ-pDL" firstAttribute="leading" secondItem="VDB-sY-dYK" secondAttribute="leading" id="aw7-ZM-Zc3"/>
                                     <constraint firstItem="Dip-CQ-pDL" firstAttribute="top" secondItem="Om5-49-9fw" secondAttribute="bottom" constant="20" id="u36-lc-tsU"/>
                                     <constraint firstItem="Dip-CQ-pDL" firstAttribute="centerY" secondItem="VDB-sY-dYK" secondAttribute="centerY" id="yaW-c8-Ui4"/>
                                 </constraints>
@@ -134,6 +134,44 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MR-98-1oJ">
+                                <rect key="frame" x="20" y="0.0" width="280" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new damage to get connected with the auto shops near you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAY-Hx-z2L">
+                                        <rect key="frame" x="0.0" y="132" width="280" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="IF4-iG-6kD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPL-4X-bPS">
+                                        <rect key="frame" x="0.0" y="222" width="280" height="60"/>
+                                        <color key="backgroundColor" red="0.9686274528503418" green="0.85882353782653809" blue="0.65490198135375977" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Yc3-uD-wCL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <state key="normal" title="Add Damage">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="NAk-0k-UW4" kind="push" id="VLC-zn-FUP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="centerY" secondItem="2MR-98-1oJ" secondAttribute="centerY" id="1qx-fj-arQ"/>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="leading" secondItem="2MR-98-1oJ" secondAttribute="leading" id="Ygp-hB-ooa"/>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="top" secondItem="KAY-Hx-z2L" secondAttribute="bottom" constant="10" id="aXy-FC-iPg"/>
+                                    <constraint firstAttribute="trailing" secondItem="DPL-4X-bPS" secondAttribute="trailing" id="cXT-cR-9th"/>
+                                    <constraint firstItem="DPL-4X-bPS" firstAttribute="centerX" secondItem="2MR-98-1oJ" secondAttribute="centerX" id="lMP-LP-UIE"/>
+                                    <constraint firstItem="KAY-Hx-z2L" firstAttribute="leading" secondItem="2MR-98-1oJ" secondAttribute="leading" id="uGn-vq-nNf"/>
+                                    <constraint firstAttribute="trailing" secondItem="KAY-Hx-z2L" secondAttribute="trailing" id="vMm-2N-N6E"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-go-UOr">
                                 <rect key="frame" x="20" y="0.0" width="280" height="504"/>
                                 <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -174,9 +212,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2MR-98-1oJ" secondAttribute="trailing" constant="20" id="6R6-CI-1e5"/>
+                            <constraint firstItem="2MR-98-1oJ" firstAttribute="top" secondItem="QH6-U9-QXq" secondAttribute="bottom" id="BkR-TT-WbM"/>
                             <constraint firstItem="XBy-go-UOr" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" constant="20" id="EwU-mK-Ls2"/>
                             <constraint firstAttribute="trailing" secondItem="XBy-go-UOr" secondAttribute="trailing" constant="20" id="FpZ-Uy-sqv"/>
+                            <constraint firstItem="2MR-98-1oJ" firstAttribute="leading" secondItem="2wN-Zg-xEH" secondAttribute="leading" constant="20" id="IA1-Ds-eax"/>
                             <constraint firstItem="XBy-go-UOr" firstAttribute="top" secondItem="QH6-U9-QXq" secondAttribute="bottom" id="Shd-b3-I5m"/>
+                            <constraint firstItem="h0f-PK-fxX" firstAttribute="top" secondItem="2MR-98-1oJ" secondAttribute="bottom" id="YKt-Gi-Ndx"/>
                             <constraint firstItem="h0f-PK-fxX" firstAttribute="top" secondItem="XBy-go-UOr" secondAttribute="bottom" id="zr5-iX-YQH"/>
                         </constraints>
                     </view>
@@ -189,6 +231,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noDamageAddButton" destination="DPL-4X-bPS" id="gjE-no-IKU"/>
                         <outlet property="tableView" destination="XBy-go-UOr" id="lGL-Jl-F8n"/>
                     </connections>
                 </viewController>
@@ -245,7 +288,7 @@
                                     <constraint firstAttribute="height" constant="60" id="0l6-B4-AxY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                <state key="normal" title="Report">
+                                <state key="normal" title="Add">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>

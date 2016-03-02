@@ -15,6 +15,8 @@
 @interface QuikDamageListVC () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *damageListForCar;
+@property (weak, nonatomic) IBOutlet UIButton *noDamageAddButton;
+
 @end
 
 @implementation QuikDamageListVC
@@ -25,6 +27,9 @@
     self.damageListForCar = [NSMutableArray new];
     [self loadMyDamage];
 
+    self.noDamageAddButton.layer.cornerRadius = 3;
+    self.noDamageAddButton.clipsToBounds = YES;
+
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:nil
@@ -34,6 +39,12 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.damageListForCar.count == 0) {
+        self.tableView.hidden = YES;
+    }
+    else{
+        self.tableView.hidden = NO;
+    }
     return self.damageListForCar.count;
 }
 
@@ -86,12 +97,8 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([sender isKindOfClass:[UIBarButtonItem class]]){
-        AddDamageVC *dest = segue.destinationViewController;
-        dest.carDetailText = self.car.detail;
-        dest.car = self.car;
-    }
-    else if([sender isKindOfClass:[UITableViewCell class]]) {
+
+    if([sender isKindOfClass:[UITableViewCell class]]) {
         AddDamageVC *dest = segue.destinationViewController;
         NSIndexPath *path =  [self.tableView indexPathForCell:(UITableViewCell *)sender];
         QuikClaim *claim = self.damageListForCar[path.section];
@@ -99,6 +106,11 @@
         dest.carDetailText = self.car.detail;
         dest.car = self.car;
         dest.claim = claim;
+    }
+    else{
+        AddDamageVC *dest = segue.destinationViewController;
+        dest.carDetailText = self.car.detail;
+        dest.car = self.car;
     }
 }
 
