@@ -11,15 +11,15 @@
 #import "Firebase/Firebase.h"
 #import "QuikVendor.h"
 #import <SafariServices/SafariServices.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface QuikOfferDetailsVC () <MKMapViewDelegate, CLLocationManagerDelegate, SFSafariViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *vendorImageView;
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UILabel *estimateLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UILabel *vendorNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingsLabel;
-@property (weak, nonatomic) IBOutlet UITextView *addressTextView;
+@property (weak, nonatomic) IBOutlet UILabel *addressTextLabel;
+
 @property QuikVendor *currentVendor;
 
 @end
@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.currentOffer.vendor.vendorName;
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.currentOffer.vendor.locationLatitude doubleValue], [self.currentOffer.vendor.locationLongitude doubleValue]);
     
     MKCoordinateSpan span = MKCoordinateSpanMake(0.009, 0.009);
@@ -40,11 +41,18 @@
     [self.mapView addAnnotation:annotation];
     self.currentVendor = self.currentOffer.vendor;
     self.messageTextView.text = self.currentOffer.message;
-    self.estimateLabel.text = [NSString stringWithFormat:@"$%@", self.currentOffer.bid];
-    self.vendorImageView.image = self.currentVendor.image;
-    self.vendorNameLabel.text = self.currentVendor.vendorName;
+    self.estimateLabel.text = [NSString stringWithFormat:@"Price: $%@", self.currentOffer.bid];
     self.ratingsLabel.text = [NSString stringWithFormat:@"Rating: %@", self.currentVendor.vendorRating];
-    self.addressTextView.text = self.currentVendor.address;
+    self.addressTextLabel.text = self.currentVendor.address;
+
+    self.mapView.layer.cornerRadius = 3;
+    self.mapView.clipsToBounds = YES;
+    self.messageTextView.layer.cornerRadius = 3;
+    self.messageTextView.clipsToBounds = YES;
+    self.estimateLabel.layer.cornerRadius = 3;
+    self.estimateLabel.clipsToBounds = YES;
+    self.ratingsLabel.layer.cornerRadius = 3;
+    self.ratingsLabel.clipsToBounds = YES;
     
 }
 

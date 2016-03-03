@@ -38,7 +38,7 @@
     QuikClaim *claim = self.claimsArray[section];
     UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:.95];
     UILabel *sectionTextLabel = [[UILabel alloc] init];
-    [sectionTextLabel setFont:[UIFont systemFontOfSize:12]];
+    [sectionTextLabel setFont:[UIFont systemFontOfSize:22]];
     sectionTextLabel.text = [NSString stringWithFormat: @"%@\n%@ - %@",claim.carDetail, claim.damageType, claim.panel];
     sectionTextLabel.textColor = [UIColor blackColor];
     sectionTextLabel.numberOfLines = 0;
@@ -50,9 +50,12 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30.0;
+    return 60.0;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10.0;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.claimsArray.count;
@@ -80,8 +83,6 @@
     QuikVendor *vendor = currentOffer.vendor;
     NSString *cellText = [NSString stringWithFormat:@"%@ : $%@.00",vendor.vendorName, currentOffer.bid];
     cell.textLabel.text = cellText;
-    cell.layer.cornerRadius = 3;
-    cell.clipsToBounds = YES;
     return cell;
 }
 
@@ -99,12 +100,6 @@
                 QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
                 [localClaimsArray addObject:claim];
             }
-//
-//            if ([self checkIfUserHasOffers:self.claimsArray]){
-//                NSLog(@"user has offers");
-//            }else{
-//                NSLog(@"user has no offers");
-//            }
             self.claimsArray = localClaimsArray;
             [self.tableView reloadData];
         }

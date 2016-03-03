@@ -120,8 +120,7 @@
         NSString *removeCarURL = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/cars/%@", removeCar.vin];
         Firebase *removeRef = [[Firebase alloc] initWithUrl: removeCarURL];
         [removeRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
-//            Firebase *damageRef = [[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/claims"];
-//            [[[[damageRef queryOrderedByChild:@"carWithDamage"] queryEqualToValue:removeCar.vin] ref] removeValue];
+            //delete the claims for car
         }];
     }
 }
@@ -223,21 +222,21 @@
 //    }
 //}
 
-- (void)setupLocalNotifications: (QuikClaim *)claim
-{
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    NSDate *now = [NSDate date];
-    localNotification.fireDate = now;
-    localNotification.alertBody = [NSString stringWithFormat:@"For %@ with %@ %@", claim.carDetail, claim.panel, claim.damageType];
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = 1; // increment
-    
-    //    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
-    //    localNotification.userInfo = infoDict;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-}
+//- (void)setupLocalNotifications: (QuikClaim *)claim
+//{
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    
+//    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+//    NSDate *now = [NSDate date];
+//    localNotification.fireDate = now;
+//    localNotification.alertBody = [NSString stringWithFormat:@"For %@ with %@ %@", claim.carDetail, claim.panel, claim.damageType];
+//    localNotification.soundName = UILocalNotificationDefaultSoundName;
+//    localNotification.applicationIconBadgeNumber = 1; // increment
+//    
+//    //    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
+//    //    localNotification.userInfo = infoDict;
+//    
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//}
 
 @end

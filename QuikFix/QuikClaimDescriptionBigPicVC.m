@@ -61,7 +61,6 @@
     float MAXIMUM_SCALE = 3.0;
     if (gesture.state == UIGestureRecognizerStateEnded
         || gesture.state == UIGestureRecognizerStateChanged) {
-        NSLog(@"gesture.scale = %f", gesture.scale);
 
         CGFloat currentScale = self.imageView.frame.size.width / self.imageView.bounds.size.width;
         CGFloat newScale = currentScale * gesture.scale;

@@ -10,4 +10,9 @@
 
 @interface QuikNotificationCell : UITableViewCell
 
+@property (nonatomic, strong) UIView *topView;
+@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) UILabel *cellTextLabel;
+
+
 @end

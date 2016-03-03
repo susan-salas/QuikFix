@@ -12,9 +12,7 @@
 
 -(instancetype)initWithDictionary: (NSDictionary *) vendorDictionary{
     if (self) {
-
-        NSLog(@"Dictionary %@",vendorDictionary);
-
+        
         self.idNumber = vendorDictionary[@"vendorid"];
         self.vendorName = vendorDictionary[@"name"];
         self.locationLatitude = vendorDictionary[@"latitude"];
