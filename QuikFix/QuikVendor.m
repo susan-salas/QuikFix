@@ -16,7 +16,7 @@
         self.vendorName = vendorDictionary[@"name"];
         self.locationLatitude = vendorDictionary[@"latitude"];
         self.locationLongitude = vendorDictionary [@"longitude"];
-        self.vendorWebsite = [[NSURL alloc] initWithString: vendorDictionary[@"website"]];
+        self.vendorWebsite = vendorDictionary[@"website"];
         self.vendorPhoneNumber = vendorDictionary[@"phone"];
         self.vendorEmail = vendorDictionary[@"email"];
         if (vendorDictionary[@"rating"] != NULL) {

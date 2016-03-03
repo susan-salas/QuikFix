@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QuikClaim.h"
+@class  QuikClaim;
 
 @interface QuikVendorSendEstimateVC : UIViewController
 

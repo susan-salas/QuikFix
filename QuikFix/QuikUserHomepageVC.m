@@ -53,12 +53,12 @@
     [self populateUser];
     [self loadMyCars];
     
-    BOOL isVendor = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVendorProfile"];
-    if (!(isVendor)) {
-        [self loadOffersFromFirebase];
-        self.offersNotSeen =[NSMutableArray new];
-    }
-    
+//    BOOL isVendor = [[NSUserDefaults standardUserDefaults] boolForKey:@"isVendorProfile"];
+//    if (!(isVendor)) {
+//        //[self loadOffersFromFirebase];
+//        self.offersNotSeen =[NSMutableArray new];
+//    }
+//    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -191,37 +191,37 @@
     [self.navigationController pushViewController:notificationsVC animated:YES];
 }
 
-- (void) loadOffersFromFirebase{
-    NSLog(@"loadOffersFromFirebase");
-    Firebase *claimRef = [[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims"];
-    
-    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
-    
-    [[[claimRef queryOrderedByChild:@"owner"] queryEqualToValue:uid] observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-        if(snapshot.exists){
-            NSLog(@"child has been changed");
-            QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:snapshot.value];
-            for (QuikOffers *offer in currentClaim.offers) {
-                if (offer.hasBeenChecked == NO) {
-                    [self.offersNotSeen addObject:offer];
-              
-                }
-            }
-            [self checkForNewOffers: currentClaim];
-        }
+//- (void) loadOffersFromFirebase{
+//    NSLog(@"loadOffersFromFirebase");
+//    Firebase *claimRef = [[[Firebase alloc] initWithUrl:@"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims"];
+//    
+//    NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
+//    
+//    [[[claimRef queryOrderedByChild:@"owner"] queryEqualToValue:uid] observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+//        if(snapshot.exists){
+//            NSLog(@"child has been changed");
+//            QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:snapshot.value];
+//            for (QuikOffers *offer in currentClaim.offers) {
+//                if (offer.hasBeenChecked == NO) {
+//                    [self.offersNotSeen addObject:offer];
+//              
+//                }
+//            }
+//            [self checkForNewOffers: currentClaim];
+//        }
+//
+//    }];
+//}
 
-    }];
-}
-
-- (void) checkForNewOffers: (QuikClaim *) claim{
-            NSLog(@"checkForNewOffers called");
-    if (self.offersNotSeen.count == 0){
-        NSLog(@"no new offers");
-    }else{
-        NSLog(@"new offers!!");
-        [self setupLocalNotifications: claim];
-    }
-}
+//- (void) checkForNewOffers: (QuikClaim *) claim{
+//            NSLog(@"checkForNewOffers called");
+//    if (self.offersNotSeen.count == 0){
+//        NSLog(@"no new offers");
+//    }else{
+//        NSLog(@"new offers!!");
+//        [self setupLocalNotifications: claim];
+//    }
+//}
 
 - (void)setupLocalNotifications: (QuikClaim *)claim
 {

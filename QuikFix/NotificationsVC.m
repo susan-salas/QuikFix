@@ -14,6 +14,7 @@
 #import "QuikOffers.h"
 #import "QuikOfferDetailsVC.h"
 #import "QuikNotificationCell.h"
+#import "QuikVendor.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface NotificationsVC () <UITableViewDataSource, UITableViewDelegate>
@@ -54,6 +55,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 30.0;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10.0;
 }
@@ -78,14 +80,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
+    QuikNotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
     QuikClaim *currentClaim = [self.claimsArray objectAtIndex:indexPath.section];
     QuikOffers *currentOffer = [currentClaim.offers objectAtIndex:indexPath.row];
-    cell.textLabel.text = currentOffer.message;
+    cell.textLabel.text = currentOffer.bid;
     
     cell.layer.cornerRadius = 3;
     cell.clipsToBounds = YES;
-    [cell setFrame:cell.frame];
     return cell;
 }
 
@@ -94,20 +95,24 @@
     
     NSString *uid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
     
-    [[[claimRef queryOrderedByChild:@"owner"] queryEqualToValue:uid] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+    
+    [[[claimRef queryOrderedByChild:@"owner"] queryEqualToValue:uid] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if(snapshot.exists){
-            QuikClaim *currentClaim = [[QuikClaim alloc] initWithDictionary:snapshot.value];
-            [self.claimsArray addObject:currentClaim];
-            //            [self setupLocalNotifications];
-            
-            if ([self checkIfUserHasOffers:self.claimsArray]){
-                NSLog(@"user has offers");
-            }else{
-                NSLog(@"user has no offers");
+            NSMutableArray *localClaimsArray = [NSMutableArray new];
+            for (NSString* claimID in snapshot.value) {
+                NSDictionary *claimDict = [snapshot.value objectForKey:claimID];
+                QuikClaim *claim = [[QuikClaim alloc] initWithDictionary:claimDict];
+                [localClaimsArray addObject:claim];
             }
+//
+//            if ([self checkIfUserHasOffers:self.claimsArray]){
+//                NSLog(@"user has offers");
+//            }else{
+//                NSLog(@"user has no offers");
+//            }
+            self.claimsArray = localClaimsArray;
             [self.tableView reloadData];
         }
-        
     }];
 }
 

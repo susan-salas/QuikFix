@@ -7,6 +7,8 @@
 //
 
 #import "QuikVendorSendEstimateVC.h"
+#import "QuikClaim.h"
+#import "QuikVendor.h"
 #import "Firebase/Firebase.h"
 
 @interface QuikVendorSendEstimateVC () <UITextViewDelegate, UITextFieldDelegate>
@@ -14,7 +16,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITextField *priceEstimateTextField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property QuikVendor *vendor;
 @property UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) NSDictionary *vendorDict;
 @end
 
 @implementation QuikVendorSendEstimateVC
@@ -31,8 +35,9 @@
     self.messageTextView.clipsToBounds = YES;
     self.sendButton.layer.cornerRadius = 3;
     self.sendButton.clipsToBounds = YES;
+    self.sendButton.enabled = NO;
     [self toDismissKeyboard];
-    
+    [self loadVendor];
 }
 
 -(void)toDismissKeyboard {
@@ -114,6 +119,7 @@
                 Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
                 NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
                 NSDictionary *notification = @{@"vendor": uid,
+                                               @"venderDict":self.vendorDict,
                                                @"message": self.messageTextView.text,
                                                @"bid": self.priceEstimateTextField.text};
                 [notificationRef setValue:notification];
@@ -135,6 +141,18 @@
         }
     }
     return true;
+}
+
+-(void)loadVendor{
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    Firebase* ref = [[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com/vendors"] childByAppendingPath:uid];
+    [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if(snapshot.exists){
+            self.vendorDict = snapshot.value;
+            self.vendor = [[QuikVendor alloc] initWithDictionary:self.vendorDict];
+            self.sendButton.enabled = YES;
+        }
+    }];
 }
 
 @end
