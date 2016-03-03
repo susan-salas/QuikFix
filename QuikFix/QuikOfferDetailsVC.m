@@ -41,7 +41,7 @@
     [self.mapView addAnnotation:annotation];
     self.currentVendor = self.currentOffer.vendor;
     self.messageTextView.text = self.currentOffer.message;
-    self.estimateLabel.text = [NSString stringWithFormat:@"Price: $%@", self.currentOffer.bid];
+    self.estimateLabel.text = [NSString stringWithFormat:@"Cost: $%@", self.currentOffer.bid];
     self.ratingsLabel.text = [NSString stringWithFormat:@"Rating: %@", self.currentVendor.vendorRating];
     self.addressTextLabel.text = self.currentVendor.address;
 

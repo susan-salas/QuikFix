@@ -174,7 +174,9 @@
 
     if([self.title isEqualToString:@"Edit Damage"]){
         NSString *urlForEdit = [NSString stringWithFormat:@"https://beefstagram.firebaseio.com/claims/%@", self.claim.claimID];
-        [claimDict setObject:self.claim.offersDictionary forKey:@"offers"];
+        if(self.claim.offersDictionary != NULL){
+            [claimDict setObject:self.claim.offersDictionary forKey:@"offers"];
+        }
         [claimDict setObject:self.claim.claimID forKey:@"claimID"];
         Firebase *ref2 = [[Firebase alloc] initWithUrl:urlForEdit];
         [ref2 setValue: claimDict];
