@@ -33,21 +33,18 @@
     [self loadOffersFromFirebase];
 }
 
--(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
-    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:1];
-    view.tintColor = appYellow;
-}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     QuikClaim *claim = self.claimsArray[section];
-    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:1];
+    UIColor *appYellow = [UIColor colorWithRed:247.0/255.0 green:219.0/255.0 blue:167.0/255.0 alpha:.95];
     UILabel *sectionTextLabel = [[UILabel alloc] init];
-    [sectionTextLabel setFont:[UIFont systemFontOfSize:14]];
-    sectionTextLabel.text = [NSString stringWithFormat: @"   %@ %@ - %@",claim.carDetail, claim.panel, claim.damageType];
+    [sectionTextLabel setFont:[UIFont systemFontOfSize:12]];
+    sectionTextLabel.text = [NSString stringWithFormat: @"%@\n%@ - %@",claim.carDetail, claim.damageType, claim.panel];
     sectionTextLabel.textColor = [UIColor blackColor];
     sectionTextLabel.numberOfLines = 0;
     sectionTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     sectionTextLabel.backgroundColor = appYellow;
+    [sectionTextLabel setTextAlignment:NSTextAlignmentCenter];
     
     return sectionTextLabel;
 }
@@ -56,9 +53,6 @@
     return 30.0;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10.0;
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.claimsArray.count;
@@ -83,8 +77,9 @@
     QuikNotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
     QuikClaim *currentClaim = [self.claimsArray objectAtIndex:indexPath.section];
     QuikOffers *currentOffer = [currentClaim.offers objectAtIndex:indexPath.row];
-    cell.textLabel.text = currentOffer.bid;
-    
+    QuikVendor *vendor = currentOffer.vendor;
+    NSString *cellText = [NSString stringWithFormat:@"%@ : $%@.00",vendor.vendorName, currentOffer.bid];
+    cell.textLabel.text = cellText;
     cell.layer.cornerRadius = 3;
     cell.clipsToBounds = YES;
     return cell;

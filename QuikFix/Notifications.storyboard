@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="10" width="320" height="558"/>
                                 <color key="backgroundColor" red="0.16078431900000001" green="0.18823529780000001" blue="0.26274511220000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NotificationCell" id="RPh-ac-7No">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NotificationCell" id="RPh-ac-7No" customClass="QuikNotificationCell">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RPh-ac-7No" id="AW8-NU-qCO">

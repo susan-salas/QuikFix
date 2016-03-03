@@ -242,16 +242,16 @@
 		D0151CD31C74F86800DF4CC4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				364A6DAF1C812254009F3F54 /* QuikOffers.h */,
-				364A6DB01C812254009F3F54 /* QuikOffers.m */,
-				D01127E81C73C2890051E7EF /* QuikCar.h */,
-				D01127E91C73C2890051E7EF /* QuikCar.m */,
 				D01127EB1C73C3150051E7EF /* QuikUser.h */,
 				D01127EC1C73C3150051E7EF /* QuikUser.m */,
-				BD6E78491C73E9AD00C68256 /* QuikVendor.h */,
-				BD6E784A1C73E9AD00C68256 /* QuikVendor.m */,
+				D01127E81C73C2890051E7EF /* QuikCar.h */,
+				D01127E91C73C2890051E7EF /* QuikCar.m */,
 				BD6E784C1C73E9DC00C68256 /* QuikClaim.h */,
 				BD6E784D1C73E9DC00C68256 /* QuikClaim.m */,
+				364A6DAF1C812254009F3F54 /* QuikOffers.h */,
+				364A6DB01C812254009F3F54 /* QuikOffers.m */,
+				BD6E78491C73E9AD00C68256 /* QuikVendor.h */,
+				BD6E784A1C73E9AD00C68256 /* QuikVendor.m */,
 			);
 			name = Model;
 			path = ..;

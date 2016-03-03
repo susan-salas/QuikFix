@@ -119,7 +119,7 @@
                 Firebase *notificationRef = [[[[[[Firebase alloc] initWithUrl: @"https://beefstagram.firebaseio.com"] childByAppendingPath:@"claims" ] childByAppendingPath:self.currentClaim.claimID] childByAppendingPath:@"offers"] childByAutoId];
                 NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
                 NSDictionary *notification = @{@"vendor": uid,
-                                               @"venderDict":self.vendorDict,
+                                               @"vendorDict":self.vendorDict,
                                                @"message": self.messageTextView.text,
                                                @"bid": self.priceEstimateTextField.text};
                 [notificationRef setValue:notification];

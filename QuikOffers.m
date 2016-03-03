@@ -14,6 +14,7 @@
 
 -(instancetype)initWithDictionary: (NSDictionary *) offersDictionary{
     if (self) {
+
         self.vendor = [[QuikVendor alloc]initWithDictionary:[offersDictionary objectForKey:@"vendorDict"]];
         self.message = [offersDictionary objectForKey:@"message"];
         self.bid = [offersDictionary objectForKey:@"bid"];

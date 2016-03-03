@@ -17,10 +17,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UILabel *estimateLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property QuikVendor *currentVendor;
 @property (weak, nonatomic) IBOutlet UILabel *vendorNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *addressTextView;
+@property QuikVendor *currentVendor;
 
 @end
 
@@ -38,12 +38,13 @@
     
     [self.mapView setRegion:region];
     [self.mapView addAnnotation:annotation];
+    self.currentVendor = self.currentOffer.vendor;
     self.messageTextView.text = self.currentOffer.message;
     self.estimateLabel.text = [NSString stringWithFormat:@"$%@", self.currentOffer.bid];
-    self.vendorImageView.image = self.currentOffer.vendor.image;
-    self.vendorNameLabel.text = self.currentOffer.vendor.vendorName;
-    self.ratingsLabel.text = [NSString stringWithFormat:@"Rating: %@", self.currentOffer.vendor.vendorRating];
-    self.addressTextView.text = self.currentOffer.vendor.address;
+    self.vendorImageView.image = self.currentVendor.image;
+    self.vendorNameLabel.text = self.currentVendor.vendorName;
+    self.ratingsLabel.text = [NSString stringWithFormat:@"Rating: %@", self.currentVendor.vendorRating];
+    self.addressTextView.text = self.currentVendor.address;
     
 }
 
@@ -56,7 +57,8 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailString]];
 }
 - (IBAction)onWebTapped:(UIButton *)sender {
-    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:self.currentOffer.vendor.vendorWebsite];
+    NSURL *vendorURL = [[NSURL alloc] initWithString:self.currentVendor.vendorWebsite];
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:vendorURL];
     safariVC.delegate = self;
     [self presentViewController:safariVC animated:YES completion:nil];
 }

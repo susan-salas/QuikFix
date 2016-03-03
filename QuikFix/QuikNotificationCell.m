@@ -11,7 +11,6 @@
 @implementation QuikNotificationCell
 
 - (void)setFrame:(CGRect)frame {
-
     if (self.superview) {
         float cellWidth = 40.0;
         frame.origin.x = (self.superview.frame.origin.x + (cellWidth/2));
